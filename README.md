@@ -1,4 +1,2 @@
 # Fundamentos
 taller
-
-si sirvo
