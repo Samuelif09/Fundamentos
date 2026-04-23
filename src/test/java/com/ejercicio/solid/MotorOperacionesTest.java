@@ -29,4 +29,10 @@ class MotorOperacionesTest {
     void deberiaLanzarExcepcionConOpcionInvalida() {
         assertThrows(IllegalArgumentException.class, () -> motor.procesar(99, 1, 1));
     }
+
+    @Test
+    void deberiaLanzarExcepcionPidiendoAlMotorAlNoPasarPrecondicionLSP() {
+        Exception e = assertThrows(IllegalArgumentException.class, () -> motor.procesar(3, -9, 0));
+        assertEquals("Valor no valido para esta operacion unaria.", e.getMessage());
+    }
 }

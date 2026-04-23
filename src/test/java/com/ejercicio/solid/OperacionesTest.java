@@ -8,24 +8,28 @@ class OperacionesTest {
     @Test
     void deberiaSumarDosNumeros() {
         OperacionBinaria suma = new Suma();
+        assertTrue(suma.validarPrecondicion(10, 5));
         assertEquals(15.0, suma.ejecutar(10, 5));
     }
 
     @Test
     void deberiaRestarDosNumeros() {
         OperacionBinaria resta = new Resta();
+        assertTrue(resta.validarPrecondicion(10, 5));
         assertEquals(5.0, resta.ejecutar(10, 5));
     }
 
     @Test
     void deberiaCalcularRaizCuadradaPositiva() {
         OperacionUnaria raiz = new RaizCuadrada();
+        assertTrue(raiz.validarPrecondicion(16));
         assertEquals(4.0, raiz.ejecutar(16));
     }
 
     @Test
     void deberiaFallarRaizCuadradaNegativa() {
         OperacionUnaria raiz = new RaizCuadrada();
+        assertFalse(raiz.validarPrecondicion(-4)); // Contrato nos advierte
         Exception e = assertThrows(IllegalArgumentException.class, () -> raiz.ejecutar(-4));
         assertEquals("No se puede calcular raiz de un negativo", e.getMessage());
     }
@@ -33,12 +37,14 @@ class OperacionesTest {
     @Test
     void deberiaCalcularLogaritmoNatural() {
         OperacionUnaria log = new LogaritmoNatural();
+        assertTrue(log.validarPrecondicion(1));
         assertEquals(0.0, log.ejecutar(1));
     }
 
     @Test
     void deberiaFallarLogaritmoCeroONegativo() {
         OperacionUnaria log = new LogaritmoNatural();
+        assertFalse(log.validarPrecondicion(0)); // Contrato nos advierte
         assertThrows(IllegalArgumentException.class, () -> log.ejecutar(0));
     }
 }
