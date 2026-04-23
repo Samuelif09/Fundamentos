@@ -1,26 +1,27 @@
 package com.ejercicio.solid;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MotorOperaciones {
+    private final Map<Integer, OperacionBinaria> operacionesBinarias = new HashMap<>();
+    private final Map<Integer, OperacionUnaria> operacionesUnarias = new HashMap<>();
 
-    private final Operaciones operaciones;
+    public void registrarOperacionBinaria(int opcion, OperacionBinaria operacion) {
+        operacionesBinarias.put(opcion, operacion);
+    }
 
-    public MotorOperaciones(Operaciones operaciones) {
-        this.operaciones = operaciones;
+    public void registrarOperacionUnaria(int opcion, OperacionUnaria operacion) {
+        operacionesUnarias.put(opcion, operacion);
     }
 
     public double procesar(int opcion, int a, int b) {
-        switch (opcion) {
-            case 1:
-                return operaciones.sumar(a, b);
-            case 2:
-                return operaciones.restar(a, b);
-            case 3:
-                // Para las operaciones unarias como la raíz, usamos solo 'a'
-                return operaciones.raiz(a);
-            case 4:
-                return operaciones.logaritmo(a);
-            default:
-                throw new IllegalArgumentException("Opcion invalida");
+        if (operacionesBinarias.containsKey(opcion)) {
+            return operacionesBinarias.get(opcion).ejecutar(a, b);
+        } else if (operacionesUnarias.containsKey(opcion)) {
+            return operacionesUnarias.get(opcion).ejecutar(a); // Operación unaria ignora 'b'
         }
+        
+        throw new IllegalArgumentException("Opcion invalida: " + opcion);
     }
 }

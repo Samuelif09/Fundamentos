@@ -5,36 +5,40 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OperacionesTest {
 
-    private final Operaciones operaciones = new Operaciones();
-
     @Test
     void deberiaSumarDosNumeros() {
-        assertEquals(15.0, operaciones.sumar(10, 5));
+        OperacionBinaria suma = new Suma();
+        assertEquals(15.0, suma.ejecutar(10, 5));
     }
 
     @Test
     void deberiaRestarDosNumeros() {
-        assertEquals(5.0, operaciones.restar(10, 5));
+        OperacionBinaria resta = new Resta();
+        assertEquals(5.0, resta.ejecutar(10, 5));
     }
 
     @Test
     void deberiaCalcularRaizCuadradaPositiva() {
-        assertEquals(4.0, operaciones.raiz(16));
+        OperacionUnaria raiz = new RaizCuadrada();
+        assertEquals(4.0, raiz.ejecutar(16));
     }
 
     @Test
     void deberiaFallarRaizCuadradaNegativa() {
-        Exception e = assertThrows(IllegalArgumentException.class, () -> operaciones.raiz(-4));
+        OperacionUnaria raiz = new RaizCuadrada();
+        Exception e = assertThrows(IllegalArgumentException.class, () -> raiz.ejecutar(-4));
         assertEquals("No se puede calcular raiz de un negativo", e.getMessage());
     }
 
     @Test
     void deberiaCalcularLogaritmoNatural() {
-        assertEquals(0.0, operaciones.logaritmo(1));
+        OperacionUnaria log = new LogaritmoNatural();
+        assertEquals(0.0, log.ejecutar(1));
     }
 
     @Test
     void deberiaFallarLogaritmoCeroONegativo() {
-        assertThrows(IllegalArgumentException.class, () -> operaciones.logaritmo(0));
+        OperacionUnaria log = new LogaritmoNatural();
+        assertThrows(IllegalArgumentException.class, () -> log.ejecutar(0));
     }
 }
