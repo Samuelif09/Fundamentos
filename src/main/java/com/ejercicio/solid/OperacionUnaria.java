@@ -1,11 +1,15 @@
 package com.ejercicio.solid;
 
-public abstract class OperacionUnaria {
+// Comprometemos nuestra clase abstracta solo con lo que usarán aquellos
+// que necesiten un flujo interactivo. Si otro cliente solo quiere ejecutar
+// puede usar EjecutableUnario unicamente (Respetando ISP).
+public abstract class OperacionUnaria implements EjecutableUnario, ValidableUnario {
     
-    // Contrato LSP: Define si el parametro es aceptable matemáticamente
+    @Override
     public boolean validarPrecondicion(int a) {
         return true; 
     }
 
+    @Override
     public abstract double ejecutar(int a);
 }
