@@ -42,4 +42,5 @@ public abstract class ContenidoDigital {
 
     public abstract ContenidoDigital actualizarPrecio(Precio nuevoPrecio);
     public abstract ContenidoDigital pausar();
+    public abstract ContenidoDigital rechazar(com.openlib.market.domain.curaduria.MotivoRechazo motivo);
 }

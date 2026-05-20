@@ -10,8 +10,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.openlib.market.domain.dashboardGlobal.IDashboardGlobalGateway;
+
 @Component
-public class PedidoJsonGateway implements IPedidoGateway {
+public class PedidoJsonGateway implements IPedidoGateway, IDashboardGlobalGateway {
 
     private final ObjectMapper objectMapper;
     private final File jsonFile;
@@ -64,6 +66,22 @@ public class PedidoJsonGateway implements IPedidoGateway {
     }
 
     @Override
+    public java.util.Optional<Pedido> obtenerPorId(String id) {
+        return baseDatosEnMemoria.stream()
+                .filter(dto -> dto.id().equals(id))
+                .findFirst()
+                .map(dto -> new Pedido(
+                        dto.id(),
+                        dto.sesionId(),
+                        dto.idUsuario(),
+                        dto.total(),
+                        com.openlib.market.domain.pago.EstadoPedido.valueOf(dto.estado()),
+                        dto.fecha() != null ? java.time.LocalDateTime.parse(dto.fecha()) : null,
+                        dto.tipoMetodoPago() != null ? com.openlib.market.domain.pago.TipoMetodoPago.valueOf(dto.tipoMetodoPago()) : null
+                ));
+    }
+
+    @Override
     public List<Pedido> listarPorUsuarioId(String idUsuario, int offset, int limit) {
         return baseDatosEnMemoria.stream()
                 .filter(dto -> idUsuario.equals(dto.idUsuario()))
@@ -79,6 +97,41 @@ public class PedidoJsonGateway implements IPedidoGateway {
                         dto.tipoMetodoPago() != null ? com.openlib.market.domain.pago.TipoMetodoPago.valueOf(dto.tipoMetodoPago()) : null
                 ))
                 .sorted((p1, p2) -> p2.getFecha().compareTo(p1.getFecha())) // Descendente
+                .toList();
+    }
+
+    @Override
+    public List<Pedido> listarTodos(int page, int size) {
+        return baseDatosEnMemoria.stream()
+                .map(dto -> new Pedido(
+                        dto.id(),
+                        dto.sesionId(),
+                        dto.idUsuario(),
+                        dto.total(),
+                        com.openlib.market.domain.pago.EstadoPedido.valueOf(dto.estado()),
+                        dto.fecha() != null ? java.time.LocalDateTime.parse(dto.fecha()) : java.time.LocalDateTime.now(),
+                        dto.tipoMetodoPago() != null ? com.openlib.market.domain.pago.TipoMetodoPago.valueOf(dto.tipoMetodoPago()) : null
+                ))
+                .sorted((p1, p2) -> p2.getFecha().compareTo(p1.getFecha()))
+                .skip((long) page * size)
+                .limit(size)
+                .toList();
+    }
+
+    @Override
+    public List<Pedido> obtenerPedidosExitososDePlataforma(int anio) {
+        return baseDatosEnMemoria.stream()
+                .filter(dto -> "PAGADO".equals(dto.estado()))
+                .filter(dto -> dto.fecha() != null && dto.fecha().startsWith(String.valueOf(anio)))
+                .map(dto -> new Pedido(
+                        dto.id(),
+                        dto.sesionId(),
+                        dto.idUsuario(),
+                        dto.total(),
+                        com.openlib.market.domain.pago.EstadoPedido.valueOf(dto.estado()),
+                        java.time.LocalDateTime.parse(dto.fecha()),
+                        dto.tipoMetodoPago() != null ? com.openlib.market.domain.pago.TipoMetodoPago.valueOf(dto.tipoMetodoPago()) : null
+                ))
                 .toList();
     }
 

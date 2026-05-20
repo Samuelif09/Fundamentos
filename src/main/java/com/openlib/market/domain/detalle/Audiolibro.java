@@ -38,4 +38,15 @@ public class Audiolibro extends ContenidoDigital {
         }
         return new Audiolibro(getId(), getTitulo(), getSinopsis(), getPrecio(), getUrlPortada(), getCategoria(), getIdVendedor(), EstadoLibro.PAUSADO, getUrlVistaPrevia(), this.duracion);
     }
+
+    @Override
+    public Audiolibro rechazar(com.openlib.market.domain.curaduria.MotivoRechazo motivo) {
+        if (motivo == null) {
+            throw new IllegalArgumentException("El motivo de rechazo no puede ser nulo");
+        }
+        if (getEstado() == EstadoLibro.RECHAZADO) {
+            throw new IllegalStateException("El audiolibro ya se encuentra rechazado");
+        }
+        return new Audiolibro(getId(), getTitulo(), getSinopsis(), getPrecio(), getUrlPortada(), getCategoria(), getIdVendedor(), EstadoLibro.RECHAZADO, getUrlVistaPrevia(), this.duracion);
+    }
 }

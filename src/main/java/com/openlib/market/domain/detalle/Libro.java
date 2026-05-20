@@ -41,4 +41,15 @@ public class Libro extends ContenidoDigital {
         }
         return new Libro(getId(), getTitulo(), getSinopsis(), getPrecio(), getUrlPortada(), getCategoria(), getIdVendedor(), EstadoLibro.PAUSADO, getUrlVistaPrevia());
     }
+
+    @Override
+    public Libro rechazar(com.openlib.market.domain.curaduria.MotivoRechazo motivo) {
+        if (motivo == null) {
+            throw new IllegalArgumentException("El motivo de rechazo no puede ser nulo");
+        }
+        if (getEstado() == EstadoLibro.RECHAZADO) {
+            throw new IllegalStateException("El libro ya se encuentra rechazado");
+        }
+        return new Libro(getId(), getTitulo(), getSinopsis(), getPrecio(), getUrlPortada(), getCategoria(), getIdVendedor(), EstadoLibro.RECHAZADO, getUrlVistaPrevia());
+    }
 }

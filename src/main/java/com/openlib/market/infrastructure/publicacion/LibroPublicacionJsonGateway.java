@@ -10,8 +10,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.openlib.market.domain.curaduria.ICuraduriaGateway;
+
 @Component
-public class LibroPublicacionJsonGateway implements ILibroPublicacionGateway {
+public class LibroPublicacionJsonGateway implements ILibroPublicacionGateway, ICuraduriaGateway {
 
     private final ObjectMapper objectMapper;
     private final File jsonFile;
@@ -83,6 +85,26 @@ public class LibroPublicacionJsonGateway implements ILibroPublicacionGateway {
     public void actualizar(Libro libro) {
         baseDatosEnMemoria.removeIf(l -> l.isbn().equals(libro.getIsbn().getValor()));
         guardar(libro);
+    }
+
+    @Override
+    public List<Libro> listarPorEstado(com.openlib.market.domain.detalle.EstadoLibro estado, int page, int size) {
+        return baseDatosEnMemoria.stream()
+                .filter(dto -> dto.estado() != null && dto.estado() == estado)
+                .skip((long) page * size)
+                .limit(size)
+                .map(dto -> new Libro(
+                        new com.openlib.market.domain.detalle.Isbn(dto.isbn()),
+                        dto.titulo(),
+                        dto.sinopsis(),
+                        new com.openlib.market.domain.detalle.Precio(dto.precio()),
+                        dto.urlPortada(),
+                        dto.categoria(),
+                        dto.idVendedor(),
+                        dto.estado(),
+                        dto.urlVistaPrevia()
+                ))
+                .toList();
     }
 
     private record LibroDto(String isbn, String titulo, String sinopsis, double precio, String urlPortada, String categoria, String idVendedor, com.openlib.market.domain.detalle.EstadoLibro estado, String urlVistaPrevia) {}

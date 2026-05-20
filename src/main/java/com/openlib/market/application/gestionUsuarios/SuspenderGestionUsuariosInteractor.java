@@ -10,7 +10,8 @@ public class SuspenderGestionUsuariosInteractor implements ISuspenderGestionUsua
     private final IUsuarioGateway usuarioGateway;
     private final INotificacionGateway notificacionGateway;
 
-    public SuspenderGestionUsuariosInteractor(IUsuarioGateway usuarioGateway, INotificacionGateway notificacionGateway) {
+    public SuspenderGestionUsuariosInteractor(IUsuarioGateway usuarioGateway,
+            INotificacionGateway notificacionGateway) {
         this.usuarioGateway = usuarioGateway;
         this.notificacionGateway = notificacionGateway;
     }
@@ -23,7 +24,7 @@ public class SuspenderGestionUsuariosInteractor implements ISuspenderGestionUsua
         usuario.suspender(motivo);
 
         usuarioGateway.actualizar(usuario);
-        
+
         notificacionGateway.notificarSuspension(usuario.getEmail().getValor(), motivo.getRazon());
     }
 }

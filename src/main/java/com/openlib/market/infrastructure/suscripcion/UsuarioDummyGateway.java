@@ -25,4 +25,12 @@ public class UsuarioDummyGateway implements IUsuarioGateway {
     public void actualizar(Usuario usuario) {
         // Dummy implementation
     }
+
+    @Override
+    public java.util.List<Usuario> listarTodos() {
+        return java.util.List.of(
+            new Usuario("vendedor-1", "Vendedor Uno", new com.openlib.market.domain.registro.Email("vend@test.com"), new com.openlib.market.domain.registro.Password("Pass123!"), RolUsuario.VENDEDOR),
+            new Usuario("user-2", "Comprador Dos", new com.openlib.market.domain.registro.Email("comp@test.com"), new com.openlib.market.domain.registro.Password("Pass123!"), RolUsuario.COMPRADOR)
+        );
+    }
 }

@@ -21,4 +21,10 @@ public class NotificacionLoggerGateway implements INotificacionGateway {
         System.out.println(mensaje);
         System.out.println("==================================================");
     }
+
+    @Override
+    public void notificarRechazoLibro(String idVendedor, String tituloLibro, String motivo) {
+        String mensaje = String.format("Notificando a vendedor %s el rechazo del libro '%s'. Motivo: %s", idVendedor, tituloLibro, motivo);
+        logger.info(mensaje);
+    }
 }

@@ -93,4 +93,23 @@ public class GestionUsuariosJsonGateway implements IUsuarioGateway {
     }
 
     private record UsuarioDto(String id, String nombre, String email, String password, String rol, String estadoCuenta, String motivoSuspension) {}
+
+    @Override
+    public List<Usuario> listarTodos() {
+        return baseDatosEnMemoria.stream()
+                .map(dto -> {
+                    EstadoCuenta estado = dto.estadoCuenta() != null ? EstadoCuenta.valueOf(dto.estadoCuenta()) : EstadoCuenta.ACTIVO;
+                    MotivoSuspension motivo = dto.motivoSuspension() != null ? new MotivoSuspension(dto.motivoSuspension()) : null;
+                    return new Usuario(
+                        dto.id(),
+                        dto.nombre(),
+                        new Email(dto.email()),
+                        new Password("dummyPass1"),
+                        RolUsuario.valueOf(dto.rol()),
+                        estado,
+                        motivo
+                    );
+                })
+                .toList();
+    }
 }

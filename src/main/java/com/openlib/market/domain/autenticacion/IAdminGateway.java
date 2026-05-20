@@ -9,4 +9,7 @@ import java.util.Optional;
  */
 public interface IAdminGateway {
     Optional<Administrador> buscarPorEmail(Email email);
+    Optional<Administrador> buscarPorId(String id);
+    void guardar(Administrador administrador);
+    int contarSuperAdmins();
 }
