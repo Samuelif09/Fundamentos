@@ -1,0 +1,7 @@
+package com.openlib.market.domain.inventario;
+
+import java.util.Optional;
+
+public interface IInventarioGateway {
+    Optional<StockDisponible> obtenerStock(String isbn);
+}
