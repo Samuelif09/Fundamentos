@@ -24,6 +24,14 @@ public class ListaDeseosDummyGateway implements IListaDeseosGateway {
 
     @Override
     public List<String> obtenerUsuariosInteresados(String idLibro) {
-        return interesadosPorLibro.getOrDefault(idLibro, new ArrayList<>());
+        return List.of();
+    }
+
+    @Override
+    public void guardar(String idUsuario, java.util.Set<String> isbns) {}
+
+    @Override
+    public java.util.Set<String> obtenerPorUsuario(String idUsuario) {
+        return java.util.Set.of();
     }
 }

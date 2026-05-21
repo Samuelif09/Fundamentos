@@ -1,14 +1,25 @@
 package com.openlib.market.frontend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Book {
+    @JsonProperty("isbn")
     private String id;
+    
+    @JsonProperty("titulo")
     private String title;
+    
     private String author;
+    
+    @JsonProperty("precio")
     private double price;
+    
+    @JsonProperty("urlPortada")
     private String coverUrl;
+    
+    @JsonProperty("sinopsis")
     private String synopsis;
 
     public Book() {

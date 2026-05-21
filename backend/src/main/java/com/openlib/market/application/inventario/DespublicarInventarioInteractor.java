@@ -1,10 +1,12 @@
 package com.openlib.market.application.inventario;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.detalle.ILibroPublicacionGateway;
 import com.openlib.market.domain.detalle.Libro;
 
 import java.util.Optional;
 
+@Service
 public class DespublicarInventarioInteractor implements IDespublicarInventarioUseCase {
 
     private final ILibroPublicacionGateway libroGateway;

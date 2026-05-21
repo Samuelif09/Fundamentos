@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.logging.Logger;
 
-@Component
+@Component("notificacionNotificacionLoggerGateway")
 public class NotificacionLoggerGateway implements INotificacionGateway {
     private static final Logger logger = Logger.getLogger(NotificacionLoggerGateway.class.getName());
 

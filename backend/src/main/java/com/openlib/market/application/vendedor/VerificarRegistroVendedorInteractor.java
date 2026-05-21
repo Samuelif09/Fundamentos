@@ -1,5 +1,6 @@
 package com.openlib.market.application.vendedor;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.almacenamiento.ArchivoImagen;
 import com.openlib.market.domain.almacenamiento.IAlmacenamientoGateway;
 import com.openlib.market.domain.vendedor.INotificacionAdminGateway;
@@ -8,6 +9,7 @@ import com.openlib.market.domain.vendedor.Vendedor;
 
 import java.util.Optional;
 
+@Service
 public class VerificarRegistroVendedorInteractor implements IVerificarRegistroVendedorUseCase {
 
     private final IVendedorGateway vendedorGateway;

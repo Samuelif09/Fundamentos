@@ -1,7 +1,9 @@
 package com.openlib.market.application.finanzas;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.finanzas.*;
 
+@Service
 public class SolicitarRetiroFinanzasInteractor implements ISolicitarRetiroFinanzasUseCase {
 
     private final IBilleteraGateway billeteraGateway;

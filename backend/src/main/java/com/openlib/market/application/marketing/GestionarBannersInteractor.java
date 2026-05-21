@@ -1,5 +1,6 @@
 package com.openlib.market.application.marketing;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.marketing.BannerPromocional;
 import com.openlib.market.domain.marketing.EstadoCampana;
 import com.openlib.market.domain.marketing.IBannerGateway;
@@ -10,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class GestionarBannersInteractor implements IGestionarBannersUseCase {
 
     private final IBannerGateway bannerGateway;

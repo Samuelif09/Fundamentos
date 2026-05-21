@@ -7,6 +7,9 @@ import com.openlib.market.domain.anomalias.ReglaAnomaliaDomainService;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
+@Service("anomaliasEvaluarAnomaliaInteractor")
 public class EvaluarAnomaliaInteractor implements IEvaluarAnomaliaUseCase {
 
     private final IMetricasGateway metricasGateway;

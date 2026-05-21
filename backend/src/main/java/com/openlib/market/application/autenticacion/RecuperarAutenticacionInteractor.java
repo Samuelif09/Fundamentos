@@ -1,9 +1,11 @@
 package com.openlib.market.application.autenticacion;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.autenticacion.*;
 
 import java.util.Optional;
 
+@Service
 public class RecuperarAutenticacionInteractor implements IRecuperarAutenticacionUseCase {
 
     private final IUsuarioAuthGateway usuarioGateway;

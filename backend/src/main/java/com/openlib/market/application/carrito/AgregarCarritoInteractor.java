@@ -4,6 +4,9 @@ import com.openlib.market.domain.carrito.*;
 import com.openlib.market.domain.inventario.IInventarioGateway;
 import com.openlib.market.domain.inventario.StockDisponible;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class AgregarCarritoInteractor implements IAgregarCarritoUseCase {
 
     private final ICarritoGateway carritoGateway;

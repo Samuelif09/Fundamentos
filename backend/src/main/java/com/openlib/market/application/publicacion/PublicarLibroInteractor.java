@@ -1,5 +1,6 @@
 package com.openlib.market.application.publicacion;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.detalle.ILibroPublicacionGateway;
 import com.openlib.market.domain.detalle.Isbn;
 import com.openlib.market.domain.detalle.Libro;
@@ -10,6 +11,7 @@ import com.openlib.market.domain.registro.Usuario;
 
 import java.util.Optional;
 
+@Service
 public class PublicarLibroInteractor implements IPublicarLibroUseCase {
 
     private final ILibroPublicacionGateway libroGateway;

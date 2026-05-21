@@ -1,5 +1,6 @@
 package com.openlib.market.application.publicacion;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.almacenamiento.ArchivoVistaPrevia;
 import com.openlib.market.domain.almacenamiento.IAlmacenamientoVistaPreviaGateway;
 import com.openlib.market.domain.detalle.ILibroPublicacionGateway;
@@ -7,6 +8,7 @@ import com.openlib.market.domain.detalle.Libro;
 
 import java.util.Optional;
 
+@Service
 public class SubirVistaPreviaInteractor implements ISubirVistaPreviaUseCase {
 
     private final ILibroPublicacionGateway libroGateway;

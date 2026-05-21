@@ -1,5 +1,6 @@
 package com.openlib.market.application.dashboardGlobal;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.dashboardGlobal.IDashboardGlobalGateway;
 import com.openlib.market.domain.dashboardGlobal.IntervaloTiempo;
 import com.openlib.market.domain.dashboardGlobal.PuntoDatos;
@@ -13,6 +14,7 @@ import java.time.Month;
 import java.time.format.TextStyle;
 import java.util.Locale;
 
+@Service
 public class VerDashboardMetricasInteractor implements IVerDashboardMetricasUseCase {
 
     private final IDashboardGlobalGateway dashboardGateway;

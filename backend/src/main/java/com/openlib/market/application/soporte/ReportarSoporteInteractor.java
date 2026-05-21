@@ -1,9 +1,11 @@
 package com.openlib.market.application.soporte;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.soporte.IReporteGateway;
 import com.openlib.market.domain.soporte.ReporteContenido;
 import com.openlib.market.domain.soporte.ReporteDuplicadoException;
 
+@Service
 public class ReportarSoporteInteractor implements IReportarSoporteUseCase {
 
     private final IReporteGateway reporteGateway;

@@ -1,11 +1,13 @@
 package com.openlib.market.application.gestionUsuarios;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.vendedor.IVendedorGateway;
 import com.openlib.market.domain.vendedor.INotificacionAdminGateway;
 import com.openlib.market.domain.vendedor.Vendedor;
 
 import java.util.Optional;
 
+@Service
 public class AprobarGestionUsuariosInteractor implements IAprobarGestionUsuariosUseCase {
 
     private final IVendedorGateway vendedorGateway;

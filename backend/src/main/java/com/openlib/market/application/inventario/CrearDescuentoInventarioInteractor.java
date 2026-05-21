@@ -1,5 +1,6 @@
 package com.openlib.market.application.inventario;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.detalle.ILibroPublicacionGateway;
 import com.openlib.market.domain.detalle.Libro;
 import com.openlib.market.domain.inventario.IPromocionGateway;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class CrearDescuentoInventarioInteractor implements ICrearDescuentoInventarioUseCase {
 
     private final ILibroPublicacionGateway libroGateway;

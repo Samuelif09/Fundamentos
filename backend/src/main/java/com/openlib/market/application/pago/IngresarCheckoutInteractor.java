@@ -1,9 +1,11 @@
 package com.openlib.market.application.pago;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.pago.*;
 
 import java.util.UUID;
 
+@Service
 public class IngresarCheckoutInteractor implements IIngresarCheckoutUseCase {
 
     private final IPasarelaPagoGateway pasarelaPago;

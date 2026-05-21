@@ -1,7 +1,9 @@
 package com.openlib.market.application.chatbot;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.chatbot.*;
 
+@Service
 public class ProcesarMensajeChatbotInteractor implements IProcesarMensajeChatbotUseCase {
 
     private final IChatbotGateway chatbotGateway;

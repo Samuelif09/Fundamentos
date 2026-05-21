@@ -1,5 +1,6 @@
 package com.openlib.market.application.resena;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.detalle.ILibroPublicacionGateway;
 import com.openlib.market.domain.detalle.Libro;
 import com.openlib.market.domain.resena.ComentarioRespuesta;
@@ -8,6 +9,7 @@ import com.openlib.market.domain.resena.Resena;
 
 import java.util.Optional;
 
+@Service
 public class ResponderReputacionInteractor implements IResponderReputacionUseCase {
 
     private final IResenaGateway resenaGateway;

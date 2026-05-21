@@ -1,8 +1,10 @@
 package com.openlib.market.application.almacenamiento;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.almacenamiento.ArchivoImagen;
 import com.openlib.market.domain.almacenamiento.IAlmacenamientoGateway;
 
+@Service
 public class SubirImagenLibroInteractor implements ISubirImagenLibroUseCase {
 
     private final IAlmacenamientoGateway almacenamientoGateway;

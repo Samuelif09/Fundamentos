@@ -1,5 +1,6 @@
 package com.openlib.market.application.finanzas;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.finanzas.ILiquidacionGateway;
 import com.openlib.market.domain.finanzas.IntervaloTiempo;
 import com.openlib.market.domain.finanzas.PuntoDatos;
@@ -8,6 +9,7 @@ import com.openlib.market.domain.finanzas.TransaccionFinanciera;
 
 import java.util.List;
 
+@Service
 public class VerGraficasVentasInteractor implements IVerGraficasVentasUseCase {
 
     private final ILiquidacionGateway liquidacionGateway;

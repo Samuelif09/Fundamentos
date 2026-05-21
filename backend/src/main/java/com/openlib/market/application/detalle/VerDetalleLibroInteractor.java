@@ -1,5 +1,6 @@
 package com.openlib.market.application.detalle;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.detalle.IDetalleGateway;
 import com.openlib.market.domain.detalle.Isbn;
 import com.openlib.market.domain.detalle.Libro;
@@ -16,6 +17,7 @@ import java.util.Optional;
 import com.openlib.market.domain.inventario.IPromocionGateway;
 import com.openlib.market.domain.inventario.PromocionLibro;
 
+@Service
 public class VerDetalleLibroInteractor implements IVerDetalleLibroUseCase {
 
     private final IDetalleGateway detalleGateway;

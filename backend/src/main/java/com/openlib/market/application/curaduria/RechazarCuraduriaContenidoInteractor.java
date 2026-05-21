@@ -1,10 +1,12 @@
 package com.openlib.market.application.curaduria;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.curaduria.ICuraduriaGateway;
 import com.openlib.market.domain.curaduria.MotivoRechazo;
 import com.openlib.market.domain.detalle.Libro;
 import com.openlib.market.domain.notificacion.INotificacionGateway;
 
+@Service
 public class RechazarCuraduriaContenidoInteractor implements IRechazarCuraduriaContenidoUseCase {
 
     private final ICuraduriaGateway curaduriaGateway;

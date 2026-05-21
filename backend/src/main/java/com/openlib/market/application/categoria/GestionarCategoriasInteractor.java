@@ -1,9 +1,11 @@
 package com.openlib.market.application.categoria;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.categoria.*;
 
 import java.util.List;
 
+@Service
 public class GestionarCategoriasInteractor implements IGestionarCategoriasUseCase {
 
     private final ICategoriaGateway categoriaGateway;

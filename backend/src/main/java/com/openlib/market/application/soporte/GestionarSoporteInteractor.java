@@ -1,7 +1,9 @@
 package com.openlib.market.application.soporte;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.soporte.*;
 
+@Service
 public class GestionarSoporteInteractor implements IGestionarSoporteUseCase {
 
     private final IDisputaGateway disputaGateway;

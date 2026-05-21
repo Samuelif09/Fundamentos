@@ -1,0 +1,1 @@
+[{"id":"stripe","nombre":"Stripe","estado":"HABILITADO"},{"id":"paypal","nombre":"PayPal","estado":"HABILITADO"},{"id":"transferencia","nombre":"Transferencia Bancaria","estado":"DESHABILITADO"}]

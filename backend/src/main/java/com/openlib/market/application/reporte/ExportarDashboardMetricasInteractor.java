@@ -1,5 +1,6 @@
 package com.openlib.market.application.reporte;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.pago.IPedidoGateway;
 import com.openlib.market.domain.pago.Pedido;
 import com.openlib.market.domain.reporte.*;
@@ -7,6 +8,7 @@ import com.openlib.market.domain.reporte.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ExportarDashboardMetricasInteractor implements IExportarDashboardMetricasUseCase {
 
     private final IPedidoGateway pedidoGateway;

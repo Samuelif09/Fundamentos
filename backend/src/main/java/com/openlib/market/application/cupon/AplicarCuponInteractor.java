@@ -1,5 +1,6 @@
 package com.openlib.market.application.cupon;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.carrito.CarritoCompras;
 import com.openlib.market.domain.carrito.ICarritoGateway;
 import com.openlib.market.domain.carrito.IdUsuario;
@@ -10,6 +11,7 @@ import com.openlib.market.domain.cupon.ICuponGateway;
 
 import java.time.LocalDate;
 
+@Service
 public class AplicarCuponInteractor implements IAplicarCuponUseCase {
 
     private final ICuponGateway cuponGateway;

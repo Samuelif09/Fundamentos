@@ -10,6 +10,7 @@ public class Pedido {
     private EstadoPedido estado;
     private java.time.LocalDateTime fecha;
     private TipoMetodoPago tipoMetodoPago;
+    private java.util.List<ItemPedido> items = new java.util.ArrayList<>();
 
     public Pedido(String sesionId, double total, TipoMetodoPago tipoMetodoPago) {
         if (sesionId == null || sesionId.trim().isEmpty()) {
@@ -26,7 +27,12 @@ public class Pedido {
         this.tipoMetodoPago = tipoMetodoPago;
     }
 
+    // Backward-compatible overload (no items)
     public Pedido(String id, String sesionId, String idUsuario, double total, EstadoPedido estado, java.time.LocalDateTime fecha, TipoMetodoPago tipoMetodoPago) {
+        this(id, sesionId, idUsuario, total, estado, fecha, tipoMetodoPago, null);
+    }
+
+    public Pedido(String id, String sesionId, String idUsuario, double total, EstadoPedido estado, java.time.LocalDateTime fecha, TipoMetodoPago tipoMetodoPago, java.util.List<ItemPedido> items) {
         this.id = id;
         this.sesionId = sesionId;
         this.idUsuario = idUsuario;
@@ -34,6 +40,9 @@ public class Pedido {
         this.estado = estado;
         this.fecha = fecha;
         this.tipoMetodoPago = tipoMetodoPago;
+        if (items != null) {
+            this.items.addAll(items);
+        }
     }
 
     public String getId() { return id; }
@@ -43,6 +52,11 @@ public class Pedido {
     public EstadoPedido getEstado() { return estado; }
     public java.time.LocalDateTime getFecha() { return fecha; }
     public TipoMetodoPago getTipoMetodoPago() { return tipoMetodoPago; }
+    public java.util.List<ItemPedido> getItems() { return items; }
+
+    public void addItem(ItemPedido item) {
+        this.items.add(item);
+    }
 
     public void setIdUsuario(String idUsuario) { this.idUsuario = idUsuario; }
 

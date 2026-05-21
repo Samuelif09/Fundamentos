@@ -5,7 +5,7 @@ import com.openlib.market.domain.reporte.IGeneradorReportesGlobalGateway;
 import com.openlib.market.domain.reporte.ReportePlataforma;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("reporteGeneradorReportesCsvGateway")
 public class GeneradorReportesCsvGateway implements IGeneradorReportesGlobalGateway {
 
     @Override

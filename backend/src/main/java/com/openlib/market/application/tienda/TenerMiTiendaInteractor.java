@@ -1,5 +1,6 @@
 package com.openlib.market.application.tienda;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.catalogo.IInventarioGateway;
 import com.openlib.market.domain.catalogo.LibroCatalogo;
 import com.openlib.market.domain.tienda.ITiendaVendedorGateway;
@@ -9,6 +10,7 @@ import com.openlib.market.domain.tienda.UrlAmigable;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class TenerMiTiendaInteractor implements ITenerMiTiendaUseCase {
 
     private final ITiendaVendedorGateway tiendaVendedorGateway;

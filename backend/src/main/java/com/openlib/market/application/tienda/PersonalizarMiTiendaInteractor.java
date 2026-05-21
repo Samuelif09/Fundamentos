@@ -1,9 +1,11 @@
 package com.openlib.market.application.tienda;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.almacenamiento.ArchivoImagen;
 import com.openlib.market.domain.almacenamiento.IAlmacenamientoGateway;
 import com.openlib.market.domain.tienda.ITiendaVendedorGateway;
 
+@Service
 public class PersonalizarMiTiendaInteractor implements IPersonalizarMiTiendaUseCase {
 
     private static final long MAX_BANNER_BYTES = 3 * 1024 * 1024; // 3MB para banner

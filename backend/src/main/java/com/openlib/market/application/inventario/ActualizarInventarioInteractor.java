@@ -1,5 +1,6 @@
 package com.openlib.market.application.inventario;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.detalle.AccesoDenegadoLibroException;
 import com.openlib.market.domain.detalle.IActualizarLibroGateway;
 import com.openlib.market.domain.detalle.Isbn;
@@ -8,6 +9,7 @@ import com.openlib.market.domain.detalle.Precio;
 
 import java.util.Optional;
 
+@Service
 public class ActualizarInventarioInteractor implements IActualizarInventarioUseCase {
 
     private final IActualizarLibroGateway libroGateway;

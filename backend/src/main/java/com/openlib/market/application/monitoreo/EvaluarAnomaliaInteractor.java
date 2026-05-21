@@ -4,6 +4,9 @@ import com.openlib.market.domain.monitoreo.*;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+@Service("monitoreoEvaluarAnomaliaInteractor")
 public class EvaluarAnomaliaInteractor implements IEvaluarAnomaliaUseCase {
 
     private final IMetricasGateway metricasGateway;

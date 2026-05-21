@@ -1,11 +1,13 @@
 package com.openlib.market.application.catalogo;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.catalogo.CriterioBusqueda;
 import com.openlib.market.domain.catalogo.ICatalogoGateway;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class BuscarCatalogoInteractor implements IBuscarCatalogoUseCase {
 
     private final ICatalogoGateway catalogoGateway;

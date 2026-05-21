@@ -1,5 +1,6 @@
 package com.openlib.market.application.comunicado;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.comunicado.ComunicadoMasivo;
 import com.openlib.market.domain.comunicado.FiltroDestinatarios;
 import com.openlib.market.domain.comunicado.INotificacionGateway;
@@ -10,6 +11,7 @@ import com.openlib.market.domain.registro.Usuario;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class EnviarComunicadoInteractor implements IEnviarComunicadoUseCase {
 
     private final IUsuarioGateway usuarioGateway;

@@ -4,6 +4,9 @@ import com.openlib.market.domain.autenticacion.*;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class IniciarAutenticacionInteractor implements IIniciarAutenticacionUseCase {
 
     private final IUsuarioAuthGateway usuarioGateway;

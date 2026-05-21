@@ -13,7 +13,7 @@ class SolicitudReembolsoTest {
 
     @Test
     void debeCrearSolicitudSiMontoEsValido() {
-        Pedido pedido = new Pedido("p1", "s1", "u1", 100.0, EstadoPedido.PAGADO, LocalDateTime.now(), TipoMetodoPago.TARJETA);
+        Pedido pedido = new Pedido("p1", "s1", "u1", 100.0, EstadoPedido.PAGADO, LocalDateTime.now(), TipoMetodoPago.TARJETA, null);
         SolicitudReembolso solicitud = new SolicitudReembolso("p1", 50.0, "Libro defectuoso", pedido);
         
         assertEquals(EstadoReembolso.PENDIENTE, solicitud.getEstado());
@@ -22,7 +22,7 @@ class SolicitudReembolsoTest {
 
     @Test
     void debeLanzarExcepcionSiMontoSuperaTotalPedido() {
-        Pedido pedido = new Pedido("p1", "s1", "u1", 100.0, EstadoPedido.PAGADO, LocalDateTime.now(), TipoMetodoPago.TARJETA);
+        Pedido pedido = new Pedido("p1", "s1", "u1", 100.0, EstadoPedido.PAGADO, LocalDateTime.now(), TipoMetodoPago.TARJETA, null);
         
         assertThrows(MontoReembolsoInvalidoException.class, () -> 
             new SolicitudReembolso("p1", 150.0, "Libro defectuoso", pedido)
@@ -31,7 +31,7 @@ class SolicitudReembolsoTest {
 
     @Test
     void debeAprobarSolicitudPendiente() {
-        Pedido pedido = new Pedido("p1", "s1", "u1", 100.0, EstadoPedido.PAGADO, LocalDateTime.now(), TipoMetodoPago.TARJETA);
+        Pedido pedido = new Pedido("p1", "s1", "u1", 100.0, EstadoPedido.PAGADO, LocalDateTime.now(), TipoMetodoPago.TARJETA, null);
         SolicitudReembolso solicitud = new SolicitudReembolso("p1", 50.0, "Libro defectuoso", pedido);
         
         solicitud.aprobar();

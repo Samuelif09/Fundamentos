@@ -1,5 +1,6 @@
 package com.openlib.market.application.popularidad;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.popularidad.IPopularidadGateway;
 import com.openlib.market.domain.popularidad.LibroPopularidad;
 
@@ -7,6 +8,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class FiltrarPopularidadInteractor implements IFiltrarPopularidadUseCase {
 
     private final IPopularidadGateway popularidadGateway;

@@ -1,5 +1,6 @@
 package com.openlib.market.application.estadisticas;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.detalle.IDetalleGateway;
 import com.openlib.market.domain.detalle.Isbn;
 import com.openlib.market.domain.detalle.Libro;
@@ -15,6 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Service
 public class VerEstadisticasMiCuentaInteractor implements IVerEstadisticasMiCuentaUseCase {
 
     private final IPedidoGateway pedidoGateway;

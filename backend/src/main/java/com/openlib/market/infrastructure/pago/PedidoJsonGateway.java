@@ -77,7 +77,8 @@ public class PedidoJsonGateway implements IPedidoGateway, IDashboardGlobalGatewa
                         dto.total(),
                         com.openlib.market.domain.pago.EstadoPedido.valueOf(dto.estado()),
                         dto.fecha() != null ? java.time.LocalDateTime.parse(dto.fecha()) : null,
-                        dto.tipoMetodoPago() != null ? com.openlib.market.domain.pago.TipoMetodoPago.valueOf(dto.tipoMetodoPago()) : null
+                        dto.tipoMetodoPago() != null ? com.openlib.market.domain.pago.TipoMetodoPago.valueOf(dto.tipoMetodoPago()) : null,
+                        null
                 ));
     }
 
@@ -94,9 +95,10 @@ public class PedidoJsonGateway implements IPedidoGateway, IDashboardGlobalGatewa
                         dto.total(),
                         com.openlib.market.domain.pago.EstadoPedido.valueOf(dto.estado()),
                         dto.fecha() != null ? java.time.LocalDateTime.parse(dto.fecha()) : java.time.LocalDateTime.now(),
-                        dto.tipoMetodoPago() != null ? com.openlib.market.domain.pago.TipoMetodoPago.valueOf(dto.tipoMetodoPago()) : null
+                        dto.tipoMetodoPago() != null ? com.openlib.market.domain.pago.TipoMetodoPago.valueOf(dto.tipoMetodoPago()) : null,
+                        null
                 ))
-                .sorted((p1, p2) -> p2.getFecha().compareTo(p1.getFecha())) // Descendente
+                .sorted((p1, p2) -> p2.getFecha().compareTo(p1.getFecha()))
                 .toList();
     }
 
@@ -110,7 +112,8 @@ public class PedidoJsonGateway implements IPedidoGateway, IDashboardGlobalGatewa
                         dto.total(),
                         com.openlib.market.domain.pago.EstadoPedido.valueOf(dto.estado()),
                         dto.fecha() != null ? java.time.LocalDateTime.parse(dto.fecha()) : java.time.LocalDateTime.now(),
-                        dto.tipoMetodoPago() != null ? com.openlib.market.domain.pago.TipoMetodoPago.valueOf(dto.tipoMetodoPago()) : null
+                        dto.tipoMetodoPago() != null ? com.openlib.market.domain.pago.TipoMetodoPago.valueOf(dto.tipoMetodoPago()) : null,
+                        null
                 ))
                 .sorted((p1, p2) -> p2.getFecha().compareTo(p1.getFecha()))
                 .skip((long) page * size)
@@ -130,7 +133,8 @@ public class PedidoJsonGateway implements IPedidoGateway, IDashboardGlobalGatewa
                         dto.total(),
                         com.openlib.market.domain.pago.EstadoPedido.valueOf(dto.estado()),
                         java.time.LocalDateTime.parse(dto.fecha()),
-                        dto.tipoMetodoPago() != null ? com.openlib.market.domain.pago.TipoMetodoPago.valueOf(dto.tipoMetodoPago()) : null
+                        dto.tipoMetodoPago() != null ? com.openlib.market.domain.pago.TipoMetodoPago.valueOf(dto.tipoMetodoPago()) : null,
+                        null
                 ))
                 .toList();
     }

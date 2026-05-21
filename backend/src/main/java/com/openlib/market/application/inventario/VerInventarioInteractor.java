@@ -1,11 +1,13 @@
 package com.openlib.market.application.inventario;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.catalogo.IInventarioGateway;
 import com.openlib.market.domain.catalogo.LibroCatalogo;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class VerInventarioInteractor implements IVerInventarioUseCase {
 
     private final IInventarioGateway inventarioGateway;

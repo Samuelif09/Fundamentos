@@ -1,11 +1,13 @@
 package com.openlib.market.application.dashboard;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.dashboard.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class PersonalizarDashboardMetricasInteractor implements IPersonalizarDashboardMetricasUseCase {
 
     private final IConfiguracionAdminGateway configuracionGateway;

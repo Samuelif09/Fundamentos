@@ -1,11 +1,13 @@
 package com.openlib.market.application.publicacion;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.detalle.ContenidoDigital;
 import com.openlib.market.domain.detalle.DigitalContentFactory;
 import com.openlib.market.domain.detalle.IContenidoDigitalGateway;
 import com.openlib.market.domain.detalle.Isbn;
 import com.openlib.market.domain.detalle.Precio;
 
+@Service
 public class PublicarContenidoDigitalInteractor implements IPublicarContenidoDigitalUseCase {
 
     private final IContenidoDigitalGateway contenidoDigitalGateway;

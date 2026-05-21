@@ -1,5 +1,6 @@
 package com.openlib.market.application.explorar;
 
+import org.springframework.stereotype.Service;
 import com.openlib.market.domain.explorar.CriterioTendencia;
 import com.openlib.market.domain.explorar.ITendenciaGateway;
 import com.openlib.market.domain.explorar.LibroTendencia;
@@ -8,6 +9,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ExplorarBusquedaInteractor implements IExplorarBusquedaUseCase {
 
     private final ITendenciaGateway tendenciaGateway;

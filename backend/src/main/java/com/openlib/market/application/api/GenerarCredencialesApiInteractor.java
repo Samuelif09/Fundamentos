@@ -3,6 +3,9 @@ package com.openlib.market.application.api;
 import com.openlib.market.domain.api.CredencialApi;
 import com.openlib.market.domain.api.IApiKeyGateway;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class GenerarCredencialesApiInteractor implements IGenerarCredencialesApiUseCase {
 
     private final IApiKeyGateway apiKeyGateway;
