@@ -1,0 +1,150 @@
+/* Main Container */
+.main-container {
+    -fx-background-color: #F8FAFC;
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: transparent transparent #E2E8F0 transparent;
+    -fx-border-width: 0 0 1 0;
+}
+
+.logo-text {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2563EB;
+}
+
+.back-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #475569;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-padding: 8 15;
+    -fx-border-color: #CBD5E1;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+}
+.back-button:hover {
+    -fx-background-color: #F1F5F9;
+    -fx-text-fill: #0F172A;
+}
+
+/* Layout */
+.page-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0F172A;
+}
+
+.cart-scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+.cart-scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.items-container {
+    -fx-padding: 5 15 5 0;
+}
+
+/* Item Card */
+.cart-item-card {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.03), 10, 0, 0, 2);
+}
+
+.cart-item-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E293B;
+}
+
+.cart-item-author {
+    -fx-font-size: 14px;
+    -fx-text-fill: #64748B;
+}
+
+.cart-item-price {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2563EB;
+}
+
+.cart-item-qty {
+    -fx-font-size: 14px;
+    -fx-text-fill: #475569;
+}
+
+.cart-item-subtotal {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0F172A;
+}
+
+/* Summary Box */
+.summary-container {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #E2E8F0;
+    -fx-border-width: 1;
+    -fx-padding: 25;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 15, 0, 0, 5);
+}
+
+.summary-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0F172A;
+}
+
+.summary-label {
+    -fx-font-size: 14px;
+    -fx-text-fill: #475569;
+}
+.summary-value {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E293B;
+}
+
+.summary-label-total {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0F172A;
+}
+.summary-value-total {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2563EB;
+}
+
+.checkout-btn {
+    -fx-background-color: #10B981; /* Green */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-background-radius: 8;
+    -fx-padding: 12 20;
+    -fx-cursor: hand;
+    -fx-max-width: Infinity; /* Fills container horizontally in VBox */
+}
+.checkout-btn:hover {
+    -fx-background-color: #059669;
+    -fx-effect: dropshadow(three-pass-box, rgba(16,185,129,0.3), 10, 0, 0, 4);
+}
+
+/* Loading */
+.loading-overlay {
+    -fx-background-color: rgba(255, 255, 255, 0.8);
+}

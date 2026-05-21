@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.openlib.market.frontend.controller.BibliotecaController"
+            stylesheets="@../styles/biblioteca.css"
+            styleClass="main-container">
+
+    <!-- Top Navbar -->
+    <top>
+        <HBox styleClass="navbar" spacing="20" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+            <Label text="OpenLib Market" styleClass="logo-text"/>
+            
+            <Region HBox.hgrow="ALWAYS"/>
+            
+            <Button text="← Volver al Catálogo" onAction="#handleBackToCatalog" styleClass="back-button"/>
+        </HBox>
+    </top>
+
+    <!-- Main Content Area -->
+    <center>
+        <StackPane>
+            <VBox spacing="20">
+                <padding>
+                    <Insets top="30" right="40" bottom="30" left="40"/>
+                </padding>
+                
+                <Label text="📚 Mi Biblioteca" styleClass="page-title"/>
+                <Separator/>
+                
+                <ScrollPane fitToWidth="true" styleClass="library-scroll-pane" VBox.vgrow="ALWAYS">
+                    <TilePane fx:id="booksGrid" hgap="25" vgap="25" prefColumns="4" styleClass="books-grid">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                    </TilePane>
+                </ScrollPane>
+            </VBox>
+            
+            <!-- Loading indicator -->
+            <VBox fx:id="loadingContainer" alignment="CENTER" visible="false" styleClass="loading-overlay">
+                <ProgressIndicator/>
+                <Label text="Cargando tus libros..."/>
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

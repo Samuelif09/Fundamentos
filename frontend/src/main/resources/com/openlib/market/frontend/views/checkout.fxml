@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.collections.FXCollections?>
+<?import java.lang.String?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.openlib.market.frontend.controller.CheckoutController"
+            stylesheets="@../styles/checkout.css"
+            styleClass="main-container">
+
+    <!-- Top Navbar -->
+    <top>
+        <HBox styleClass="navbar" spacing="20" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+            <Label text="OpenLib Market" styleClass="logo-text"/>
+            
+            <Region HBox.hgrow="ALWAYS"/>
+            
+            <Button text="← Volver al Carrito" onAction="#handleBackToCart" styleClass="back-button"/>
+        </HBox>
+    </top>
+
+    <!-- Main Content -->
+    <center>
+        <StackPane>
+            <ScrollPane fitToWidth="true" styleClass="checkout-scroll-pane">
+                <padding>
+                    <Insets top="40" right="40" bottom="40" left="40"/>
+                </padding>
+                
+                <VBox alignment="TOP_CENTER">
+                    <VBox spacing="30" maxWidth="600" styleClass="form-container">
+                        
+                        <Label text="Finalizar Compra" styleClass="page-title"/>
+                        <Separator/>
+                        
+                        <VBox spacing="20">
+                            <Label text="Datos de Facturación" styleClass="section-title"/>
+                            
+                            <VBox spacing="5">
+                                <Label text="Nombre Completo *" styleClass="field-label"/>
+                                <TextField fx:id="fullNameField" promptText="Ej: Juan Pérez" styleClass="input-field"/>
+                            </VBox>
+                            
+                            <VBox spacing="5">
+                                <Label text="Dirección *" styleClass="field-label"/>
+                                <TextField fx:id="addressField" promptText="Ej: Av. Siempreviva 742" styleClass="input-field"/>
+                            </VBox>
+                            
+                            <HBox spacing="20">
+                                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                    <Label text="Ciudad *" styleClass="field-label"/>
+                                    <TextField fx:id="cityField" promptText="Ej: Springfield" styleClass="input-field"/>
+                                </VBox>
+                                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                    <Label text="Código Postal *" styleClass="field-label"/>
+                                    <TextField fx:id="zipCodeField" promptText="Ej: 12345" styleClass="input-field"/>
+                                </VBox>
+                            </HBox>
+                        </VBox>
+                        
+                        <Separator/>
+                        
+                        <VBox spacing="20">
+                            <Label text="Método de Pago" styleClass="section-title"/>
+                            
+                            <VBox spacing="5">
+                                <Label text="Selecciona tu método de pago *" styleClass="field-label"/>
+                                <ComboBox fx:id="paymentMethodCombo" promptText="Seleccionar..." styleClass="combo-box-field" maxWidth="Infinity">
+                                    <items>
+                                        <FXCollections fx:factory="observableArrayList">
+                                            <String fx:value="Tarjeta de Crédito"/>
+                                            <String fx:value="PayPal"/>
+                                            <String fx:value="Transferencia Bancaria"/>
+                                        </FXCollections>
+                                    </items>
+                                </ComboBox>
+                            </VBox>
+                        </VBox>
+                        
+                        <Separator/>
+                        
+                        <Label fx:id="errorLabel" text="" styleClass="error-message" visible="false" managed="false"/>
+                        
+                        <Button fx:id="confirmButton" text="Confirmar y Pagar" onAction="#handleConfirmOrder" styleClass="confirm-btn"/>
+                        
+                    </VBox>
+                </VBox>
+            </ScrollPane>
+            
+            <!-- Loading indicator -->
+            <VBox fx:id="loadingContainer" alignment="CENTER" visible="false" styleClass="loading-overlay">
+                <ProgressIndicator/>
+                <Label text="Procesando tu pago..."/>
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>
