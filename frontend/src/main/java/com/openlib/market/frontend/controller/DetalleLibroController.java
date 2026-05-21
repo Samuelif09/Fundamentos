@@ -15,12 +15,18 @@ import javafx.scene.layout.VBox;
 
 public class DetalleLibroController {
 
-    @FXML private ImageView coverImage;
-    @FXML private Label titleLabel;
-    @FXML private Label authorLabel;
-    @FXML private Label priceLabel;
-    @FXML private Label synopsisLabel;
-    @FXML private VBox loadingContainer;
+    @FXML
+    private ImageView coverImage;
+    @FXML
+    private Label titleLabel;
+    @FXML
+    private Label authorLabel;
+    @FXML
+    private Label priceLabel;
+    @FXML
+    private Label synopsisLabel;
+    @FXML
+    private VBox loadingContainer;
 
     private final BookService bookService = new BookService();
     private Book currentBook;
@@ -58,7 +64,7 @@ public class DetalleLibroController {
         titleLabel.setText(book.getTitle() != null ? book.getTitle() : "Sin título");
         authorLabel.setText(book.getAuthor() != null ? book.getAuthor() : "Autor desconocido");
         priceLabel.setText(String.format("$%.2f", book.getPrice()));
-        
+
         String synopsis = book.getSynopsis();
         if (synopsis == null || synopsis.isEmpty()) {
             synopsisLabel.setText("No hay sinopsis disponible para este libro.");
@@ -77,8 +83,9 @@ public class DetalleLibroController {
 
     @FXML
     public void handleAddToCart(ActionEvent event) {
-        if (currentBook == null) return;
-        
+        if (currentBook == null)
+            return;
+
         // Mocking the add to cart functionality
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Carrito");

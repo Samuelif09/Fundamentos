@@ -1,0 +1,138 @@
+/* ── Global ──────────────────────────────────────────── */
+.main-container {
+    -fx-background-color: #F8FAFC;
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+}
+
+/* ── Sidebar (Admin Dark Theme) ──────────────────────── */
+.sidebar           { -fx-background-color: #0A0F1E; -fx-pref-width: 250; }
+.sidebar-title     { -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #FFFFFF; }
+.sidebar-separator { -fx-background-color: #1A1F3A; -fx-border-width: 0; -fx-padding: 5 0; }
+.sidebar-btn {
+    -fx-background-color: transparent; -fx-text-fill: #94A3B8;
+    -fx-font-size: 15px; -fx-padding: 12 15; -fx-background-radius: 6; -fx-cursor: hand;
+}
+.sidebar-btn:hover  { -fx-background-color: #1A1F3A; -fx-text-fill: #F8FAFC; }
+.active-btn         { -fx-background-color: #DC2626 !important; -fx-text-fill: #FFFFFF !important; }
+
+.sidebar-btn-logout {
+    -fx-background-color: transparent; -fx-text-fill: #94A3B8;
+    -fx-font-size: 14px; -fx-padding: 10 15; -fx-cursor: hand;
+}
+.sidebar-btn-logout:hover { -fx-text-fill: #EF4444; }
+
+/* ── Header ──────────────────────────────────────────── */
+.page-title    { -fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #0F172A; }
+.page-subtitle { -fx-font-size: 14px; -fx-text-fill: #64748B; }
+.refresh-btn {
+    -fx-background-color: #FFFFFF; -fx-border-color: #CBD5E1; -fx-border-radius: 6;
+    -fx-background-radius: 6; -fx-text-fill: #475569; -fx-font-weight: bold;
+    -fx-padding: 8 15; -fx-cursor: hand;
+}
+.refresh-btn:hover { -fx-background-color: #F1F5F9; }
+
+/* ── Tabs ────────────────────────────────────────────── */
+.admin-tabs .tab-header-background { -fx-background-color: transparent; }
+.admin-tabs .tab {
+    -fx-background-color: transparent;
+    -fx-padding: 8 20;
+    -fx-border-width: 0 0 2 0;
+    -fx-border-color: transparent;
+}
+.admin-tabs .tab:selected {
+    -fx-border-color: transparent transparent #2563EB transparent;
+}
+.admin-tabs .tab .tab-label {
+    -fx-text-fill: #64748B;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+.admin-tabs .tab:selected .tab-label {
+    -fx-text-fill: #2563EB;
+}
+
+/* ── Búsqueda ────────────────────────────────────────── */
+.search-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CBD5E1;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 10 14;
+    -fx-font-size: 14px;
+}
+.search-field:focused { -fx-border-color: #3B82F6; }
+
+/* ── TableView ───────────────────────────────────────── */
+.data-table {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-border-color: #E2E8F0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.02), 5, 0, 0, 1);
+}
+.data-table .column-header-background {
+    -fx-background-color: #F8FAFC;
+    -fx-background-radius: 8 8 0 0;
+}
+.data-table .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 40;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #E2E8F0;
+}
+.data-table .column-header .label {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #64748B;
+}
+.data-table .table-cell {
+    -fx-font-size: 13px;
+    -fx-text-fill: #1E293B;
+    -fx-border-color: transparent transparent #F1F5F9 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 10 8;
+    -fx-alignment: center-left;
+}
+.data-table .table-row-cell:odd  { -fx-background-color: #FAFAFA; }
+.data-table .table-row-cell:even { -fx-background-color: #FFFFFF; }
+.data-table .table-row-cell:selected { -fx-background-color: #EFF6FF; }
+.table-placeholder { -fx-text-fill: #94A3B8; -fx-font-size: 14px; }
+
+/* ── Chips y Badges (Celdas) ─────────────────────────── */
+.chip {
+    -fx-padding: 4 10;
+    -fx-background-radius: 12;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+}
+.chip-active   { -fx-background-color: #D1FAE5; -fx-text-fill: #065F46; }
+.chip-suspend  { -fx-background-color: #FEE2E2; -fx-text-fill: #991B1B; }
+.chip-role-c   { -fx-background-color: #DBEAFE; -fx-text-fill: #1E40AF; }
+.chip-role-s   { -fx-background-color: #FEF3C7; -fx-text-fill: #92400E; }
+.chip-refunded { -fx-background-color: #F1F5F9; -fx-text-fill: #475569; }
+
+/* ── Action Buttons ──────────────────────────────────── */
+.btn-suspend {
+    -fx-background-color: #EF4444; -fx-text-fill: white;
+    -fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 5 10;
+    -fx-background-radius: 6; -fx-cursor: hand;
+}
+.btn-suspend:hover { -fx-background-color: #DC2626; }
+
+.btn-reactivate {
+    -fx-background-color: #10B981; -fx-text-fill: white;
+    -fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 5 10;
+    -fx-background-radius: 6; -fx-cursor: hand;
+}
+.btn-reactivate:hover { -fx-background-color: #059669; }
+
+.btn-refund {
+    -fx-background-color: #3B82F6; -fx-text-fill: white;
+    -fx-font-size: 11px; -fx-font-weight: bold; -fx-padding: 5 10;
+    -fx-background-radius: 6; -fx-cursor: hand;
+}
+.btn-refund:hover { -fx-background-color: #2563EB; }
+.btn-refund:disabled { -fx-background-color: #94A3B8; -fx-cursor: default; }
+
+/* ── Loading Overlay ─────────────────────────────────── */
+.loading-overlay { -fx-background-color: rgba(255, 255, 255, 0.9); }

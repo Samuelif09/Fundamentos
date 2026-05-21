@@ -22,4 +22,14 @@ public class AuthService {
         record RecuperarPasswordRequest(String email) {}
         return ApiClient.postPublic("/auth/recuperar-password", new RecuperarPasswordRequest(email), String.class);
     }
+
+    public CompletableFuture<ApiResponse<com.openlib.market.frontend.model.RegistrationResponse>> registerSeller(com.openlib.market.frontend.model.SellerRegistrationRequest request) {
+        return ApiClient.postPublic("/auth/vendedores/registro", request, com.openlib.market.frontend.model.RegistrationResponse.class);
+    }
+
+    /** Autenticación exclusiva para el portal de administradores. */
+    public CompletableFuture<ApiResponse<LoginResponse>> loginAdmin(String email, String password) {
+        LoginRequest request = new LoginRequest(email, password);
+        return ApiClient.postPublic("/auth/admin/login", request, LoginResponse.class);
+    }
 }

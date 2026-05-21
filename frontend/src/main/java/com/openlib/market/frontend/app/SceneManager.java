@@ -26,6 +26,18 @@ public class SceneManager {
         ROUTES.put("checkout", "/com/openlib/market/frontend/views/checkout.fxml");
         ROUTES.put("biblioteca", "/com/openlib/market/frontend/views/biblioteca.fxml");
         ROUTES.put("perfil", "/com/openlib/market/frontend/views/perfil.fxml");
+        ROUTES.put("registro_vendedor", "/com/openlib/market/frontend/views/registro_vendedor.fxml");
+        ROUTES.put("dashboard_vendedor",  "/com/openlib/market/frontend/views/dashboard_vendedor.fxml");
+        ROUTES.put("inventario_vendedor", "/com/openlib/market/frontend/views/inventario_vendedor.fxml");
+        ROUTES.put("publicar_libro",      "/com/openlib/market/frontend/views/publicar_libro.fxml");
+        ROUTES.put("billetera_vendedor",  "/com/openlib/market/frontend/views/billetera_vendedor.fxml");
+        ROUTES.put("mi_tienda",           "/com/openlib/market/frontend/views/mi_tienda.fxml");
+        ROUTES.put("admin_login",         "/com/openlib/market/frontend/views/admin_login.fxml");
+        ROUTES.put("dashboard_admin",     "/com/openlib/market/frontend/views/dashboard_admin.fxml");
+        ROUTES.put("curaduria_admin",     "/com/openlib/market/frontend/views/curaduria_admin.fxml");
+        ROUTES.put("gestion_admin",       "/com/openlib/market/frontend/views/gestion_admin.fxml");
+        ROUTES.put("soporte_admin",       "/com/openlib/market/frontend/views/soporte_admin.fxml");
+        ROUTES.put("config_admin",        "/com/openlib/market/frontend/views/config_admin.fxml");
     }
 
     public static void initialize(Stage stage) {

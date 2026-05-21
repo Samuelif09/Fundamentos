@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.openlib.market.frontend.controller.AdminDashboardController"
+            stylesheets="@../styles/dashboard_admin.css"
+            styleClass="main-container">
+
+    <!-- Sidebar -->
+    <left>
+        <VBox styleClass="sidebar" spacing="10">
+            <padding><Insets top="20" right="15" bottom="20" left="15"/></padding>
+            <Label text="Admin Portal" styleClass="sidebar-title"/>
+            <Separator styleClass="sidebar-separator"/>
+            <Button text="📊 Dashboard Global" styleClass="sidebar-btn, active-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="🔎 Curaduría" onAction="#handleGoToCuration" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="⚙️ Gestión y Usuarios" onAction="#handleGoToManagement" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="🎧 Mesa de Ayuda" onAction="#handleGoToSupport" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="⚙️ Config. Sistema" onAction="#handleGoToConfig" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button text="🚪 Cerrar Sesión" onAction="#handleLogout" styleClass="sidebar-btn-logout" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+        </VBox>
+    </left>
+
+    <!-- Main Content -->
+    <center>
+        <StackPane>
+            <ScrollPane fitToWidth="true" styleClass="content-scroll">
+                <VBox spacing="25">
+                    <padding><Insets top="30" right="40" bottom="30" left="40"/></padding>
+
+                    <!-- Header -->
+                    <HBox alignment="CENTER_LEFT">
+                        <VBox spacing="5">
+                            <Label text="Estado de la Plataforma" styleClass="page-title"/>
+                            <Label text="Resumen global de KPIs y tendencias." styleClass="page-subtitle"/>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Button text="⟳ Actualizar Datos" onAction="#handleRefresh" styleClass="refresh-btn"/>
+                    </HBox>
+
+                    <Separator/>
+
+                    <!-- KPI Cards (Fila Superior) -->
+                    <HBox spacing="20">
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS" spacing="8">
+                            <Label text="👥 Usuarios Totales" styleClass="kpi-label"/>
+                            <Label fx:id="totalUsersLabel" text="-" styleClass="kpi-value"/>
+                        </VBox>
+                        <VBox fx:id="pendingSellersCard" styleClass="kpi-card, kpi-card-warning" HBox.hgrow="ALWAYS" spacing="8">
+                            <Label text="⏳ Vendedores Pendientes" styleClass="kpi-label"/>
+                            <Label fx:id="pendingSellersLabel" text="-" styleClass="kpi-value, text-warning"/>
+                        </VBox>
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS" spacing="8">
+                            <Label text="📚 Libros Publicados" styleClass="kpi-label"/>
+                            <Label fx:id="totalBooksLabel" text="-" styleClass="kpi-value"/>
+                        </VBox>
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS" spacing="8">
+                            <Label text="💰 Ingresos Plataforma" styleClass="kpi-label"/>
+                            <Label fx:id="platformRevenueLabel" text="-" styleClass="kpi-value, text-success"/>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Gráficas (Fila Inferior) -->
+                    <HBox spacing="20" VBox.vgrow="ALWAYS" prefHeight="350">
+                        <!-- LineChart: Crecimiento de Usuarios -->
+                        <VBox styleClass="chart-container" HBox.hgrow="ALWAYS">
+                            <Label text="Crecimiento de Usuarios (Últimos 6 Meses)" styleClass="chart-title"/>
+                            <LineChart fx:id="userGrowthChart" VBox.vgrow="ALWAYS" animated="false">
+                                <xAxis><CategoryAxis label="Mes"/></xAxis>
+                                <yAxis><NumberAxis label="Nuevos Usuarios"/></yAxis>
+                            </LineChart>
+                        </VBox>
+
+                        <!-- BarChart: Ingresos -->
+                        <VBox styleClass="chart-container" HBox.hgrow="ALWAYS">
+                            <Label text="Ingresos por Comisiones (Últimos 6 Meses)" styleClass="chart-title"/>
+                            <BarChart fx:id="revenueGrowthChart" VBox.vgrow="ALWAYS" animated="false">
+                                <xAxis><CategoryAxis label="Mes"/></xAxis>
+                                <yAxis><NumberAxis label="Ingresos ($)"/></yAxis>
+                            </BarChart>
+                        </VBox>
+                    </HBox>
+
+                </VBox>
+            </ScrollPane>
+
+            <!-- Loading overlay -->
+            <VBox fx:id="loadingContainer" alignment="CENTER" visible="true" styleClass="loading-overlay">
+                <ProgressIndicator/>
+                <Label text="Cargando métricas globales..."/>
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

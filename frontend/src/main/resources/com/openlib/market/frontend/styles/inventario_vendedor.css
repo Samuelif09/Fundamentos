@@ -1,0 +1,176 @@
+/* ── Global ──────────────────────────────────────────── */
+.main-container {
+    -fx-background-color: #F8FAFC;
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+}
+
+/* ── Sidebar ─────────────────────────────────────────── */
+.sidebar {
+    -fx-background-color: #1E293B;
+    -fx-pref-width: 250;
+}
+.sidebar-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #FFFFFF;
+}
+.sidebar-separator {
+    -fx-background-color: #334155;
+    -fx-border-width: 0;
+    -fx-padding: 5 0;
+}
+.sidebar-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 15px;
+    -fx-padding: 12 15;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+.sidebar-btn:hover {
+    -fx-background-color: #334155;
+    -fx-text-fill: #F8FAFC;
+}
+.active-btn {
+    -fx-background-color: #2563EB !important;
+    -fx-text-fill: #FFFFFF !important;
+}
+.sidebar-btn-back {
+    -fx-background-color: transparent;
+    -fx-text-fill: #CBD5E1;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+.sidebar-btn-back:hover { -fx-text-fill: #FFFFFF; }
+
+/* ── Page Header ──────────────────────────────────────── */
+.page-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0F172A;
+}
+.page-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #64748B;
+}
+.refresh-btn {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CBD5E1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-text-fill: #475569;
+    -fx-font-weight: bold;
+    -fx-padding: 8 15;
+    -fx-cursor: hand;
+}
+.refresh-btn:hover { -fx-background-color: #F1F5F9; }
+
+/* ── Search ───────────────────────────────────────────── */
+.search-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #CBD5E1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 10 12;
+    -fx-font-size: 14px;
+    -fx-text-fill: #0F172A;
+}
+.search-field:focused {
+    -fx-border-color: #3B82F6;
+    -fx-background-color: #FFFFFF;
+}
+
+/* ── TableView ────────────────────────────────────────── */
+.inventory-table {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #E2E8F0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 2);
+}
+/* Header row */
+.inventory-table .column-header-background {
+    -fx-background-color: #F1F5F9;
+    -fx-background-radius: 12 12 0 0;
+}
+.inventory-table .column-header,
+.inventory-table .filler {
+    -fx-background-color: transparent;
+    -fx-size: 42;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #E2E8F0;
+}
+.inventory-table .column-header .label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #475569;
+}
+/* Data rows */
+.inventory-table .table-cell {
+    -fx-font-size: 14px;
+    -fx-text-fill: #0F172A;
+    -fx-border-color: transparent transparent #F1F5F9 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 12 10;
+}
+.inventory-table .table-row-cell:odd {
+    -fx-background-color: #FAFAFA;
+}
+.inventory-table .table-row-cell:even {
+    -fx-background-color: #FFFFFF;
+}
+.inventory-table .table-row-cell:selected {
+    -fx-background-color: #EFF6FF;
+}
+.table-placeholder {
+    -fx-text-fill: #94A3B8;
+    -fx-font-size: 15px;
+}
+
+/* ── Action Buttons (inside cells) ───────────────────── */
+.action-edit-btn {
+    -fx-background-color: #EFF6FF;
+    -fx-text-fill: #2563EB;
+    -fx-border-color: #BFDBFE;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 5 10;
+    -fx-cursor: hand;
+}
+.action-edit-btn:hover { -fx-background-color: #DBEAFE; }
+
+.action-pause-btn {
+    -fx-background-color: #FFF7ED;
+    -fx-text-fill: #D97706;
+    -fx-border-color: #FDE68A;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 5 10;
+    -fx-cursor: hand;
+}
+.action-pause-btn:hover { -fx-background-color: #FEF3C7; }
+
+/* ── Status Chips ─────────────────────────────────────── */
+.status-active {
+    -fx-background-color: rgba(16, 185, 129, 0.12);
+    -fx-text-fill: #059669;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 3 10;
+}
+.status-paused {
+    -fx-background-color: rgba(245, 158, 11, 0.12);
+    -fx-text-fill: #D97706;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 3 10;
+}
+
+/* ── Loading Overlay ──────────────────────────────────── */
+.loading-overlay {
+    -fx-background-color: rgba(255, 255, 255, 0.9);
+}

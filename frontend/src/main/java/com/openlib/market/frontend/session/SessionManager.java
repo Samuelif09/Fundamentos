@@ -8,10 +8,11 @@ public class SessionManager {
 
     private static SessionManager instance;
 
-    private String token;
-    private String email;
-    private String rol;
-    private String currentBookId;
+    private String  token;
+    private String  email;
+    private String  rol;
+    private boolean isAdmin;
+    private String  currentBookId;
 
     private SessionManager() {}
 
@@ -22,25 +23,37 @@ public class SessionManager {
         return instance;
     }
 
+    /** Login estándar para clientes y vendedores. */
     public void iniciarSesion(String token, String email, String rol) {
-        this.token = token;
-        this.email = email;
-        this.rol = rol;
+        this.token   = token;
+        this.email   = email;
+        this.rol     = rol;
+        this.isAdmin = false;
+    }
+
+    /** Login con privilegios elevados para administradores. */
+    public void iniciarSesionAdmin(String token, String email) {
+        this.token   = token;
+        this.email   = email;
+        this.rol     = "A";
+        this.isAdmin = true;
     }
 
     public void cerrarSesion() {
-        this.token = null;
-        this.email = null;
-        this.rol = null;
+        this.token   = null;
+        this.email   = null;
+        this.rol     = null;
+        this.isAdmin = false;
     }
 
     public boolean estaAutenticado() {
         return token != null && !token.isEmpty();
     }
 
-    public String getToken() { return token; }
-    public String getEmail() { return email; }
-    public String getRol()   { return rol; }
+    public String  getToken()  { return token; }
+    public String  getEmail()  { return email; }
+    public String  getRol()    { return rol; }
+    public boolean isAdmin()   { return isAdmin; }
 
     public String getCurrentBookId() { return currentBookId; }
     public void setCurrentBookId(String currentBookId) { this.currentBookId = currentBookId; }

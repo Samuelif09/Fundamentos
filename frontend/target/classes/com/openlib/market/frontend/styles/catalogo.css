@@ -42,7 +42,7 @@
     -fx-background-color: #1D4ED8;
 }
 
-.cart-button, .account-button, .library-button {
+.cart-button, .account-button, .library-button, .seller-button {
     -fx-background-color: transparent;
     -fx-text-fill: #475569;
     -fx-font-size: 14px;
@@ -51,9 +51,16 @@
     -fx-padding: 8 15;
     -fx-background-radius: 8;
 }
-.cart-button:hover, .account-button:hover, .library-button:hover {
+.cart-button:hover, .account-button:hover, .library-button:hover, .seller-button:hover {
     -fx-background-color: #F1F5F9;
     -fx-text-fill: #0F172A;
+}
+.seller-button {
+    -fx-text-fill: #059669; /* Green color to differentiate */
+}
+.seller-button:hover {
+    -fx-background-color: #ECFDF5;
+    -fx-text-fill: #047857;
 }
 
 /* Sidebar */

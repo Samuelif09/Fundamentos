@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.openlib.market.frontend.controller.AdminSupportController"
+            stylesheets="@../styles/soporte_admin.css"
+            styleClass="main-container">
+
+    <!-- Sidebar -->
+    <left>
+        <VBox styleClass="sidebar" spacing="10">
+            <padding><Insets top="20" right="15" bottom="20" left="15"/></padding>
+            <Label text="Admin Portal" styleClass="sidebar-title"/>
+            <Separator styleClass="sidebar-separator"/>
+            <Button text="📊 Dashboard Global" onAction="#handleGoToDashboard" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="🔎 Curaduría" onAction="#handleGoToCuration" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="⚙️ Gestión y Usuarios" onAction="#handleGoToManagement" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="🎧 Mesa de Ayuda" styleClass="sidebar-btn, active-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="⚙️ Config. Sistema" onAction="#handleGoToConfig" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button text="🚪 Cerrar Sesión" onAction="#handleLogout" styleClass="sidebar-btn-logout" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+        </VBox>
+    </left>
+
+    <!-- Main Content -->
+    <center>
+        <StackPane>
+            <VBox spacing="20">
+                <padding><Insets top="25" right="30" bottom="25" left="30"/></padding>
+
+                <!-- Header -->
+                <HBox alignment="CENTER_LEFT">
+                    <VBox spacing="5">
+                        <Label text="Mesa de Ayuda (Soporte Técnico)" styleClass="page-title"/>
+                        <Label text="Gestiona y resuelve las solicitudes de los usuarios." styleClass="page-subtitle"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="⟳ Actualizar Casos" onAction="#handleRefresh" styleClass="refresh-btn"/>
+                </HBox>
+
+                <Separator/>
+
+                <!-- Master-Detail SplitPane -->
+                <SplitPane fx:id="splitPane" dividerPositions="0.35" VBox.vgrow="ALWAYS" styleClass="support-split-pane">
+                    
+                    <!-- Panel Izquierdo: Lista de Tickets (Master) -->
+                    <VBox styleClass="master-panel" spacing="10">
+                        <padding><Insets top="15" right="10" bottom="15" left="15"/></padding>
+                        <Label text="Casos Abiertos" styleClass="panel-title"/>
+                        
+                        <ListView fx:id="ticketsListView" VBox.vgrow="ALWAYS" styleClass="ticket-list"/>
+                    </VBox>
+
+                    <!-- Panel Derecho: Detalle del Ticket (Detail) -->
+                    <StackPane>
+                        <!-- Estado vacío (ningún ticket seleccionado) -->
+                        <VBox fx:id="emptyDetailPane" alignment="CENTER" spacing="15">
+                            <Label text="📭" styleClass="empty-icon"/>
+                            <Label text="Selecciona un ticket de la lista para ver los detalles." styleClass="empty-text"/>
+                        </VBox>
+
+                        <!-- Detalle del Ticket -->
+                        <VBox fx:id="ticketDetailPane" styleClass="detail-panel" spacing="20" visible="false">
+                            <padding><Insets top="25" right="30" bottom="25" left="30"/></padding>
+                            
+                            <!-- Cabecera del Ticket -->
+                            <HBox alignment="CENTER_LEFT" spacing="15">
+                                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                    <Label fx:id="lblSubject" text="Asunto del ticket..." styleClass="detail-subject"/>
+                                    <HBox spacing="10" alignment="CENTER_LEFT">
+                                        <Label text="Reportado por:" styleClass="detail-meta-label"/>
+                                        <Label fx:id="lblEmail" text="usuario@email.com" styleClass="detail-meta-value"/>
+                                    </HBox>
+                                </VBox>
+                                <VBox alignment="TOP_RIGHT" spacing="8">
+                                    <Label fx:id="lblPriority" text="HIGH" styleClass="chip"/>
+                                    <Label fx:id="lblStatus" text="OPEN" styleClass="chip"/>
+                                </VBox>
+                            </HBox>
+
+                            <Separator/>
+
+                            <!-- Descripción Original -->
+                            <VBox spacing="8" VBox.vgrow="ALWAYS">
+                                <Label text="Descripción del Problema:" styleClass="section-title"/>
+                                <TextArea fx:id="txtDescription" wrapText="true" editable="false" VBox.vgrow="ALWAYS" styleClass="description-area"/>
+                            </VBox>
+
+                            <!-- Zona de Respuesta -->
+                            <VBox fx:id="replyBox" spacing="15" styleClass="reply-box">
+                                <Label text="Redactar Respuesta:" styleClass="section-title"/>
+                                <TextArea fx:id="txtReply" promptText="Escribe la solución o respuesta al usuario aquí..." wrapText="true" prefHeight="100" styleClass="reply-area"/>
+                                
+                                <HBox spacing="15" alignment="CENTER_RIGHT">
+                                    <Button text="Cerrar Caso" onAction="#handleCloseTicket" styleClass="btn-close"/>
+                                    <Button text="Enviar Respuesta" onAction="#handleSendReply" styleClass="btn-reply"/>
+                                </HBox>
+                            </VBox>
+                            
+                        </VBox>
+                    </StackPane>
+                </SplitPane>
+            </VBox>
+
+            <!-- Loading overlay -->
+            <VBox fx:id="loadingContainer" alignment="CENTER" visible="true" styleClass="loading-overlay">
+                <ProgressIndicator/>
+                <Label text="Cargando sistema de tickets..."/>
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

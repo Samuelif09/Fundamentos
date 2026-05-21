@@ -173,6 +173,11 @@ public class CatalogoController {
         com.openlib.market.frontend.app.SceneManager.navigateTo("perfil");
     }
 
+    @FXML
+    public void handleGoToSellerDashboard(ActionEvent event) {
+        com.openlib.market.frontend.app.SceneManager.navigateTo("dashboard_vendedor");
+    }
+
     private void showError(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");

@@ -31,6 +31,7 @@
             <Button text="📚 Mi Biblioteca" onAction="#handleGoToLibrary" styleClass="library-button"/>
             <Button text="🛒 Carrito" onAction="#handleGoToCart" styleClass="cart-button"/>
             <Button text="Mi Cuenta" onAction="#handleGoToProfile" styleClass="account-button"/>
+            <Button text="Panel Vendedor" onAction="#handleGoToSellerDashboard" styleClass="seller-button"/>
         </HBox>
     </top>
 

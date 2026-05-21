@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.openlib.market.frontend.controller.AdminCurationController"
+            stylesheets="@../styles/curaduria_admin.css"
+            styleClass="main-container">
+
+    <!-- Sidebar -->
+    <left>
+        <VBox styleClass="sidebar" spacing="10">
+            <padding><Insets top="20" right="15" bottom="20" left="15"/></padding>
+            <Label text="Admin Portal" styleClass="sidebar-title"/>
+            <Separator styleClass="sidebar-separator"/>
+            <Button text="📊 Dashboard Global" onAction="#handleGoToDashboard" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="🔎 Curaduría" styleClass="sidebar-btn, active-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="⚙️ Gestión y Usuarios" onAction="#handleGoToManagement" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="🎧 Mesa de Ayuda" onAction="#handleGoToSupport" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="⚙️ Config. Sistema" onAction="#handleGoToConfig" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button text="🚪 Cerrar Sesión" onAction="#handleLogout" styleClass="sidebar-btn-logout" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+        </VBox>
+    </left>
+
+    <!-- Main Content -->
+    <center>
+        <StackPane>
+            <VBox spacing="25">
+                <padding><Insets top="30" right="40" bottom="30" left="40"/></padding>
+
+                <!-- Header -->
+                <HBox alignment="CENTER_LEFT">
+                    <VBox spacing="5">
+                        <Label text="Centro de Curaduría" styleClass="page-title"/>
+                        <Label text="Revisa y modera las publicaciones pendientes de aprobación." styleClass="page-subtitle"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="⟳ Actualizar Lista" onAction="#handleRefresh" styleClass="refresh-btn"/>
+                </HBox>
+
+                <Separator/>
+
+                <!-- Info Alert -->
+                <HBox styleClass="info-alert" alignment="CENTER_LEFT" spacing="10">
+                    <Label text="ℹ️" styleClass="info-icon"/>
+                    <Label text="Los libros aprobados se publicarán inmediatamente en el catálogo. Los rechazados notificarán al vendedor con el motivo proporcionado." styleClass="info-text" wrapText="true"/>
+                </HBox>
+
+                <!-- Curation Table -->
+                <TableView fx:id="pendingBooksTable" VBox.vgrow="ALWAYS" styleClass="curation-table">
+                    <columns>
+                        <TableColumn fx:id="colTitle"      text="Título del Libro" prefWidth="250"/>
+                        <TableColumn fx:id="colAuthor"     text="Autor"            prefWidth="150"/>
+                        <TableColumn fx:id="colSeller"     text="Vendedor"         prefWidth="150"/>
+                        <TableColumn fx:id="colDate"       text="Fecha Envío"      prefWidth="130"/>
+                        <TableColumn fx:id="colPrice"      text="Precio"           prefWidth="100"/>
+                        <TableColumn fx:id="colActions"    text="Acciones"         prefWidth="220" sortable="false"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="No hay libros pendientes de revisión en este momento. 🎉" styleClass="table-placeholder"/>
+                    </placeholder>
+                </TableView>
+            </VBox>
+
+            <!-- Loading overlay -->
+            <VBox fx:id="loadingContainer" alignment="CENTER" visible="true" styleClass="loading-overlay">
+                <ProgressIndicator/>
+                <Label text="Cargando libros pendientes..."/>
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

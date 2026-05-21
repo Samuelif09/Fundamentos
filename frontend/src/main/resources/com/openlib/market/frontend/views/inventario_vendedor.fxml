@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.openlib.market.frontend.controller.SellerInventoryController"
+            stylesheets="@../styles/inventario_vendedor.css"
+            styleClass="main-container">
+
+    <!-- Sidebar (Left) — consistent with Seller Dashboard -->
+    <left>
+        <VBox styleClass="sidebar" spacing="10">
+            <padding>
+                <Insets top="20" right="15" bottom="20" left="15"/>
+            </padding>
+            <Label text="Vendedor" styleClass="sidebar-title"/>
+            <Separator styleClass="sidebar-separator"/>
+            
+            <Button text="📊 Dashboard" onAction="#handleGoToDashboard" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="📚 Mis Libros" styleClass="sidebar-btn, active-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="➕ Nuevo Libro" onAction="#handleGoToPublish" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button text="← Volver al Catálogo" onAction="#handleBackToCatalog" styleClass="sidebar-btn-back" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+        </VBox>
+    </left>
+
+    <!-- Main Content Area -->
+    <center>
+        <StackPane>
+            <VBox spacing="20">
+                <padding>
+                    <Insets top="30" right="40" bottom="30" left="40"/>
+                </padding>
+
+                <!-- Header -->
+                <HBox alignment="CENTER_LEFT" spacing="15">
+                    <VBox spacing="5">
+                        <Label text="Mis Libros" styleClass="page-title"/>
+                        <Label text="Gestiona el catálogo de tus publicaciones." styleClass="page-subtitle"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="⟳ Actualizar" onAction="#handleRefresh" styleClass="refresh-btn"/>
+                </HBox>
+
+                <Separator/>
+
+                <!-- Search bar -->
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="searchField" promptText="Buscar por título..." styleClass="search-field" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <!-- TableView -->
+                <TableView fx:id="booksTable" VBox.vgrow="ALWAYS" styleClass="inventory-table">
+                    <columns>
+                        <TableColumn fx:id="colId"     text="ID"      prefWidth="60"  styleClass="col-id"/>
+                        <TableColumn fx:id="colTitle"  text="Título"  prefWidth="300"/>
+                        <TableColumn fx:id="colPrice"  text="Precio"  prefWidth="100"/>
+                        <TableColumn fx:id="colStock"  text="Stock"   prefWidth="80"/>
+                        <TableColumn fx:id="colStatus" text="Estado"  prefWidth="120"/>
+                        <TableColumn fx:id="colActions" text="Acciones" prefWidth="200"/>
+                    </columns>
+                    <placeholder>
+                        <Label text="No tienes libros publicados aún." styleClass="table-placeholder"/>
+                    </placeholder>
+                </TableView>
+
+            </VBox>
+
+            <!-- Loading overlay -->
+            <VBox fx:id="loadingContainer" alignment="CENTER" visible="true" styleClass="loading-overlay">
+                <ProgressIndicator/>
+                <Label text="Cargando tu inventario..."/>
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

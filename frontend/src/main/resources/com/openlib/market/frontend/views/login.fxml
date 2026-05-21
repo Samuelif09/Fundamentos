@@ -82,9 +82,20 @@
         </Separator>
 
         <!-- Footer -->
-        <HBox alignment="CENTER" spacing="4">
-            <Label text="¿No tienes cuenta?" styleClass="footer-text" />
-            <Hyperlink text="Regístrate aquí" styleClass="link-accent" onAction="#handleGoToRegister" />
+        <VBox alignment="CENTER" spacing="5">
+            <HBox alignment="CENTER" spacing="4">
+                <Label text="¿No tienes cuenta?" styleClass="footer-text" />
+                <Hyperlink text="Regístrate aquí" styleClass="link-accent" onAction="#handleGoToRegister" />
+            </HBox>
+            <HBox alignment="CENTER" spacing="4">
+                <Label text="¿Quieres vender en OpenLib?" styleClass="footer-text" />
+                <Hyperlink text="Regístrate como Vendedor" styleClass="link-accent" onAction="#handleGoToSellerRegister" />
+            </HBox>
+        </VBox>
+
+        <!-- Admin portal link (discrete, bottom of card) -->
+        <HBox alignment="CENTER_RIGHT">
+            <Hyperlink text="Portal Administrador →" styleClass="admin-portal-link" onAction="#handleGoToAdminLogin"/>
         </HBox>
 
     </VBox>

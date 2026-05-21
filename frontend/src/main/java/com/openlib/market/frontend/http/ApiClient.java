@@ -55,6 +55,21 @@ public class ApiClient {
         return sendRequest(buildDeleteRequest(endpoint), responseType);
     }
 
+    // ── POST multipart/form-data con token JWT ────────────────────────────
+    public static <T> CompletableFuture<ApiResponse<T>> postMultipart(
+            String endpoint,
+            HttpRequest.BodyPublisher bodyPublisher,
+            String boundary,
+            Class<T> responseType) {
+        HttpRequest.Builder builder = HttpRequest.newBuilder()
+                .uri(URI.create(BASE_URL + endpoint))
+                .header("Content-Type", "multipart/form-data; boundary=" + boundary)
+                .POST(bodyPublisher)
+                .timeout(Duration.ofSeconds(60)); // Archivos grandes, timeout amplio
+        injectAuth(builder);
+        return sendRequest(builder.build(), responseType);
+    }
+
     // ── Internos ─────────────────────────────────────────────────────────
 
     private static HttpRequest buildPostRequest(String endpoint, Object body, boolean withAuth) {

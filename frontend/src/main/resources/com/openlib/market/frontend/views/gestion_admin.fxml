@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.openlib.market.frontend.controller.AdminManagementController"
+            stylesheets="@../styles/gestion_admin.css"
+            styleClass="main-container">
+
+    <!-- Sidebar -->
+    <left>
+        <VBox styleClass="sidebar" spacing="10">
+            <padding><Insets top="20" right="15" bottom="20" left="15"/></padding>
+            <Label text="Admin Portal" styleClass="sidebar-title"/>
+            <Separator styleClass="sidebar-separator"/>
+            <Button text="📊 Dashboard Global" onAction="#handleGoToDashboard" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="🔎 Curaduría" onAction="#handleGoToCuration" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="⚙️ Gestión y Usuarios" styleClass="sidebar-btn, active-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="🎧 Mesa de Ayuda" onAction="#handleGoToSupport" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            <Button text="⚙️ Config. Sistema" onAction="#handleGoToConfig" styleClass="sidebar-btn" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+            
+            <Region VBox.vgrow="ALWAYS"/>
+            <Button text="🚪 Cerrar Sesión" onAction="#handleLogout" styleClass="sidebar-btn-logout" maxWidth="Infinity" alignment="BASELINE_LEFT"/>
+        </VBox>
+    </left>
+
+    <!-- Main Content -->
+    <center>
+        <StackPane>
+            <VBox spacing="20">
+                <padding><Insets top="25" right="30" bottom="25" left="30"/></padding>
+
+                <!-- Header -->
+                <HBox alignment="CENTER_LEFT">
+                    <VBox spacing="5">
+                        <Label text="Gestión de Usuarios y Transacciones" styleClass="page-title"/>
+                        <Label text="Directorio global, control de acceso y monitor de pedidos." styleClass="page-subtitle"/>
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="⟳ Actualizar Datos" onAction="#handleRefresh" styleClass="refresh-btn"/>
+                </HBox>
+
+                <!-- Tabs -->
+                <TabPane fx:id="mainTabPane" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS" styleClass="admin-tabs">
+                    
+                    <!-- Pestaña: Usuarios -->
+                    <Tab text="Directorio de Usuarios">
+                        <VBox spacing="15">
+                            <padding><Insets top="15" right="10" bottom="10" left="10"/></padding>
+                            
+                            <HBox alignment="CENTER_LEFT" spacing="15">
+                                <TextField fx:id="userSearchField" promptText="🔍 Buscar por nombre o email..." prefWidth="350" styleClass="search-field"/>
+                            </HBox>
+
+                            <TableView fx:id="usersTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+                                <columns>
+                                    <TableColumn fx:id="colUserEmail"  text="Email"          prefWidth="220"/>
+                                    <TableColumn fx:id="colUserName"   text="Nombre Completo" prefWidth="200"/>
+                                    <TableColumn fx:id="colUserRole"   text="Rol"            prefWidth="120"/>
+                                    <TableColumn fx:id="colUserStatus" text="Estado"         prefWidth="120"/>
+                                    <TableColumn fx:id="colUserDate"   text="Fecha Registro" prefWidth="130"/>
+                                    <TableColumn fx:id="colUserAction" text="Acciones"       prefWidth="150" sortable="false"/>
+                                </columns>
+                                <placeholder><Label text="No se encontraron usuarios." styleClass="table-placeholder"/></placeholder>
+                            </TableView>
+                        </VBox>
+                    </Tab>
+
+                    <!-- Pestaña: Pedidos -->
+                    <Tab text="Monitor de Transacciones">
+                        <VBox spacing="15">
+                            <padding><Insets top="15" right="10" bottom="10" left="10"/></padding>
+                            
+                            <HBox alignment="CENTER_LEFT" spacing="15">
+                                <TextField fx:id="orderSearchField" promptText="🔍 Buscar por Order ID o Email..." prefWidth="350" styleClass="search-field"/>
+                            </HBox>
+
+                            <TableView fx:id="ordersTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+                                <columns>
+                                    <TableColumn fx:id="colOrderId"     text="Order ID"       prefWidth="150"/>
+                                    <TableColumn fx:id="colOrderEmail"  text="Comprador"      prefWidth="220"/>
+                                    <TableColumn fx:id="colOrderAmount" text="Monto Total"    prefWidth="120"/>
+                                    <TableColumn fx:id="colOrderStatus" text="Estado"         prefWidth="120"/>
+                                    <TableColumn fx:id="colOrderDate"   text="Fecha"          prefWidth="150"/>
+                                    <TableColumn fx:id="colOrderAction" text="Acciones"       prefWidth="150" sortable="false"/>
+                                </columns>
+                                <placeholder><Label text="No se encontraron transacciones." styleClass="table-placeholder"/></placeholder>
+                            </TableView>
+                        </VBox>
+                    </Tab>
+
+                </TabPane>
+            </VBox>
+
+            <!-- Loading overlay -->
+            <VBox fx:id="loadingContainer" alignment="CENTER" visible="true" styleClass="loading-overlay">
+                <ProgressIndicator/>
+                <Label text="Sincronizando información global..."/>
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

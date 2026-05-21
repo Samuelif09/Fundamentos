@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.event.ActionEvent;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -86,8 +87,18 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    public void handleGoToRegister() {
+    public void handleGoToRegister(ActionEvent event) {
         SceneManager.navigateTo("registro");
+    }
+
+    @FXML
+    public void handleGoToSellerRegister(ActionEvent event) {
+        SceneManager.navigateTo("registro_vendedor");
+    }
+
+    @FXML
+    public void handleGoToAdminLogin(ActionEvent event) {
+        SceneManager.navigateTo("admin_login");
     }
 
     // ── Procesamiento de respuesta (SIEMPRE en hilo bg, UI via runLater) ─
