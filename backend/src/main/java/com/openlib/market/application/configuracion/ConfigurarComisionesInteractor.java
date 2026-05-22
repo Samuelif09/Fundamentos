@@ -1,13 +1,11 @@
 package com.openlib.market.application.configuracion;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.configuracion.IConfiguracionComisionGateway;
 import com.openlib.market.domain.configuracion.ReglaComision;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class ConfigurarComisionesInteractor implements IConfigurarComisionesUseCase {
 
     private final IConfiguracionComisionGateway comisionGateway;
@@ -28,7 +26,7 @@ public class ConfigurarComisionesInteractor implements IConfigurarComisionesUseC
         if (regla == null) {
             regla = comisionGateway.obtenerRegla("GLOBAL");
         }
-        
+
         if (regla == null) {
             throw new IllegalStateException("No existe regla de comisión GLOBAL configurada");
         }

@@ -1,13 +1,11 @@
 package com.openlib.market.application.transaccionesAdmin;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.pago.IPedidoGateway;
 import com.openlib.market.domain.pago.Pedido;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class VerTransaccionesAdminInteractor implements IVerTransaccionesAdminUseCase {
 
     private final IPedidoGateway pedidoGateway;

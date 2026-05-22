@@ -1,13 +1,11 @@
 package com.openlib.market.application.finanzas;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.finanzas.DatosFiscalesComprador;
 import com.openlib.market.domain.finanzas.DatosFiscalesVendedor;
 import com.openlib.market.domain.finanzas.DesgloseImpuestos;
 import com.openlib.market.domain.finanzas.FacturaTributaria;
 import com.openlib.market.domain.finanzas.IFacturacionGateway;
 
-@Service
 public class GenerarFacturaFinanzasInteractor implements IGenerarFacturaFinanzasUseCase {
 
     private final IFacturacionGateway facturacionGateway;

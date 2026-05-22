@@ -45,7 +45,6 @@
 /home/silvaaa/Documents/uni/fundamentos/proyectoFundamentos/backend/src/test/java/com/openlib/market/application/inventario/DespublicarInventarioInteractorTest.java
 /home/silvaaa/Documents/uni/fundamentos/proyectoFundamentos/backend/src/test/java/com/openlib/market/application/inventario/VerInventarioInteractorTest.java
 /home/silvaaa/Documents/uni/fundamentos/proyectoFundamentos/backend/src/test/java/com/openlib/market/application/marketing/GestionarBannersInteractorTest.java
-/home/silvaaa/Documents/uni/fundamentos/proyectoFundamentos/backend/src/test/java/com/openlib/market/application/monitoreo/EvaluarAnomaliaInteractorTest.java
 /home/silvaaa/Documents/uni/fundamentos/proyectoFundamentos/backend/src/test/java/com/openlib/market/application/notificacion/RecibirNotificacionPrecioInteractorTest.java
 /home/silvaaa/Documents/uni/fundamentos/proyectoFundamentos/backend/src/test/java/com/openlib/market/application/notificacion/RecibirPostCompraInteractorTest.java
 /home/silvaaa/Documents/uni/fundamentos/proyectoFundamentos/backend/src/test/java/com/openlib/market/application/pago/IngresarCheckoutInteractorTest.java

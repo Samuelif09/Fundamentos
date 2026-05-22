@@ -7,9 +7,7 @@ import com.openlib.market.domain.autenticacion.RolAdmin;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
 
-@Service
 public class GestionarRolesInteractor implements IGestionarRolesUseCase {
 
     private final IAdminGateway adminGateway;

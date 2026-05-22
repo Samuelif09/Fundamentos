@@ -1,12 +1,10 @@
 package com.openlib.market.application.gestionUsuarios;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.gestionUsuarios.INotificacionGateway;
 import com.openlib.market.domain.registro.IUsuarioGateway;
 import com.openlib.market.domain.registro.MotivoSuspension;
 import com.openlib.market.domain.registro.Usuario;
 
-@Service
 public class SuspenderGestionUsuariosInteractor implements ISuspenderGestionUsuariosUseCase {
 
     private final IUsuarioGateway usuarioGateway;

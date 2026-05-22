@@ -61,6 +61,7 @@ com/openlib/market/domain/configuracion/ConfiguracionInvalidaException.class
 com/openlib/market/infrastructure/autenticacion/AdminAuthController.class
 com/openlib/market/infrastructure/inventario/ActualizarLibroJsonGateway$LibroEditableDto.class
 com/openlib/market/domain/detalle/ILibroPublicacionGateway.class
+com/openlib/market/infrastructure/config/FiltroPrecioConfig.class
 com/openlib/market/domain/resena/ComentarioRespuesta.class
 com/openlib/market/infrastructure/comunicado/ComunicadoAdminController$EnviarComunicadoRequest.class
 com/openlib/market/infrastructure/config/FinanzasConfig.class
@@ -100,6 +101,7 @@ com/openlib/market/infrastructure/adapter/out/persistence/gateway/ReembolsoJpaGa
 com/openlib/market/infrastructure/adapter/out/persistence/gateway/VendedorJpaGateway.class
 com/openlib/market/infrastructure/autenticacion/AdminRolesController$AsignarRolRequest.class
 com/openlib/market/domain/cupon/EstrategiaDescuento.class
+com/openlib/market/infrastructure/config/ComparteConfig.class
 com/openlib/market/application/finanzas/IVerGraficasVentasUseCase.class
 com/openlib/market/domain/marketing/PeriodoCampana.class
 com/openlib/market/domain/explorar/ITendenciaGateway.class
@@ -123,6 +125,7 @@ com/openlib/market/application/soporte/TicketSoporteDto.class
 com/openlib/market/domain/carrito/DescuentoFijoDecorator.class
 com/openlib/market/infrastructure/adapter/out/persistence/entity/ReglaComisionEntity.class
 com/openlib/market/domain/afiliado/ProgramaAfiliado.class
+com/openlib/market/infrastructure/config/ChatbotConfig.class
 com/openlib/market/infrastructure/reembolso/ReembolsoAdminController.class
 com/openlib/market/infrastructure/explorar/TendenciaJsonGateway.class
 com/openlib/market/infrastructure/adapter/out/persistence/gateway/PedidoJpaGateway.class
@@ -242,6 +245,7 @@ com/openlib/market/infrastructure/pago/TransferenciaAdapterGateway.class
 com/openlib/market/infrastructure/estadisticas/EstadisticasController.class
 com/openlib/market/domain/pago/IPedidoGateway.class
 com/openlib/market/domain/finanzas/PuntoDatos.class
+com/openlib/market/infrastructure/config/DashboardConfig.class
 com/openlib/market/infrastructure/carrito/CarritoController.class
 com/openlib/market/application/suscripcion/ISeguirMiCuentaUseCase.class
 com/openlib/market/domain/afiliado/EnlaceAfiliado.class
@@ -251,6 +255,7 @@ com/openlib/market/application/anomalias/IEvaluarAnomaliaUseCase.class
 com/openlib/market/infrastructure/adapter/out/persistence/mapper/ConfiguracionDashboardMapper.class
 com/openlib/market/application/tienda/ITenerMiTiendaUseCase.class
 com/openlib/market/application/pago/PagoRechazadoException.class
+com/openlib/market/infrastructure/config/ExplorarConfig.class
 com/openlib/market/domain/catalogo/PromedioStrategy.class
 com/openlib/market/domain/finanzas/ReporteFinanciero.class
 com/openlib/market/infrastructure/inventario/PromocionJsonGateway$PromocionDto.class
@@ -294,6 +299,7 @@ com/openlib/market/infrastructure/soporte/ReporteJsonGateway$1.class
 com/openlib/market/infrastructure/soporte/SoporteAdminController$ResolverDisputaRequest.class
 com/openlib/market/infrastructure/adapter/in/web/dto/AdminChartDataDto$DataPoint.class
 com/openlib/market/domain/autenticacion/Administrador.class
+com/openlib/market/infrastructure/config/CuraduriaConfig.class
 com/openlib/market/infrastructure/finanzas/FacturaJsonGateway$VendedorDto.class
 com/openlib/market/domain/registro/Password.class
 com/openlib/market/infrastructure/historial/HistorialNavegacionJsonGateway$1.class
@@ -393,6 +399,7 @@ com/openlib/market/infrastructure/adapter/in/web/dto/SysCategoryDto.class
 com/openlib/market/infrastructure/finanzas/FacturaJsonGateway.class
 com/openlib/market/application/resena/ILeerResenasUseCase.class
 com/openlib/market/infrastructure/config/AdminConfig.class
+com/openlib/market/infrastructure/config/ReporteConfig.class
 com/openlib/market/application/carrito/IAgregarCarritoUseCase.class
 com/openlib/market/domain/monitoreo/ReglaAnomaliaDomainService.class
 com/openlib/market/domain/tienda/ITiendaVendedorGateway$PerfilTiendaBase.class
@@ -443,8 +450,10 @@ com/openlib/market/infrastructure/adapter/out/persistence/mapper/LibroMapper.cla
 com/openlib/market/domain/vendedor/VerificacionEnCursoException.class
 com/openlib/market/application/configuracion/MetodoPagoConfigDto.class
 com/openlib/market/domain/dashboardGlobal/PuntoDatos.class
+com/openlib/market/infrastructure/config/RegistroConfig.class
 com/openlib/market/domain/exportacion/DataExportadaUsuario.class
 com/openlib/market/infrastructure/adapter/out/persistence/entity/ResenaEntity.class
+com/openlib/market/infrastructure/config/CarritoConfig.class
 com/openlib/market/infrastructure/soporte/DisputaJsonGateway$1.class
 com/openlib/market/infrastructure/adapter/out/persistence/entity/ContenidoDigitalEntity.class
 com/openlib/market/infrastructure/reporte/GeneradorReportesCsvGateway.class
@@ -469,6 +478,7 @@ com/openlib/market/infrastructure/vendedor/VendedorJsonGateway$VendedorDto.class
 com/openlib/market/domain/dashboard/IDashboardPedidoGateway.class
 com/openlib/market/infrastructure/adapter/out/persistence/repository/ListaDeseosRepository.class
 com/openlib/market/infrastructure/detalle/DetalleJsonGateway$LibroDto.class
+com/openlib/market/infrastructure/config/MarketingConfig.class
 com/openlib/market/infrastructure/almacenamiento/ImagenLibroController.class
 com/openlib/market/domain/soporte/Disputa.class
 com/openlib/market/application/historial/VerHistorialNavegacionInteractor.class
@@ -477,9 +487,9 @@ com/openlib/market/infrastructure/adapter/out/persistence/gateway/ContenidoDigit
 com/openlib/market/infrastructure/notificacion/SpringDomainEventListenerAdapter.class
 com/openlib/market/infrastructure/dashboard/DashboardController.class
 com/openlib/market/infrastructure/autenticacion/UsuarioAuthJsonGateway.class
+com/openlib/market/MarketApplication.class
 com/openlib/market/infrastructure/adapter/out/persistence/repository/LibroRepository.class
 com/openlib/market/infrastructure/soporte/DisputaJsonGateway.class
-com/openlib/market/MarketApplication.class
 com/openlib/market/infrastructure/pago/PedidoJsonGateway$1.class
 com/openlib/market/infrastructure/explorar/TendenciaJsonGateway$LibroTendenciaDto.class
 com/openlib/market/domain/resena/IResenaGateway.class
@@ -503,12 +513,14 @@ com/openlib/market/application/notificacion/RecibirNotificacionPrecioInteractor.
 com/openlib/market/application/finanzas/GenerarFacturaRequestDto.class
 com/openlib/market/infrastructure/explorar/ExplorarController.class
 com/openlib/market/infrastructure/adapter/out/persistence/entity/ConfiguracionDashboardEntity.class
+com/openlib/market/infrastructure/config/AnomaliasConfig.class
 com/openlib/market/infrastructure/adapter/out/persistence/repository/ConfiguracionDashboardRepository.class
 com/openlib/market/infrastructure/config/HistorialConfig.class
 com/openlib/market/application/inventario/CrearDescuentoInventarioInteractor.class
 com/openlib/market/domain/pago/IEventPublisher.class
 com/openlib/market/domain/soporte/ReembolsoSolicitadoPorDisputaEvent.class
 com/openlib/market/infrastructure/comparte/LibroComparteJsonGateway.class
+com/openlib/market/infrastructure/config/ApiConfig.class
 com/openlib/market/infrastructure/configuracion/MetodoPagoConfigJsonGateway$ConfiguracionDto.class
 com/openlib/market/infrastructure/marketing/MarketingAdminController$CrearBannerRequest.class
 com/openlib/market/domain/notificacionrebaja/LibroCambioPrecioEvent.class
@@ -529,8 +541,10 @@ com/openlib/market/domain/catalogo/ICatalogoGateway.class
 com/openlib/market/infrastructure/chatbot/ChatbotController$MensajeRequest.class
 com/openlib/market/domain/notificacion/INotificacionGateway.class
 com/openlib/market/infrastructure/configuracion/MetodoPagoConfigJsonGateway$1.class
+com/openlib/market/infrastructure/config/BusquedaConfig.class
 com/openlib/market/domain/suscripcion/OperacionInvalidaException.class
 com/openlib/market/domain/autenticacion/UsuarioAuth.class
+com/openlib/market/infrastructure/config/ComunicadoConfig.class
 com/openlib/market/application/ventavendedor/RecibirVentasInteractor.class
 com/openlib/market/infrastructure/api/WebMvcConfig.class
 com/openlib/market/infrastructure/adapter/out/persistence/gateway/BilleteraJpaGateway.class
@@ -549,7 +563,6 @@ com/openlib/market/application/gestionUsuarios/AprobarGestionUsuariosInteractor.
 com/openlib/market/domain/detalle/CursoVirtual.class
 com/openlib/market/domain/chatbot/ITicketSoporteGateway.class
 com/openlib/market/application/finanzas/DescargarFacturaUseCase.class
-com/openlib/market/application/monitoreo/EvaluarAnomaliaInteractor.class
 com/openlib/market/domain/reembolso/IReembolsoGateway.class
 com/openlib/market/infrastructure/suscripcion/UsuarioDummyGateway.class
 com/openlib/market/infrastructure/registro/RegistroJsonGateway.class
@@ -758,6 +771,7 @@ com/openlib/market/domain/cupon/ICuponGateway.class
 com/openlib/market/infrastructure/config/ActualizarInventarioConfig.class
 com/openlib/market/application/vendedor/RegistrarVendedorInteractor.class
 com/openlib/market/application/comparte/EnlaceDto.class
+com/openlib/market/infrastructure/config/PopularidadConfig.class
 com/openlib/market/infrastructure/marketing/BannerJsonGateway$1.class
 com/openlib/market/application/resena/ResponderReputacionInteractor.class
 com/openlib/market/infrastructure/soporte/ReporteController.class
@@ -837,6 +851,7 @@ com/openlib/market/infrastructure/adapter/out/persistence/gateway/ApiKeyJpaGatew
 com/openlib/market/infrastructure/adapter/out/persistence/gateway/LiquidacionJpaGateway.class
 com/openlib/market/infrastructure/filtroprecio/FiltroPrecioJsonGateway$LibroDto.class
 com/openlib/market/application/categoria/IGestionarCategoriasUseCase.class
+com/openlib/market/infrastructure/config/GestionUsuariosConfig.class
 com/openlib/market/domain/finanzas/CalculadoraIngresosDomainService.class
 com/openlib/market/infrastructure/finanzas/FacturaJsonGateway$CompradorDto.class
 com/openlib/market/infrastructure/adapter/out/persistence/mapper/UsuarioMapper.class

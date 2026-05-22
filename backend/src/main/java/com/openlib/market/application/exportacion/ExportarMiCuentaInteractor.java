@@ -1,6 +1,5 @@
 package com.openlib.market.application.exportacion;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.exportacion.DataExportadaUsuario;
 import com.openlib.market.domain.pago.IPedidoGateway;
 import com.openlib.market.domain.pago.Pedido;
@@ -12,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public class ExportarMiCuentaInteractor implements IExportarMiCuentaUseCase {
 
     private final IUsuarioGateway usuarioGateway;

@@ -1,13 +1,11 @@
 package com.openlib.market.application.vendedor;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.registro.*;
 import com.openlib.market.domain.vendedor.IVendedorGateway;
 import com.openlib.market.domain.vendedor.IdentificacionTributaria;
 import com.openlib.market.domain.vendedor.RazonSocial;
 import com.openlib.market.domain.vendedor.Vendedor;
 
-@Service
 public class RegistrarVendedorInteractor implements IRegistrarVendedorUseCase {
 
     private final IRegistroGateway registroGateway;

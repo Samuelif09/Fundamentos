@@ -1,6 +1,5 @@
 package com.openlib.market.application.dashboard;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.dashboard.*;
 
 import java.time.LocalDate;
@@ -13,7 +12,6 @@ import java.util.List;
  * inyecta múltiples gateways, compila la foto del día y la empaqueta
  * en un DashboardKpi sin acoplar los módulos entre sí.
  */
-@Service
 public class VerMetricasDashboardInteractor implements IVerMetricasDashboardUseCase {
 
     private final IDashboardUsuarioGateway usuarioGateway;

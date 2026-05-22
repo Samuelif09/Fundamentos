@@ -1,6 +1,5 @@
 package com.openlib.market.application.suscripcion;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.registro.IUsuarioGateway;
 import com.openlib.market.domain.registro.RolUsuario;
 import com.openlib.market.domain.registro.Usuario;
@@ -10,7 +9,6 @@ import com.openlib.market.domain.suscripcion.SuscripcionAutor;
 
 import java.util.Optional;
 
-@Service
 public class SeguirMiCuentaInteractor implements ISeguirMiCuentaUseCase {
 
     private final ISuscripcionGateway suscripcionGateway;

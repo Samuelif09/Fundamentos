@@ -1,6 +1,5 @@
 package com.openlib.market.application.soporte;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.soporte.EstadoTicket;
 import com.openlib.market.domain.soporte.ITicketSoporteGateway;
 import com.openlib.market.domain.soporte.TicketSoporte;
@@ -9,7 +8,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class VerSoporteInteractor implements IVerSoporteUseCase {
 
     private final ITicketSoporteGateway ticketGateway;

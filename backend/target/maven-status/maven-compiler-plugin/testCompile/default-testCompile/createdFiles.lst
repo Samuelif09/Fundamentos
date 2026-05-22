@@ -57,7 +57,6 @@ com/openlib/market/application/finanzas/GenerarFacturaFinanzasInteractorTest.cla
 com/openlib/market/application/marketing/GestionarBannersInteractorTest.class
 com/openlib/market/domain/autenticacion/AdministradorTest.class
 com/openlib/market/domain/curaduria/CuraduriaDomainTest.class
-com/openlib/market/application/monitoreo/EvaluarAnomaliaInteractorTest.class
 com/openlib/market/domain/resena/CalificacionTest.class
 com/openlib/market/application/inventario/ActualizarInventarioInteractorTest.class
 com/openlib/market/domain/cupon/CuponDescuentoTest.class

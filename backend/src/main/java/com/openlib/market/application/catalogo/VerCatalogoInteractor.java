@@ -1,6 +1,5 @@
 package com.openlib.market.application.catalogo;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.catalogo.ICatalogoGateway;
 import com.openlib.market.domain.catalogo.PaginaDominio;
 import com.openlib.market.domain.catalogo.Paginacion;
@@ -8,7 +7,6 @@ import com.openlib.market.domain.catalogo.Paginacion;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class VerCatalogoInteractor implements IVerCatalogoUseCase {
 
     private final ICatalogoGateway catalogoGateway;

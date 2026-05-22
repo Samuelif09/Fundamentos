@@ -12,7 +12,8 @@ import com.openlib.market.domain.inventario.StockDisponible;
 import java.util.Optional;
 
 @Component
-public class InventarioJsonGateway implements com.openlib.market.domain.catalogo.IInventarioGateway, com.openlib.market.domain.inventario.IInventarioGateway {
+public class InventarioJsonGateway implements com.openlib.market.domain.catalogo.IInventarioGateway,
+        com.openlib.market.domain.inventario.IInventarioGateway {
 
     private final CatalogoJsonGateway catalogoJsonGateway;
 

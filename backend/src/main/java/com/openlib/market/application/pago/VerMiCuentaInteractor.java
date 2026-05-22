@@ -1,12 +1,10 @@
 package com.openlib.market.application.pago;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.pago.IPedidoGateway;
 import com.openlib.market.domain.pago.Pedido;
 
 import java.util.List;
 
-@Service
 public class VerMiCuentaInteractor implements IVerMiCuentaUseCase {
 
     private final IPedidoGateway pedidoGateway;

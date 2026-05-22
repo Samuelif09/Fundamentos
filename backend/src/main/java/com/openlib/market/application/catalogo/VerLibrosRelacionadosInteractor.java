@@ -1,6 +1,5 @@
 package com.openlib.market.application.catalogo;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.catalogo.CriterioSimilitud;
 import com.openlib.market.domain.catalogo.ICatalogoGateway;
 import com.openlib.market.domain.detalle.IDetalleGateway;
@@ -10,7 +9,6 @@ import com.openlib.market.domain.detalle.LibroNoEncontradoException;
 
 import java.util.List;
 
-@Service
 public class VerLibrosRelacionadosInteractor implements IVerLibrosRelacionadosUseCase {
 
     private static final int MAX_RELACIONADOS = 5;

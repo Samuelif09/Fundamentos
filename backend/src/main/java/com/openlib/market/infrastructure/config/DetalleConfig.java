@@ -1,6 +1,8 @@
 package com.openlib.market.infrastructure.config;
 
 import com.openlib.market.application.detalle.IVerDetalleLibroUseCase;
+import com.openlib.market.application.detalle.IVerDetalleUseCase;
+import com.openlib.market.application.detalle.VerDetalleInteractor;
 import com.openlib.market.application.detalle.VerDetalleLibroInteractor;
 import com.openlib.market.domain.detalle.IDetalleGateway;
 import com.openlib.market.domain.inventario.IInventarioGateway;
@@ -20,5 +22,10 @@ public class DetalleConfig {
             @Autowired(required = false) IEventPublisher eventPublisher,
             @Autowired(required = false) IPromocionGateway promocionGateway) {
         return new VerDetalleLibroInteractor(detalleGateway, inventarioGateway, eventPublisher, promocionGateway);
+    }
+
+    @Bean
+    public IVerDetalleUseCase verDetalleUseCase(IDetalleGateway detalleGateway) {
+        return new VerDetalleInteractor(detalleGateway);
     }
 }

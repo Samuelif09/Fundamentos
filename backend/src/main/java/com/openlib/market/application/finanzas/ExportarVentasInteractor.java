@@ -1,13 +1,11 @@
 package com.openlib.market.application.finanzas;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.finanzas.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
 public class ExportarVentasInteractor implements IExportarVentasUseCase {
 
     private final ILiquidacionGateway liquidacionGateway;

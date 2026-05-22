@@ -1,11 +1,9 @@
 package com.openlib.market.application.afiliado;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.afiliado.*;
 
 import java.util.Optional;
 
-@Service
 public class ConfigurarAfiliadosInteractor implements IConfigurarAfiliadosUseCase {
 
     private final IAfiliadoGateway afiliadoGateway;

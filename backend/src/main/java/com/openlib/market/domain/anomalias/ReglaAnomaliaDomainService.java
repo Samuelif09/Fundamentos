@@ -4,7 +4,6 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-@Service("anomaliasReglaAnomaliaDomainService")
 public class ReglaAnomaliaDomainService {
     
     public Optional<Alerta> evaluarRegla(ReglaAnomalia regla, double valorActual) {

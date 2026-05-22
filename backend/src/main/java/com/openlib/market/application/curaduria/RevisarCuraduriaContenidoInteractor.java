@@ -1,6 +1,5 @@
 package com.openlib.market.application.curaduria;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.curaduria.ICuraduriaGateway;
 import com.openlib.market.domain.detalle.EstadoLibro;
 import com.openlib.market.domain.detalle.Libro;
@@ -9,7 +8,6 @@ import com.openlib.market.domain.vendedor.IVendedorGateway;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class RevisarCuraduriaContenidoInteractor implements IRevisarCuraduriaContenidoUseCase {
 
     private final ICuraduriaGateway curaduriaGateway;

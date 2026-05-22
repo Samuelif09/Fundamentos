@@ -1,6 +1,5 @@
 package com.openlib.market.application.cupon;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.carrito.CarritoCompras;
 import com.openlib.market.domain.carrito.ICarritoGateway;
 import com.openlib.market.domain.carrito.IdUsuario;
@@ -11,7 +10,6 @@ import com.openlib.market.domain.cupon.ICuponGateway;
 
 import java.time.LocalDate;
 
-@Service
 public class AplicarCuponInteractor implements IAplicarCuponUseCase {
 
     private final ICuponGateway cuponGateway;
@@ -33,13 +31,14 @@ public class AplicarCuponInteractor implements IAplicarCuponUseCase {
         cupon.validar(LocalDate.now());
 
         CarritoCompras carrito = carritoGateway.obtenerPorUsuario(new IdUsuario(request.getUserId()))
-                .orElseThrow(() -> new IllegalStateException("Carrito no encontrado para el usuario: " + request.getUserId()));
+                .orElseThrow(() -> new IllegalStateException(
+                        "Carrito no encontrado para el usuario: " + request.getUserId()));
 
         double totalOriginal = carrito.getTotal();
-        
+
         carrito.aplicarDescuento(cupon);
         carritoGateway.guardar(carrito);
-        
+
         double totalConDescuento = carrito.getTotal();
 
         return new AplicarCuponResponseDto(totalOriginal, totalConDescuento, codigo.getValor());

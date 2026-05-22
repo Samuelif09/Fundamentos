@@ -1,9 +1,7 @@
 package com.openlib.market.application.registro;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.registro.*;
 
-@Service
 public class RegistrarRegistroInteractor implements IRegistrarRegistroUseCase {
 
     private final IRegistroGateway registroGateway;

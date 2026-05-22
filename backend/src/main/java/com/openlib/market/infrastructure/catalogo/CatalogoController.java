@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import com.openlib.market.application.catalogo.LibroCatalogoDto;
 
-@RestController
+@RestController("catalogoAvanzadoController")
 @RequestMapping("/api/v1/catalogo")
 public class CatalogoController {
 
     private final IVerCatalogoUseCase verCatalogoUseCase;
     private final com.openlib.market.application.catalogo.IBuscarCatalogoUseCase buscarCatalogoUseCase;
 
-    public CatalogoController(IVerCatalogoUseCase verCatalogoUseCase, com.openlib.market.application.catalogo.IBuscarCatalogoUseCase buscarCatalogoUseCase) {
+    public CatalogoController(IVerCatalogoUseCase verCatalogoUseCase,
+            com.openlib.market.application.catalogo.IBuscarCatalogoUseCase buscarCatalogoUseCase) {
         this.verCatalogoUseCase = verCatalogoUseCase;
         this.buscarCatalogoUseCase = buscarCatalogoUseCase;
     }
@@ -45,7 +46,8 @@ public class CatalogoController {
             @RequestParam(required = false) Double precioMin,
             @RequestParam(required = false) Double precioMax) {
         try {
-            List<LibroCatalogoDto> resultados = buscarCatalogoUseCase.buscar(titulo, autor, categoria, precioMin, precioMax);
+            List<LibroCatalogoDto> resultados = buscarCatalogoUseCase.buscar(titulo, autor, categoria, precioMin,
+                    precioMax);
             return ResponseEntity.ok(resultados);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();

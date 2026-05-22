@@ -1,11 +1,9 @@
 package com.openlib.market.application.autenticacion;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.autenticacion.*;
 
 import java.util.Optional;
 
-@Service
 public class RecuperarAutenticacionInteractor implements IRecuperarAutenticacionUseCase {
 
     private final IUsuarioAuthGateway usuarioGateway;
@@ -27,14 +25,14 @@ public class RecuperarAutenticacionInteractor implements IRecuperarAutenticacion
 
         Optional<UsuarioAuth> usuarioOpt = usuarioGateway.buscarPorEmail(email);
 
-        // Si el usuario no existe, interceptamos la falla silenciosamente 
+        // Si el usuario no existe, interceptamos la falla silenciosamente
         // para evitar ataques de enumeración (Information Disclosure)
         if (usuarioOpt.isEmpty()) {
             return;
         }
 
         TokenRecuperacion token = TokenRecuperacion.generarNuevo();
-        
+
         tokenGateway.guardar(email, token);
         emailGateway.enviarTokenRecuperacion(email, token);
     }

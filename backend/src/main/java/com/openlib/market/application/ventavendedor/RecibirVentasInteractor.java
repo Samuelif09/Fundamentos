@@ -1,6 +1,5 @@
 package com.openlib.market.application.ventavendedor;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.pago.PedidoCompletadoEvent;
 import com.openlib.market.domain.ventavendedor.IDetalleLibroGateway;
 import com.openlib.market.domain.ventavendedor.INotificacionVendedorGateway;
@@ -12,7 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-@Service
 public class RecibirVentasInteractor implements IRecibirVentasUseCase {
 
     private final IDetalleLibroGateway detalleLibroGateway;

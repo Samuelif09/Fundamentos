@@ -1,15 +1,14 @@
 package com.openlib.market.infrastructure.monitoreo;
 
-import com.openlib.market.application.monitoreo.IEvaluarAnomaliaUseCase;
+import com.openlib.market.application.anomalias.IEvaluarAnomaliaUseCase;
 import com.openlib.market.domain.monitoreo.MetricaObjetivo;
 import com.openlib.market.domain.monitoreo.ReglaAnomalia;
 import com.openlib.market.domain.monitoreo.UmbralCritico;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+
 public class AnomaliaScheduledTask {
 
     private final IEvaluarAnomaliaUseCase evaluarAnomaliaUseCase;
@@ -30,6 +29,6 @@ public class AnomaliaScheduledTask {
     @Scheduled(fixedRate = 30000)
     public void ejecutarMonitoreo() {
         System.out.println("🔄 [MONITOREO] Evaluando anomalías...");
-        evaluarAnomaliaUseCase.evaluarReglas(reglasConfiguradas);
+        evaluarAnomaliaUseCase.evaluarAnomalias();
     }
 }

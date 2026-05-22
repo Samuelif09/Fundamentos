@@ -1,6 +1,5 @@
 package com.openlib.market.application.detalle;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.detalle.IDetalleGateway;
 import com.openlib.market.domain.detalle.Isbn;
 import com.openlib.market.domain.detalle.Libro;
@@ -17,7 +16,6 @@ import java.util.Optional;
 import com.openlib.market.domain.inventario.IPromocionGateway;
 import com.openlib.market.domain.inventario.PromocionLibro;
 
-@Service
 public class VerDetalleLibroInteractor implements IVerDetalleLibroUseCase {
 
     private final IDetalleGateway detalleGateway;
@@ -25,7 +23,8 @@ public class VerDetalleLibroInteractor implements IVerDetalleLibroUseCase {
     private final IEventPublisher eventPublisher;
     private final IPromocionGateway promocionGateway;
 
-    public VerDetalleLibroInteractor(IDetalleGateway detalleGateway, IInventarioGateway inventarioGateway, IEventPublisher eventPublisher, IPromocionGateway promocionGateway) {
+    public VerDetalleLibroInteractor(IDetalleGateway detalleGateway, IInventarioGateway inventarioGateway,
+            IEventPublisher eventPublisher, IPromocionGateway promocionGateway) {
         this.detalleGateway = detalleGateway;
         this.inventarioGateway = inventarioGateway;
         this.eventPublisher = eventPublisher;
@@ -40,18 +39,18 @@ public class VerDetalleLibroInteractor implements IVerDetalleLibroUseCase {
     @Override
     public LibroDetalleCompradorDto verDetalle(String isbn, String idUsuario) {
         Isbn isbnDomain = new Isbn(isbn);
-        
+
         // 1. Obtener datos del catálogo
         Optional<Libro> libroOpt = detalleGateway.buscarPorId(isbnDomain);
         if (libroOpt.isEmpty()) {
             throw new LibroNoEncontradoException(isbnDomain.getValor());
         }
-        
+
         Libro libro = libroOpt.get();
 
         // 2. Obtener disponibilidad del inventario
         Optional<StockDisponible> stockOpt = inventarioGateway.obtenerStock(isbnDomain.getValor());
-        
+
         // Si no existe registro en inventario, asumimos 0 stock (no disponible)
         boolean disponible = stockOpt.map(StockDisponible::isDisponible).orElse(false);
 
@@ -79,7 +78,6 @@ public class VerDetalleLibroInteractor implements IVerDetalleLibroUseCase {
                 libro.getTitulo(),
                 libro.getSinopsis(),
                 precioFinal,
-                disponible
-        );
+                disponible);
     }
 }

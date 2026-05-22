@@ -1,6 +1,5 @@
 package com.openlib.market.application.autenticacion;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.autenticacion.*;
 
 import java.util.Optional;
@@ -12,7 +11,6 @@ import java.util.Optional;
  * el rol del usuario NO es ROLE_ADMIN, se lanza AccesoDenegadoException.
  * Esto previene la escalada de privilegios desde roles de comprador o vendedor.
  */
-@Service
 public class IniciarAutenticacionAdminInteractor implements IIniciarAutenticacionAdminUseCase {
 
     private final IAdminGateway adminGateway;

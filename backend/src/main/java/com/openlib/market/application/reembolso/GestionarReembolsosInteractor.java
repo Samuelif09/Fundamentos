@@ -1,6 +1,5 @@
 package com.openlib.market.application.reembolso;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.pago.IPedidoGateway;
 import com.openlib.market.domain.pago.Pedido;
 import com.openlib.market.domain.reembolso.IPasarelaPagoGateway;
@@ -9,7 +8,6 @@ import com.openlib.market.domain.reembolso.SolicitudReembolso;
 
 import java.util.Optional;
 
-@Service
 public class GestionarReembolsosInteractor implements IGestionarReembolsosUseCase {
 
     private final IReembolsoGateway reembolsoGateway;

@@ -1,11 +1,9 @@
 package com.openlib.market.application.categoria;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.categoria.*;
 
 import java.util.List;
 
-@Service
 public class GestionarCategoriasInteractor implements IGestionarCategoriasUseCase {
 
     private final ICategoriaGateway categoriaGateway;
@@ -18,7 +16,8 @@ public class GestionarCategoriasInteractor implements IGestionarCategoriasUseCas
     public CategoriaCatalogo crearCategoria(String nombre) {
         NombreCategoria nombreCategoria = new NombreCategoria(nombre);
         if (categoriaGateway.existePorNombreNormalizado(nombreCategoria.getNormalizado())) {
-            throw new CategoriaDuplicadaException("Ya existe una categoría con el nombre: " + nombreCategoria.getValor());
+            throw new CategoriaDuplicadaException(
+                    "Ya existe una categoría con el nombre: " + nombreCategoria.getValor());
         }
         CategoriaCatalogo categoria = new CategoriaCatalogo(nombreCategoria);
         categoriaGateway.guardar(categoria);
@@ -32,7 +31,8 @@ public class GestionarCategoriasInteractor implements IGestionarCategoriasUseCas
 
         NombreCategoria nuevoNombreCat = new NombreCategoria(nuevoNombre);
         if (categoriaGateway.existePorNombreNormalizado(nuevoNombreCat.getNormalizado())) {
-            throw new CategoriaDuplicadaException("Ya existe una categoría con el nombre: " + nuevoNombreCat.getValor());
+            throw new CategoriaDuplicadaException(
+                    "Ya existe una categoría con el nombre: " + nuevoNombreCat.getValor());
         }
 
         categoria.editarNombre(nuevoNombreCat);

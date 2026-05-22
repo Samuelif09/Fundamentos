@@ -4,9 +4,7 @@ import com.openlib.market.domain.autenticacion.*;
 
 import java.util.Optional;
 
-import org.springframework.stereotype.Service;
 
-@Service
 public class IniciarAutenticacionInteractor implements IIniciarAutenticacionUseCase {
 
     private final IUsuarioAuthGateway usuarioGateway;
@@ -14,8 +12,8 @@ public class IniciarAutenticacionInteractor implements IIniciarAutenticacionUseC
     private final ITokenGeneratorGateway tokenGenerator;
 
     public IniciarAutenticacionInteractor(IUsuarioAuthGateway usuarioGateway,
-                                          IVerificadorPasswordGateway verificadorPassword,
-                                          ITokenGeneratorGateway tokenGenerator) {
+            IVerificadorPasswordGateway verificadorPassword,
+            ITokenGeneratorGateway tokenGenerator) {
         this.usuarioGateway = usuarioGateway;
         this.verificadorPassword = verificadorPassword;
         this.tokenGenerator = tokenGenerator;
@@ -25,17 +23,18 @@ public class IniciarAutenticacionInteractor implements IIniciarAutenticacionUseC
     public LoginResponseDto iniciarSesion(LoginRequestDto request) {
         Email email;
         PasswordPlano passwordPlano;
-        
+
         try {
             email = new Email(request.getEmail());
             passwordPlano = new PasswordPlano(request.getPassword());
         } catch (IllegalArgumentException e) {
-            // Falla de formato en email o password vacío equivale a fallo de credenciales para seguridad
+            // Falla de formato en email o password vacío equivale a fallo de credenciales
+            // para seguridad
             throw new CredencialesInvalidasException();
         }
 
         Optional<UsuarioAuth> usuarioOpt = usuarioGateway.buscarPorEmail(email);
-        
+
         if (usuarioOpt.isEmpty()) {
             throw new CredencialesInvalidasException();
         }

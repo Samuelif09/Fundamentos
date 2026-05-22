@@ -1,6 +1,5 @@
 package com.openlib.market.application.comunicado;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.comunicado.ComunicadoMasivo;
 import com.openlib.market.domain.comunicado.FiltroDestinatarios;
 import com.openlib.market.domain.comunicado.INotificacionGateway;
@@ -11,7 +10,6 @@ import com.openlib.market.domain.registro.Usuario;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class EnviarComunicadoInteractor implements IEnviarComunicadoUseCase {
 
     private final IUsuarioGateway usuarioGateway;
@@ -28,14 +26,14 @@ public class EnviarComunicadoInteractor implements IEnviarComunicadoUseCase {
         ComunicadoMasivo comunicado = new ComunicadoMasivo(asunto, cuerpoMensaje, filtro);
 
         List<Usuario> todosLosUsuarios = usuarioGateway.listarTodos();
-        
+
         List<String> correosFiltrados = todosLosUsuarios.stream()
                 .filter(u -> cumpleFiltro(u, filtro))
                 .map(u -> u.getEmail().getValor())
                 .collect(Collectors.toList());
 
         comunicado.registrarEnvio(correosFiltrados.size());
-        
+
         if (!correosFiltrados.isEmpty()) {
             notificacionGateway.enviarComunicadoMasivo(comunicado, correosFiltrados);
         }
@@ -44,14 +42,16 @@ public class EnviarComunicadoInteractor implements IEnviarComunicadoUseCase {
                 comunicado.getId(),
                 comunicado.getAsunto(),
                 comunicado.getFechaEnvio().toString(),
-                comunicado.getCantidadDestinatarios()
-        );
+                comunicado.getCantidadDestinatarios());
     }
 
     private boolean cumpleFiltro(Usuario usuario, FiltroDestinatarios filtro) {
-        if (filtro == FiltroDestinatarios.TODOS) return true;
-        if (filtro == FiltroDestinatarios.SOLO_COMPRADORES && usuario.getRol() == RolUsuario.COMPRADOR) return true;
-        if (filtro == FiltroDestinatarios.SOLO_VENDEDORES && usuario.getRol() == RolUsuario.VENDEDOR) return true;
+        if (filtro == FiltroDestinatarios.TODOS)
+            return true;
+        if (filtro == FiltroDestinatarios.SOLO_COMPRADORES && usuario.getRol() == RolUsuario.COMPRADOR)
+            return true;
+        if (filtro == FiltroDestinatarios.SOLO_VENDEDORES && usuario.getRol() == RolUsuario.VENDEDOR)
+            return true;
         return false;
     }
 }

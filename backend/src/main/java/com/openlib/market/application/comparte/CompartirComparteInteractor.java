@@ -1,11 +1,9 @@
 package com.openlib.market.application.comparte;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.comparte.EnlaceCompartir;
 import com.openlib.market.domain.comparte.ILibroComparteGateway;
 import com.openlib.market.domain.comparte.LibroNoDisponibleException;
 
-@Service
 public class CompartirComparteInteractor implements ICompartirComparteUseCase {
 
     private final ILibroComparteGateway libroGateway;
@@ -21,7 +19,7 @@ public class CompartirComparteInteractor implements ICompartirComparteUseCase {
         }
 
         EnlaceCompartir enlace = new EnlaceCompartir(isbn);
-        
+
         return new EnlaceDto(enlace.getUrl());
     }
 }

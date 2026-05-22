@@ -1,13 +1,11 @@
 package com.openlib.market.application.dashboard;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.dashboard.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class PersonalizarDashboardMetricasInteractor implements IPersonalizarDashboardMetricasUseCase {
 
     private final IConfiguracionAdminGateway configuracionGateway;
@@ -50,8 +48,7 @@ public class PersonalizarDashboardMetricasInteractor implements IPersonalizarDas
                         w.getPosicion().x(),
                         w.getPosicion().y(),
                         w.getTamano().ancho(),
-                        w.getTamano().alto()
-                ))
+                        w.getTamano().alto()))
                 .collect(Collectors.toList());
         return new ConfiguracionDashboardDto(config.getIdAdmin(), widgetsDto);
     }

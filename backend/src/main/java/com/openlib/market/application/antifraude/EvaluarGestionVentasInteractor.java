@@ -1,10 +1,8 @@
 package com.openlib.market.application.antifraude;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.antifraude.EvaluacionFraude;
 import com.openlib.market.domain.antifraude.IAntifraudeGateway;
 
-@Service
 public class EvaluarGestionVentasInteractor implements IEvaluarGestionVentasUseCase {
 
     private final IAntifraudeGateway antifraudeGateway;

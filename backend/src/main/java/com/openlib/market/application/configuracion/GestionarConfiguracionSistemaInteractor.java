@@ -1,13 +1,12 @@
 package com.openlib.market.application.configuracion;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.configuracion.ConfiguracionMetodoPago;
 import com.openlib.market.domain.configuracion.IMetodoPagoConfigGateway;
+import org.springframework.context.annotation.Bean;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class GestionarConfiguracionSistemaInteractor implements IGestionarConfiguracionSistemaUseCase {
 
     private final IMetodoPagoConfigGateway configGateway;

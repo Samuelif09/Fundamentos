@@ -1,13 +1,11 @@
 package com.openlib.market.application.resena;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.resena.IResenaGateway;
 import com.openlib.market.domain.resena.Resena;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class VerResenasInteractor implements IVerResenasUseCase {
 
     private final IResenaGateway resenaGateway;

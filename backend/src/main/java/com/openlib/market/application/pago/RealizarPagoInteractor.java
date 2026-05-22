@@ -1,12 +1,10 @@
 package com.openlib.market.application.pago;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.pago.*;
 import com.openlib.market.domain.carrito.ICarritoGateway;
 import com.openlib.market.domain.carrito.SesionId;
 import com.openlib.market.domain.carrito.CarritoCompras;
 
-@Service
 public class RealizarPagoInteractor implements IRealizarPagoUseCase {
 
     private final IPedidoGateway pedidoGateway;

@@ -1,12 +1,10 @@
 package com.openlib.market.application.detalle;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.detalle.IDetalleGateway;
 import com.openlib.market.domain.detalle.Isbn;
 import com.openlib.market.domain.detalle.Libro;
 import com.openlib.market.domain.detalle.LibroNoEncontradoException;
 
-@Service
 public class VerDetalleInteractor implements IVerDetalleUseCase {
 
     private final IDetalleGateway detalleGateway;

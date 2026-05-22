@@ -1,15 +1,14 @@
 package com.openlib.market.application.biblioteca;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.biblioteca.*;
 
-@Service
 public class DescargarPostCompraInteractor implements IDescargarPostCompraUseCase {
 
     private final IBibliotecaGateway bibliotecaGateway;
     private final IAlmacenamientoGateway almacenamientoGateway;
 
-    public DescargarPostCompraInteractor(IBibliotecaGateway bibliotecaGateway, IAlmacenamientoGateway almacenamientoGateway) {
+    public DescargarPostCompraInteractor(IBibliotecaGateway bibliotecaGateway,
+            IAlmacenamientoGateway almacenamientoGateway) {
         this.bibliotecaGateway = bibliotecaGateway;
         this.almacenamientoGateway = almacenamientoGateway;
     }

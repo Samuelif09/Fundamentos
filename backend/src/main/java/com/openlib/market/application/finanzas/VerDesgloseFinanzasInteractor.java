@@ -1,6 +1,5 @@
 package com.openlib.market.application.finanzas;
 
-import org.springframework.stereotype.Service;
 import com.openlib.market.domain.finanzas.DesgloseFinanciero;
 import com.openlib.market.domain.finanzas.ILiquidacionGateway;
 import com.openlib.market.domain.finanzas.ReglaComisionDomainService;
@@ -10,7 +9,6 @@ import com.openlib.market.domain.finanzas.TransaccionLiquidacion;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class VerDesgloseFinanzasInteractor implements IVerDesgloseFinanzasUseCase {
 
     private final ILiquidacionGateway liquidacionGateway;

@@ -17,7 +17,8 @@ public class ApiKeysAdminController {
 
     @PostMapping
     public ResponseEntity<CredencialApiDto> generarCredencial(@RequestBody GenerarLlaveRequest request) {
-        CredencialApiDto dto = generarCredencialesUseCase.generarCredencial(request.idPropietario(), request.nombreApp());
+        CredencialApiDto dto = generarCredencialesUseCase.generarCredencial(request.idPropietario(),
+                request.nombreApp());
         return ResponseEntity.ok(dto);
     }
 
@@ -31,5 +32,6 @@ public class ApiKeysAdminController {
         }
     }
 
-    public record GenerarLlaveRequest(String idPropietario, String nombreApp) {}
+    public record GenerarLlaveRequest(String idPropietario, String nombreApp) {
+    }
 }
