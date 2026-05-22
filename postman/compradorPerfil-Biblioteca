@@ -1,0 +1,135 @@
+{
+  "name": "4. Comprador - Perfil y Biblioteca",
+  "item": [
+    {
+      "name": "Ver Historial de Compras",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{buyer_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/usuarios/{{id_usuario}}/pedidos?offset=0&limit=10",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "usuarios",
+            "{{id_usuario}}",
+            "pedidos"
+          ],
+          "query": [
+            {
+              "key": "offset",
+              "value": "0"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Listar Libros Favoritos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{buyer_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/usuarios/{{id_usuario}}/lista-deseos",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "usuarios",
+            "{{id_usuario}}",
+            "lista-deseos"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Descargar Libro (Biblioteca)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{buyer_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/biblioteca/{{id_libro}}/descargar?userId={{id_usuario}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "biblioteca",
+            "{{id_libro}}",
+            "descargar"
+          ],
+          "query": [
+            {
+              "key": "userId",
+              "value": "{{id_usuario}}",
+              "description": "ID del usuario validado para descarga segura"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Dejar Reseña / Calificación",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{buyer_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"calificacion\": 5,\n  \"comentario\": \"Excelente libro, muy completo y didáctico. El autor explica con total claridad.\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/libros/{{id_libro}}/resenas",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "libros",
+            "{{id_libro}}",
+            "resenas"
+          ]
+        }
+      }
+    }
+  ]
+}

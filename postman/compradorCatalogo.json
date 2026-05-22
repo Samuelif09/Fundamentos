@@ -1,0 +1,167 @@
+{
+  "name": "2. Comprador - Catálogo",
+  "item": [
+    {
+      "name": "Listar Libros (Catálogo General)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{buyer_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/libros?pagina=0&tamano=10",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "libros"
+          ],
+          "query": [
+            {
+              "key": "pagina",
+              "value": "0"
+            },
+            {
+              "key": "tamano",
+              "value": "10"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Búsqueda Avanzada / Filtros",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{buyer_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/catalogo/busqueda-avanzada?autor=Robert C. Martin&categoria=Programación",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "catalogo",
+            "busqueda-avanzada"
+          ],
+          "query": [
+            {
+              "key": "titulo",
+              "value": "Clean Code",
+              "disabled": true
+            },
+            {
+              "key": "autor",
+              "value": "Robert C. Martin"
+            },
+            {
+              "key": "categoria",
+              "value": "Programación"
+            },
+            {
+              "key": "precioMin",
+              "value": "10.0",
+              "disabled": true
+            },
+            {
+              "key": "precioMax",
+              "value": "50.0",
+              "disabled": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Ver Detalle de Libro",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{buyer_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/libros/{{id_libro}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "libros",
+            "{{id_libro}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Obtener Recomendaciones (Relacionados)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{buyer_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/libros/{{id_libro}}/relacionados",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "libros",
+            "{{id_libro}}",
+            "relacionados"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Explorar Tendencias",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{buyer_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/catalogo/tendencias?criterio=MAS_VENDIDOS",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "catalogo",
+            "tendencias"
+          ],
+          "query": [
+            {
+              "key": "criterio",
+              "value": "MAS_VENDIDOS",
+              "description": "Puede ser MAS_VENDIDOS, MEJOR_CALIFICADOS, etc."
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

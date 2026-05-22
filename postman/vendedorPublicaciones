@@ -1,0 +1,123 @@
+{
+  "name": "5. Vendedor - Publicaciones",
+  "item": [
+    {
+      "name": "Publicar Nuevo Libro",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{seller_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"isbn\": \"978-3-16-148410-0\",\n  \"titulo\": \"Arquitectura Limpia en Java\",\n  \"sinopsis\": \"Una guía exhaustiva para dominar Spring Boot y Arquitectura Hexagonal en aplicaciones empresariales.\",\n  \"precio\": 35.99,\n  \"urlPortada\": \"https://ejemplo.com/portada-clean-architecture.jpg\",\n  \"categoria\": \"Programación\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/libros",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "vendedores",
+            "{{id_vendedor}}",
+            "libros"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Editar Precio del Libro",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{seller_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"precio\": 29.99\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/libros/{{id_libro}}/precio",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "vendedores",
+            "{{id_vendedor}}",
+            "libros",
+            "{{id_libro}}",
+            "precio"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Pausar / Despublicar Libro",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{seller_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"estado\": \"PAUSADO\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/libros/{{id_libro}}/estado",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "vendedores",
+            "{{id_vendedor}}",
+            "libros",
+            "{{id_libro}}",
+            "estado"
+          ]
+        }
+      }
+    }
+  ]
+}

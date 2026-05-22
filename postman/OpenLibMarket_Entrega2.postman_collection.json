@@ -1,0 +1,1513 @@
+{
+  "info": {
+    "name": "OpenLib Market - Entrega 2",
+    "description": "Colección completa de endpoints para el MVP de OpenLib Market. Contiene los módulos de Comprador, Vendedor y Administrador.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "buyer_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "seller_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "admin_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "id_libro",
+      "value": "978-3-16-148410-0",
+      "type": "string"
+    },
+    {
+      "key": "id_usuario",
+      "value": "usr-2",
+      "type": "string"
+    },
+    {
+      "key": "id_vendedor",
+      "value": "usr-3",
+      "type": "string"
+    },
+    {
+      "key": "id_pedido",
+      "value": "PED-98765",
+      "type": "string"
+    },
+    {
+      "key": "id_resena",
+      "value": "1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Autenticación",
+      "item": [
+        {
+          "name": "Registro Comprador",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Comprador Test\",\n  \"email\": \"comprador@test.com\",\n  \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/registro",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "registro"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Registro Vendedor",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Vendedor Test\",\n  \"email\": \"vendedor@test.com\",\n  \"password\": \"password123\",\n  \"razonSocial\": \"Editorial ABC\",\n  \"identificacionTributaria\": \"12345678901\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/vendedores/registro",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "vendedores",
+                "registro"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login Comprador",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.environment.set(\"buyer_token\", jsonData.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"comprador@test.com\",\n  \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login Vendedor",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.environment.set(\"seller_token\", jsonData.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"vendedor@test.com\",\n  \"password\": \"password123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "login"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Login Administrador",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "    var jsonData = pm.response.json();",
+                  "    pm.environment.set(\"admin_token\", jsonData.token);",
+                  "}"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@openlib.com\",\n  \"password\": \"admin123\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/auth/admin/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "auth",
+                "admin",
+                "login"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Comprador - Catálogo",
+      "item": [
+        {
+          "name": "Listar Libros (Catálogo General)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{buyer_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/libros?pagina=0&tamano=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "libros"
+              ],
+              "query": [
+                {
+                  "key": "pagina",
+                  "value": "0"
+                },
+                {
+                  "key": "tamano",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Búsqueda Avanzada / Filtros",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{buyer_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/catalogo/busqueda-avanzada?autor=Robert C. Martin&categoria=Programación",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "catalogo",
+                "busqueda-avanzada"
+              ],
+              "query": [
+                {
+                  "key": "titulo",
+                  "value": "Clean Code",
+                  "disabled": true
+                },
+                {
+                  "key": "autor",
+                  "value": "Robert C. Martin"
+                },
+                {
+                  "key": "categoria",
+                  "value": "Programación"
+                },
+                {
+                  "key": "precioMin",
+                  "value": "10.0",
+                  "disabled": true
+                },
+                {
+                  "key": "precioMax",
+                  "value": "50.0",
+                  "disabled": true
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Ver Detalle de Libro",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{buyer_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/libros/{{id_libro}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "libros",
+                "{{id_libro}}"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Obtener Recomendaciones (Relacionados)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{buyer_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/libros/{{id_libro}}/relacionados",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "libros",
+                "{{id_libro}}",
+                "relacionados"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Explorar Tendencias",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{buyer_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/catalogo/tendencias?criterio=MAS_VENDIDOS",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "catalogo",
+                "tendencias"
+              ],
+              "query": [
+                {
+                  "key": "criterio",
+                  "value": "MAS_VENDIDOS",
+                  "description": "Puede ser MAS_VENDIDOS, MEJOR_CALIFICADOS, etc."
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Comprador - Transacciones",
+      "item": [
+        {
+          "name": "Carrito de Compras",
+          "item": [
+            {
+              "name": "Agregar Item al Carrito",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{buyer_token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"libroIsbn\": \"{{id_libro}}\",\n  \"cantidad\": 1\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/carrito/usuarios/{{id_usuario}}/carrito/items",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "carrito",
+                    "usuarios",
+                    "{{id_usuario}}",
+                    "carrito",
+                    "items"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Ver Carrito",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{buyer_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/carrito/usuarios/{{id_usuario}}/carrito",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "carrito",
+                    "usuarios",
+                    "{{id_usuario}}",
+                    "carrito"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Eliminar Item del Carrito",
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{buyer_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/carrito/usuarios/{{id_usuario}}/carrito/items/{{id_libro}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "carrito",
+                    "usuarios",
+                    "{{id_usuario}}",
+                    "carrito",
+                    "items",
+                    "{{id_libro}}"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Checkout y Pago",
+          "item": [
+            {
+              "name": "Checkout Simulado (Frontend)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{buyer_token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"fullName\": \"Juan Pérez\",\n  \"address\": \"Calle Falsa 123, Apt 4B\",\n  \"city\": \"Bogotá\",\n  \"zipCode\": \"110111\",\n  \"paymentMethod\": \"CREDIT_CARD\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/pedidos/checkout",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "pedidos",
+                    "checkout"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Procesar Pago (Core Backend)",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{buyer_token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"idUsuario\": \"{{id_usuario}}\",\n  \"idPedido\": \"PED-98765\",\n  \"montoTotal\": 15000.00,\n  \"tokenPago\": \"tok_visa_12345\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/checkout/pagar",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "checkout",
+                    "pagar"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "4. Comprador - Perfil y Biblioteca",
+      "item": [
+        {
+          "name": "Ver Historial de Compras",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{buyer_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/usuarios/{{id_usuario}}/pedidos?offset=0&limit=10",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "usuarios",
+                "{{id_usuario}}",
+                "pedidos"
+              ],
+              "query": [
+                {
+                  "key": "offset",
+                  "value": "0"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Listar Libros Favoritos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{buyer_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/usuarios/{{id_usuario}}/lista-deseos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "usuarios",
+                "{{id_usuario}}",
+                "lista-deseos"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Descargar Libro (Biblioteca)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{buyer_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/biblioteca/{{id_libro}}/descargar?userId={{id_usuario}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "biblioteca",
+                "{{id_libro}}",
+                "descargar"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "{{id_usuario}}",
+                  "description": "ID del usuario validado para descarga segura"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Dejar Reseña / Calificación",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{buyer_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"calificacion\": 5,\n  \"comentario\": \"Excelente libro, muy completo y didáctico. El autor explica con total claridad.\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/libros/{{id_libro}}/resenas",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "libros",
+                "{{id_libro}}",
+                "resenas"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Vendedor - Publicaciones",
+      "item": [
+        {
+          "name": "Publicar Nuevo Libro",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seller_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"isbn\": \"978-3-16-148410-0\",\n  \"titulo\": \"Arquitectura Limpia en Java\",\n  \"sinopsis\": \"Una guía exhaustiva para dominar Spring Boot y Arquitectura Hexagonal en aplicaciones empresariales.\",\n  \"precio\": 35.99,\n  \"urlPortada\": \"https://ejemplo.com/portada-clean-architecture.jpg\",\n  \"categoria\": \"Programación\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/libros",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vendedores",
+                "{{id_vendedor}}",
+                "libros"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Editar Precio del Libro",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seller_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"precio\": 29.99\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/libros/{{id_libro}}/precio",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vendedores",
+                "{{id_vendedor}}",
+                "libros",
+                "{{id_libro}}",
+                "precio"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Pausar / Despublicar Libro",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seller_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": \"PAUSADO\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/libros/{{id_libro}}/estado",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vendedores",
+                "{{id_vendedor}}",
+                "libros",
+                "{{id_libro}}",
+                "estado"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "6. Vendedor - Finanzas y Tienda",
+      "item": [
+        {
+          "name": "Reporte de Ingresos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seller_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/finanzas/ingresos?desde=2024-01-01&hasta=2024-12-31",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vendedores",
+                "{{id_vendedor}}",
+                "finanzas",
+                "ingresos"
+              ],
+              "query": [
+                {
+                  "key": "desde",
+                  "value": "2024-01-01"
+                },
+                {
+                  "key": "hasta",
+                  "value": "2024-12-31"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Ver Liquidaciones y Transacciones",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seller_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/finanzas/transacciones?page=0",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vendedores",
+                "{{id_vendedor}}",
+                "finanzas",
+                "transacciones"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Métricas de Ventas (Gráfica)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seller_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/metricas/ventas?intervalo=DIARIO",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vendedores",
+                "{{id_vendedor}}",
+                "metricas",
+                "ventas"
+              ],
+              "query": [
+                {
+                  "key": "intervalo",
+                  "value": "DIARIO",
+                  "description": "Valores permitidos: DIARIO, SEMANAL, MENSUAL"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Solicitar Retiro de Fondos",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seller_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"monto\": 150.00,\n  \"cuentaDestino\": \"ES12345678901234567890\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/finanzas/retiros",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vendedores",
+                "{{id_vendedor}}",
+                "finanzas",
+                "retiros"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Configuración de Tienda (Subir Banner)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{seller_token}}"
+              }
+            ],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": []
+                }
+              ]
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/tienda/banner",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vendedores",
+                "{{id_vendedor}}",
+                "tienda",
+                "banner"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "7. Admin - Curaduría y Control",
+      "item": [
+        {
+          "name": "Curaduría de Contenido",
+          "item": [
+            {
+              "name": "Listar Libros Pendientes",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/admin/curaduria/libros-pendientes",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "curaduria",
+                    "libros-pendientes"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Aprobar Libro",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/admin/curaduria/libros/{{id_libro}}/aprobar",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "curaduria",
+                    "libros",
+                    "{{id_libro}}",
+                    "aprobar"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Rechazar Libro",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"La portada contiene material protegido por derechos de autor y la sinopsis está incompleta.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/admin/curaduria/libros/{{id_libro}}/rechazar",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "curaduria",
+                    "libros",
+                    "{{id_libro}}",
+                    "rechazar"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Categorías y Etiquetas",
+          "item": [
+            {
+              "name": "Listar Categorías",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/admin/categorias",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "categorias"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Crear Categoría",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nombre\": \"Inteligencia Artificial\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/admin/categorias",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "categorias"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Crear Etiqueta",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nombre\": \"Bestseller\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/admin/etiquetas",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "etiquetas"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Auditoría",
+          "item": [
+            {
+              "name": "Auditar Reseña (Ocultar)",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"estado\": \"OCULTA\",\n  \"motivo\": \"Lenguaje inapropiado que viola las políticas de la comunidad.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/admin/resenas/{{id_resena}}/estado",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "resenas",
+                    "{{id_resena}}",
+                    "estado"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "8. Admin - Usuarios y Dashboard",
+      "item": [
+        {
+          "name": "Gestión de Usuarios",
+          "item": [
+            {
+              "name": "Listar Usuarios",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/admin/usuarios",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "usuarios"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Suspender Usuario",
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"motivo\": \"Violación reiterada de las políticas de publicación y derechos de autor.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/v1/admin/usuarios/{{id_usuario}}/suspender",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "usuarios",
+                    "{{id_usuario}}",
+                    "suspender"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Reactivar Usuario",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/admin/usuarios/{{id_usuario}}/reactivar",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "usuarios",
+                    "{{id_usuario}}",
+                    "reactivar"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "Dashboard Global y Auditoría",
+          "item": [
+            {
+              "name": "Obtener KPIs Globales",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/admin/dashboard/kpis",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "dashboard",
+                    "kpis"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Obtener Gráficas (Ventas y Usuarios)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/admin/dashboard/graficas",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "dashboard",
+                    "graficas"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Listar Transacciones (Plataforma)",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/admin/pedidos",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "pedidos"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Reembolsar Pedido",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Authorization",
+                    "value": "Bearer {{admin_token}}"
+                  }
+                ],
+                "url": {
+                  "raw": "{{base_url}}/api/v1/admin/pedidos/{{id_pedido}}/reembolsar",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "v1",
+                    "admin",
+                    "pedidos",
+                    "{{id_pedido}}",
+                    "reembolsar"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

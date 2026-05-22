@@ -1,0 +1,181 @@
+{
+  "name": "6. Vendedor - Finanzas y Tienda",
+  "item": [
+    {
+      "name": "Reporte de Ingresos",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{seller_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/finanzas/ingresos?desde=2024-01-01&hasta=2024-12-31",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "vendedores",
+            "{{id_vendedor}}",
+            "finanzas",
+            "ingresos"
+          ],
+          "query": [
+            {
+              "key": "desde",
+              "value": "2024-01-01"
+            },
+            {
+              "key": "hasta",
+              "value": "2024-12-31"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Ver Liquidaciones y Transacciones",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{seller_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/finanzas/transacciones?page=0",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "vendedores",
+            "{{id_vendedor}}",
+            "finanzas",
+            "transacciones"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Métricas de Ventas (Gráfica)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{seller_token}}"
+          }
+        ],
+        "url": {
+          "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/metricas/ventas?intervalo=DIARIO",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "vendedores",
+            "{{id_vendedor}}",
+            "metricas",
+            "ventas"
+          ],
+          "query": [
+            {
+              "key": "intervalo",
+              "value": "DIARIO",
+              "description": "Valores permitidos: DIARIO, SEMANAL, MENSUAL"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Solicitar Retiro de Fondos",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{seller_token}}"
+          },
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"monto\": 150.00,\n  \"cuentaDestino\": \"ES12345678901234567890\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/finanzas/retiros",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "vendedores",
+            "{{id_vendedor}}",
+            "finanzas",
+            "retiros"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Configuración de Tienda (Subir Banner)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{seller_token}}"
+          }
+        ],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": []
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/vendedores/{{id_vendedor}}/tienda/banner",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "vendedores",
+            "{{id_vendedor}}",
+            "tienda",
+            "banner"
+          ]
+        }
+      }
+    }
+  ]
+}

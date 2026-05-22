@@ -1,0 +1,183 @@
+{
+  "name": "3. Comprador - Transacciones",
+  "item": [
+    {
+      "name": "Carrito de Compras",
+      "item": [
+        {
+          "name": "Agregar Item al Carrito",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{buyer_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"libroIsbn\": \"{{id_libro}}\",\n  \"cantidad\": 1\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/carrito/usuarios/{{id_usuario}}/carrito/items",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "carrito",
+                "usuarios",
+                "{{id_usuario}}",
+                "carrito",
+                "items"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Ver Carrito",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{buyer_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/carrito/usuarios/{{id_usuario}}/carrito",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "carrito",
+                "usuarios",
+                "{{id_usuario}}",
+                "carrito"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Eliminar Item del Carrito",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{buyer_token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/v1/carrito/usuarios/{{id_usuario}}/carrito/items/{{id_libro}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "carrito",
+                "usuarios",
+                "{{id_usuario}}",
+                "carrito",
+                "items",
+                "{{id_libro}}"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Checkout y Pago",
+      "item": [
+        {
+          "name": "Checkout Simulado (Frontend)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{buyer_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"fullName\": \"Juan Pérez\",\n  \"address\": \"Calle Falsa 123, Apt 4B\",\n  \"city\": \"Bogotá\",\n  \"zipCode\": \"110111\",\n  \"paymentMethod\": \"CREDIT_CARD\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/pedidos/checkout",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "pedidos",
+                "checkout"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Procesar Pago (Core Backend)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{buyer_token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idUsuario\": \"{{id_usuario}}\",\n  \"idPedido\": \"PED-98765\",\n  \"montoTotal\": 15000.00,\n  \"tokenPago\": \"tok_visa_12345\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/checkout/pagar",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "checkout",
+                "pagar"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
