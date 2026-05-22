@@ -36,12 +36,20 @@ public class IniciarAutenticacionInteractor implements IIniciarAutenticacionUseC
         Optional<UsuarioAuth> usuarioOpt = usuarioGateway.buscarPorEmail(email);
 
         if (usuarioOpt.isEmpty()) {
+            System.out.println("DEBUG: Usuario no encontrado con email: " + email.getDireccion());
             throw new CredencialesInvalidasException();
         }
 
         UsuarioAuth usuario = usuarioOpt.get();
 
-        if (!verificadorPassword.verificar(passwordPlano, usuario.getHashContrasena())) {
+        boolean esValida = verificadorPassword.verificar(passwordPlano, usuario.getHashContrasena());
+        System.out.println("DEBUG: ¿Contraseña válida?: " + esValida);
+
+
+        System.out.println("DEBUG: Hash guardado en BD: " + usuario.getHashContrasena());
+
+
+        if (!esValida) {
             throw new CredencialesInvalidasException();
         }
 

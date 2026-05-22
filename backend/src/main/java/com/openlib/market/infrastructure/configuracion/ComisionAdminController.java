@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
 @RequestMapping("/api/v1/admin/configuracion/comisiones")
 public class ComisionAdminController {
 

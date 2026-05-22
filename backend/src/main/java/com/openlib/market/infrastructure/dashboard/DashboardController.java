@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
  * Nota: En Entrega 2 se añadirá @PreAuthorize("hasRole('ADMIN')")
  * con Spring Security configurado.
  */
-@RestController
 @RequestMapping("/api/v1/admin/dashboard")
 public class DashboardController {
 
