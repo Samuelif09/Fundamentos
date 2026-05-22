@@ -24,8 +24,6 @@ public class RegistrarRegistroInteractor implements IRegistrarRegistroUseCase {
         
         String hashedPassword = passwordEncoder.encode(password.getValor());
 
-        // La contraseña ya hasheada se almacena directamente, 
-        // no necesita re-validar las reglas del dominio (ya las superó antes del encode)
         Password passwordParaGuardar = Password.desdeHash(hashedPassword);
 
         Usuario usuario = new Usuario(
@@ -35,5 +33,6 @@ public class RegistrarRegistroInteractor implements IRegistrarRegistroUseCase {
         );
 
         registroGateway.guardar(usuario);
+        System.out.println("🚨 ATENCIÓN - ID DEL VENDEDOR GENERADO: " + usuario.getId());
     }
 }
