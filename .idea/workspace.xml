@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="698303ef-5d81-46b4-9821-c341f7351f32" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/infrastructure/autenticacion/AuthDummyPasswordEncoderAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/infrastructure/autenticacion/AuthDummyPasswordEncoderAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/target/classes/com/openlib/market/infrastructure/autenticacion/AuthDummyPasswordEncoderAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/backend/target/classes/com/openlib/market/infrastructure/autenticacion/AuthDummyPasswordEncoderAdapter.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
