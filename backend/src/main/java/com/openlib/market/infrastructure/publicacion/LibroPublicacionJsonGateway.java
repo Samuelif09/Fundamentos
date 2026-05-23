@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openlib.market.domain.detalle.ILibroPublicacionGateway;
 import com.openlib.market.domain.detalle.Libro;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -13,6 +14,7 @@ import java.util.List;
 import com.openlib.market.domain.curaduria.ICuraduriaGateway;
 
 @Component
+@Profile("mock")
 public class LibroPublicacionJsonGateway implements ILibroPublicacionGateway, ICuraduriaGateway {
 
     private final ObjectMapper objectMapper;

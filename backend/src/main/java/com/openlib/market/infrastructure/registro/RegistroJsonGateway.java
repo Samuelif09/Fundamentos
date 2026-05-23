@@ -7,6 +7,7 @@ import com.openlib.market.domain.registro.IRegistroGateway;
 import com.openlib.market.domain.registro.Usuario;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Profile("mock")
 public class RegistroJsonGateway implements IRegistroGateway {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RegistroJsonGateway.class);

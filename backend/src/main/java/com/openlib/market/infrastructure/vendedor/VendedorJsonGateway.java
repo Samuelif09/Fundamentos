@@ -8,6 +8,7 @@ import com.openlib.market.domain.vendedor.RazonSocial;
 import com.openlib.market.domain.vendedor.Vendedor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -17,6 +18,7 @@ import java.util.Optional;
 import com.openlib.market.domain.vendedor.EstadoVerificacion;
 
 @Component
+@Profile("mock")
 public class VendedorJsonGateway implements IVendedorGateway {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(VendedorJsonGateway.class);
