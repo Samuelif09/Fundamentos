@@ -9,6 +9,8 @@ import com.openlib.market.domain.registro.Usuario;
 import com.openlib.market.infrastructure.adapter.out.persistence.entity.UsuarioEntity;
 import com.openlib.market.infrastructure.adapter.out.persistence.mapper.UsuarioMapper;
 import com.openlib.market.infrastructure.adapter.out.persistence.repository.UsuarioRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
@@ -21,6 +23,8 @@ import org.springframework.context.annotation.Primary;
 @Component
 @Primary
 public class UsuarioJpaGateway implements IUsuarioGateway, IRegistroGateway, IUsuarioAuthGateway {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UsuarioJpaGateway.class);
 
     private final UsuarioRepository repository;
     private final UsuarioMapper mapper;
@@ -54,9 +58,12 @@ public class UsuarioJpaGateway implements IUsuarioGateway, IRegistroGateway, IUs
     @Override
     public void guardar(Usuario usuario) {
         try {
+            LOGGER.info("[PERSISTENCIA] Guardando usuario en tabla usuarios. id={}, email={}", usuario.getId(), usuario.getEmail().getValor());
             repository.save(mapper.toEntity(usuario));
             repository.flush();
+            LOGGER.info("[PERSISTENCIA] Usuario persistido correctamente en tabla usuarios. id={}", usuario.getId());
         } catch (DataIntegrityViolationException e) {
+            LOGGER.warn("[PERSISTENCIA] Conflicto al guardar usuario en tabla usuarios. email={}", usuario.getEmail().getValor());
             // Asumimos que la unica restriccion unica es el email
             throw new IllegalArgumentException("El email ya se encuentra registrado");
         }
