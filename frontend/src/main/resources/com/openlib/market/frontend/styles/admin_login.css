@@ -3,11 +3,11 @@
     -fx-admin-bg: #0A0F1E;
     -fx-admin-bg-gradient: linear-gradient(to bottom right, #0A0F1E, #1A1F3A);
     -fx-admin-card-bg: rgba(30, 41, 59, 0.85); /* Slate 800 with opacity */
-    -fx-admin-text-primary: #F8FAFC;
+    -fx-admin-text-primary: #0f1225;
     -fx-admin-text-secondary: #94A3B8;
     -fx-admin-accent: #DC2626; /* Red 600 */
     -fx-admin-accent-hover: #B91C1C; /* Red 700 */
-    -fx-admin-border: #334155;
+    -fx-admin-border: #2a2f4c;
     -fx-admin-input-bg: rgba(15, 23, 42, 0.6);
 }
 
@@ -73,7 +73,7 @@
     -fx-border-radius: 8px;
     -fx-background-radius: 8px;
     -fx-text-fill: -fx-admin-text-primary;
-    -fx-prompt-text-fill: #64748B;
+    -fx-prompt-text-fill: #94a3b8;
     -fx-padding: 10px 14px;
     -fx-font-size: 14px;
 }

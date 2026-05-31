@@ -41,7 +41,8 @@ public class CarritoController {
             Platform.runLater(() -> {
                 loadingContainer.setVisible(false);
                 if (throwable != null) {
-                    showError("Error al cargar carrito", throwable.getMessage());
+                    this.currentCart = new Cart();
+                    populateView(this.currentCart);
                 } else if (cart != null) {
                     this.currentCart = cart;
                     populateView(cart);
@@ -54,7 +55,7 @@ public class CarritoController {
         cartItemsContainer.getChildren().clear();
 
         if (cart.getItems() == null || cart.getItems().isEmpty()) {
-            Label emptyLabel = new Label("Tu carrito está vacío.");
+            Label emptyLabel = new Label("En este momento no hay libros en el carrito");
             emptyLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: #64748B;");
             cartItemsContainer.getChildren().add(emptyLabel);
         } else {
@@ -130,6 +131,11 @@ public class CarritoController {
     @FXML
     public void handleBackToCatalog(ActionEvent event) {
         SceneManager.navigateTo("catalogo");
+    }
+
+    @FXML
+    public void handleGoToProfile(ActionEvent event) {
+        SceneManager.navigateTo("perfil");
     }
 
     private void showError(String header, String content) {

@@ -66,7 +66,7 @@
 
                             <HBox spacing="15">
                                 <VBox spacing="5" HBox.hgrow="ALWAYS">
-                                    <Label text="Precio ($) *" styleClass="field-label"/>
+                                    <Label text="Precio (\$)" styleClass="field-label"/>
                                     <TextField fx:id="precioField" promptText="Ej: 12.99" styleClass="input-field"/>
                                 </VBox>
                                 <VBox spacing="5" HBox.hgrow="ALWAYS">

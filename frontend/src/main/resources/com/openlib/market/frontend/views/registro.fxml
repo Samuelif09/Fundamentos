@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<StackPane xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.openlib.market.frontend.controller.RegistroController"
+           styleClass="root-pane"
+           stylesheets="@../styles/login.css">
+
+    <!-- Fondo con gradiente (definido en CSS) -->
+    <Pane styleClass="bg-gradient" />
+
+    <!-- Tarjeta de registro centrada -->
+    <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="scroll-container" style="-fx-background-color: transparent; -fx-padding: 0;">
+        <VBox alignment="CENTER" style="-fx-background-color: transparent;">
+            <VBox styleClass="login-card" alignment="CENTER" maxWidth="440">
+                
+                <padding>
+                    <Insets top="30" right="30" bottom="30" left="30"/>
+                </padding>
+
+                <!-- Header -->
+                <VBox alignment="CENTER" spacing="6">
+                    <Label text="👤" styleClass="logo-icon" />
+                    <Label text="Crear Cuenta" styleClass="brand-name" />
+                    <Label text="Únete a OpenLib Market" styleClass="brand-subtitle" />
+                </VBox>
+
+                <Separator styleClass="card-separator">
+                    <VBox.margin><Insets top="20" bottom="20" /></VBox.margin>
+                </Separator>
+
+                <!-- Formulario -->
+                <VBox spacing="14" alignment="CENTER_LEFT">
+
+                    <VBox spacing="5">
+                        <Label text="Nombre Completo" styleClass="field-label" />
+                        <TextField fx:id="nombreField" promptText="Tu nombre" styleClass="input-field" />
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="Correo electrónico" styleClass="field-label" />
+                        <TextField fx:id="emailField" promptText="nombre@ejemplo.com" styleClass="input-field" />
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="Contraseña" styleClass="field-label" />
+                        <PasswordField fx:id="passwordField" promptText="Mínimo 4 caracteres" styleClass="input-field" />
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="Confirmar Contraseña" styleClass="field-label" />
+                        <PasswordField fx:id="confirmPasswordField" promptText="Repite tu contraseña" styleClass="input-field" />
+                    </VBox>
+
+                    <!-- Error label -->
+                    <Label fx:id="errorLabel" text="" styleClass="error-label" visible="false" managed="false" wrapText="true" maxWidth="Infinity" />
+
+                    <!-- Action Button -->
+                    <Button fx:id="registerButton" text="Registrarse" styleClass="btn-primary" maxWidth="Infinity" onAction="#handleRegister" />
+
+                    <!-- Loading overlay -->
+                    <HBox fx:id="loadingContainer" alignment="CENTER" visible="false" spacing="10" managed="false">
+                        <ProgressIndicator styleClass="loader" maxWidth="20" maxHeight="20"/>
+                        <Label text="Creando cuenta..." style="-fx-text-fill: white;"/>
+                    </HBox>
+
+                </VBox>
+
+                <Separator styleClass="card-separator">
+                    <VBox.margin><Insets top="20" bottom="16" /></VBox.margin>
+                </Separator>
+
+                <!-- Footer -->
+                <HBox alignment="CENTER" spacing="4">
+                    <Label text="¿Ya tienes cuenta?" styleClass="footer-text" />
+                    <Hyperlink text="Inicia sesión" styleClass="link-accent" onAction="#handleGoToLogin" />
+                </HBox>
+
+            </VBox>
+        </VBox>
+    </ScrollPane>
+
+</StackPane>

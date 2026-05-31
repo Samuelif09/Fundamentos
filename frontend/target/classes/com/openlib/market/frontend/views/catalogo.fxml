@@ -28,6 +28,7 @@
             
             <Region HBox.hgrow="ALWAYS"/>
             
+            <Button text="🏠 Inicio" onAction="#handleGoToDashboard" styleClass="dashboard-button"/>
             <Button text="📚 Mi Biblioteca" onAction="#handleGoToLibrary" styleClass="library-button"/>
             <Button text="🛒 Carrito" onAction="#handleGoToCart" styleClass="cart-button"/>
             <Button text="Mi Cuenta" onAction="#handleGoToProfile" styleClass="account-button"/>
@@ -44,15 +45,26 @@
             
             <Label text="Filtros" styleClass="sidebar-title"/>
             
-            <!-- Categorías -->
-            <VBox spacing="10">
-                <Label text="Categorías" styleClass="filter-subtitle"/>
-                <RadioButton text="Todos" fx:id="catAll" selected="true" onAction="#handleCategoryFilter"/>
-                <RadioButton text="Ficción" fx:id="catFiction" onAction="#handleCategoryFilter"/>
-                <RadioButton text="Tecnología" fx:id="catTech" onAction="#handleCategoryFilter"/>
-                <RadioButton text="Ciencia" fx:id="catScience" onAction="#handleCategoryFilter"/>
-                <RadioButton text="Historia" fx:id="catHistory" onAction="#handleCategoryFilter"/>
-            </VBox>
+            <!-- Categorías en panel colapsable con scroll -->
+            <TitledPane text="Categorías" expanded="true" styleClass="category-pane" animated="true">
+                <ScrollPane fitToWidth="true" prefHeight="200" styleClass="category-scroll" hbarPolicy="NEVER">
+                    <VBox spacing="8" styleClass="category-list">
+                        <padding><Insets top="5" right="5" bottom="5" left="5"/></padding>
+                        <RadioButton text="Todos" fx:id="catAll" selected="true" onAction="#handleCategoryFilter" styleClass="category-radio"/>
+                        <RadioButton text="Ficción" fx:id="catFiction" onAction="#handleCategoryFilter" styleClass="category-radio"/>
+                        <RadioButton text="Tecnología" fx:id="catTech" onAction="#handleCategoryFilter" styleClass="category-radio"/>
+                        <RadioButton text="Ciencia" fx:id="catScience" onAction="#handleCategoryFilter" styleClass="category-radio"/>
+                        <RadioButton text="Historia" fx:id="catHistory" onAction="#handleCategoryFilter" styleClass="category-radio"/>
+                        <RadioButton text="Arte" onAction="#handleCategoryFilter" styleClass="category-radio"/>
+                        <RadioButton text="Filosofía" onAction="#handleCategoryFilter" styleClass="category-radio"/>
+                        <RadioButton text="Economía" onAction="#handleCategoryFilter" styleClass="category-radio"/>
+                        <RadioButton text="Biología" onAction="#handleCategoryFilter" styleClass="category-radio"/>
+                        <RadioButton text="Matemáticas" onAction="#handleCategoryFilter" styleClass="category-radio"/>
+                        <RadioButton text="Literatura" onAction="#handleCategoryFilter" styleClass="category-radio"/>
+                        <RadioButton text="Psicología" onAction="#handleCategoryFilter" styleClass="category-radio"/>
+                    </VBox>
+                </ScrollPane>
+            </TitledPane>
             
             <Separator/>
             
@@ -60,9 +72,9 @@
             <VBox spacing="10">
                 <Label text="Rango de Precio" styleClass="filter-subtitle"/>
                 <HBox spacing="10" alignment="CENTER_LEFT">
-                    <TextField promptText="Min" prefWidth="70" fx:id="minPriceField"/>
-                    <Label text="-"/>
-                    <TextField promptText="Max" prefWidth="70" fx:id="maxPriceField"/>
+                    <TextField promptText="Min" prefWidth="70" fx:id="minPriceField" styleClass="price-field"/>
+                    <Label text="-" styleClass="filter-subtitle"/>
+                    <TextField promptText="Max" prefWidth="70" fx:id="maxPriceField" styleClass="price-field"/>
                 </HBox>
                 <Button text="Aplicar" styleClass="apply-filter-btn" onAction="#handlePriceFilter"/>
             </VBox>

@@ -47,15 +47,15 @@
                 <HBox spacing="20">
                     <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS" spacing="8">
                         <Label text="💵 Saldo Disponible" styleClass="kpi-label"/>
-                        <Label fx:id="saldoDisponibleLabel" text="$0.00" styleClass="kpi-value, text-green"/>
+                        <Label fx:id="saldoDisponibleLabel" text="\$0.00" styleClass="kpi-value, text-green"/>
                     </VBox>
                     <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS" spacing="8">
                         <Label text="📈 Total Ventas" styleClass="kpi-label"/>
-                        <Label fx:id="totalVentasLabel" text="$0.00" styleClass="kpi-value"/>
+                        <Label fx:id="totalVentasLabel" text="\$0.00" styleClass="kpi-value"/>
                     </VBox>
                     <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS" spacing="8">
                         <Label text="📉 Total Comisiones" styleClass="kpi-label"/>
-                        <Label fx:id="totalComisionesLabel" text="$0.00" styleClass="kpi-value, text-red"/>
+                        <Label fx:id="totalComisionesLabel" text="\$0.00" styleClass="kpi-value, text-red"/>
                     </VBox>
                     <VBox styleClass="kpi-card, withdrawal-card" HBox.hgrow="NEVER" minWidth="200" alignment="CENTER" spacing="12">
                         <Label text="Solicitar Retiro" styleClass="kpi-label"/>

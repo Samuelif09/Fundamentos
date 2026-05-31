@@ -99,6 +99,11 @@ public class DetalleLibroController {
         SceneManager.navigateTo("catalogo");
     }
 
+    @FXML
+    public void handleGoToDashboard(ActionEvent event) {
+        SceneManager.navigateTo("dashboard");
+    }
+
     private void showError(String header, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");

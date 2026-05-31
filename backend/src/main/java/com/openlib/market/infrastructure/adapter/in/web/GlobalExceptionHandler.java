@@ -34,6 +34,12 @@ public class GlobalExceptionHandler {
         return buildErrorResponse(HttpStatus.PAYMENT_REQUIRED, ex.getMessage());
     }
 
+    @ExceptionHandler(com.openlib.market.domain.autenticacion.CredencialesInvalidasException.class)
+    public ResponseEntity<Map<String, Object>> handleCredencialesInvalidas(
+            com.openlib.market.domain.autenticacion.CredencialesInvalidasException ex) {
+        return buildErrorResponse(HttpStatus.UNAUTHORIZED, ex.getMessage());
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGenericException(Exception ex) {
         ex.printStackTrace();

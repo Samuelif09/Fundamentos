@@ -123,15 +123,20 @@ public class LoginController implements Initializable {
                 return;
             }
 
-            // Guardar token en sesión
+            // Guardar token en sesin
+            String rol = loginData.getRol() != null ? loginData.getRol() : "USUARIO";
             SessionManager.getInstance().iniciarSesion(
                     loginData.getToken(),
                     emailField.getText().trim(),
-                    "USUARIO" // El backend actual no devuelve el rol en la respuesta de login
+                    rol
             );
 
-            // Navegar al dashboard principal
-            SceneManager.navigateTo("dashboard");
+            // Navegar al dashboard principal o de vendedor
+            if ("VENDEDOR".equalsIgnoreCase(rol)) {
+                SceneManager.navigateTo("dashboard_vendedor");
+            } else {
+                SceneManager.navigateTo("dashboard");
+            }
         });
     }
 

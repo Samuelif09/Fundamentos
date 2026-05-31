@@ -38,7 +38,7 @@ public class BibliotecaController {
             Platform.runLater(() -> {
                 loadingContainer.setVisible(false);
                 if (throwable != null) {
-                    showError("Error al cargar tu biblioteca", throwable.getMessage());
+                    populateGrid(java.util.Collections.emptyList());
                 } else if (books != null) {
                     populateGrid(books);
                 }
@@ -48,7 +48,7 @@ public class BibliotecaController {
 
     private void populateGrid(List<Book> books) {
         if (books.isEmpty()) {
-            Label noBooksLabel = new Label("Aún no tienes libros en tu biblioteca.");
+            Label noBooksLabel = new Label("No tienes libros en la biblioteca");
             noBooksLabel.setStyle("-fx-font-size: 16px; -fx-text-fill: #64748B;");
             booksGrid.getChildren().add(noBooksLabel);
             return;

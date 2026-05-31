@@ -58,12 +58,12 @@
                     <HBox spacing="20">
                         <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
                             <Label text="Ingresos Totales" styleClass="kpi-label"/>
-                            <Label fx:id="totalRevenueLabel" text="$0.00" styleClass="kpi-value, text-green"/>
+                            <Label fx:id="totalRevenueLabel" text="\$0.00" styleClass="kpi-value, text-green"/>
                         </VBox>
                         
                         <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
                             <Label text="Saldo Pendiente" styleClass="kpi-label"/>
-                            <Label fx:id="pendingBalanceLabel" text="$0.00" styleClass="kpi-value, text-orange"/>
+                            <Label fx:id="pendingBalanceLabel" text="\$0.00" styleClass="kpi-value, text-orange"/>
                         </VBox>
                         
                         <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">

@@ -40,7 +40,7 @@ public class UsuarioAuthJsonGateway implements IUsuarioAuthGateway {
         // Agregar un usuario por defecto si está vacío para pruebas de C-01
         if (this.baseDatosEnMemoria.isEmpty()) {
             // El hash será dummy en texto plano para el MVP si no se usa Spring Security aún
-            this.baseDatosEnMemoria.add(new UsuarioDto("1", "comprador@openlib.com", "123456"));
+            this.baseDatosEnMemoria.add(new UsuarioDto("1", "comprador@openlib.com", "123456", "COMPRADOR"));
         }
     }
 
@@ -49,8 +49,8 @@ public class UsuarioAuthJsonGateway implements IUsuarioAuthGateway {
         return baseDatosEnMemoria.stream()
                 .filter(dto -> dto.email().equalsIgnoreCase(email.getDireccion()))
                 .findFirst()
-                .map(dto -> new UsuarioAuth(dto.id(), new Email(dto.email()), dto.hashContrasena()));
+                .map(dto -> new UsuarioAuth(dto.id(), new Email(dto.email()), dto.hashContrasena(), dto.rol()));
     }
 
-    private record UsuarioDto(String id, String email, String hashContrasena) {}
+    private record UsuarioDto(String id, String email, String hashContrasena, String rol) {}
 }

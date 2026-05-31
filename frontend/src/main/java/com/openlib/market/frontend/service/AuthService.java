@@ -23,6 +23,10 @@ public class AuthService {
         return ApiClient.postPublic("/auth/recuperar-password", new RecuperarPasswordRequest(email), String.class);
     }
 
+    public CompletableFuture<ApiResponse<String>> registerUser(com.openlib.market.frontend.model.UserRegistrationRequest request) {
+        return ApiClient.postPublic("/auth/registro", request, String.class);
+    }
+
     public CompletableFuture<ApiResponse<com.openlib.market.frontend.model.RegistrationResponse>> registerSeller(com.openlib.market.frontend.model.SellerRegistrationRequest request) {
         return ApiClient.postPublic("/auth/vendedores/registro", request, com.openlib.market.frontend.model.RegistrationResponse.class);
     }

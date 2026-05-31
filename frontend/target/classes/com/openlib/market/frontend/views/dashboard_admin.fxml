@@ -83,7 +83,7 @@
                             <Label text="Ingresos por Comisiones (Últimos 6 Meses)" styleClass="chart-title"/>
                             <BarChart fx:id="revenueGrowthChart" VBox.vgrow="ALWAYS" animated="false">
                                 <xAxis><CategoryAxis label="Mes"/></xAxis>
-                                <yAxis><NumberAxis label="Ingresos ($)"/></yAxis>
+                                <yAxis><NumberAxis label="Ingresos (\$)"/></yAxis>
                             </BarChart>
                         </VBox>
                     </HBox>

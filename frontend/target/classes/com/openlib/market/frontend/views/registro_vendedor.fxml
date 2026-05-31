@@ -8,24 +8,24 @@
            xmlns:fx="http://javafx.com/fxml/1"
            fx:controller="com.openlib.market.frontend.controller.SellerRegistrationController"
            styleClass="root-pane"
-           stylesheets="@../styles/registro_vendedor.css">
+           stylesheets="@../styles/login.css">
 
     <!-- Fondo con gradiente -->
     <Pane styleClass="bg-gradient" />
 
     <!-- Tarjeta centrada -->
-    <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="scroll-container">
-        <VBox alignment="CENTER">
-            <VBox styleClass="registration-card" alignment="CENTER" maxWidth="500">
+    <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="scroll-container" style="-fx-background-color: transparent; -fx-padding: 0;">
+        <VBox alignment="CENTER" style="-fx-background-color: transparent;">
+            <VBox styleClass="login-card" alignment="CENTER" maxWidth="500">
                 <padding>
                     <Insets top="40" right="40" bottom="40" left="40"/>
                 </padding>
 
                 <!-- Header -->
-                <VBox alignment="CENTER" spacing="10">
+                <VBox alignment="CENTER" spacing="6">
                     <Label text="Tienda OpenLib" styleClass="brand-subtitle" />
-                    <Label text="Registro de Vendedor" styleClass="page-title" />
-                    <Label text="Comienza a vender tus libros digitales" styleClass="brand-description" />
+                    <Label text="Registro de Vendedor" styleClass="brand-name" />
+                    <Label text="Comienza a vender tus libros digitales" styleClass="brand-subtitle" />
                 </VBox>
 
                 <Separator styleClass="card-separator">
@@ -33,7 +33,7 @@
                 </Separator>
 
                 <!-- Formulario -->
-                <VBox spacing="15">
+                <VBox spacing="14" alignment="CENTER_LEFT">
                     <VBox spacing="5">
                         <Label text="Razón Social / Nombre Comercial *" styleClass="field-label" />
                         <TextField fx:id="businessNameField" promptText="Ej: Ediciones Century" styleClass="input-field" />
@@ -52,7 +52,7 @@
                     <HBox spacing="15">
                         <VBox spacing="5" HBox.hgrow="ALWAYS">
                             <Label text="Contraseña *" styleClass="field-label" />
-                            <PasswordField fx:id="passwordField" promptText="Mínimo 6 caracteres" styleClass="input-field" />
+                            <PasswordField fx:id="passwordField" promptText="Mínimo 8 caracteres" styleClass="input-field" />
                         </VBox>
                         <VBox spacing="5" HBox.hgrow="ALWAYS">
                             <Label text="Confirmar Contraseña *" styleClass="field-label" />
@@ -61,15 +61,15 @@
                     </HBox>
 
                     <!-- Error label -->
-                    <Label fx:id="errorLabel" text="" styleClass="error-message" visible="false" managed="false" wrapText="true"/>
+                    <Label fx:id="errorLabel" text="" styleClass="error-label" visible="false" managed="false" wrapText="true" maxWidth="Infinity"/>
 
                     <!-- Action Button -->
-                    <Button fx:id="registerButton" text="Solicitar Cuenta de Vendedor" styleClass="register-btn" maxWidth="Infinity" onAction="#handleRegister" />
+                    <Button fx:id="registerButton" text="Solicitar Cuenta de Vendedor" styleClass="btn-primary" maxWidth="Infinity" onAction="#handleRegister" />
 
                     <!-- Loading overlay -->
                     <HBox fx:id="loadingContainer" alignment="CENTER" visible="false" spacing="10" managed="false">
-                        <ProgressIndicator maxWidth="20" maxHeight="20"/>
-                        <Label text="Procesando solicitud..." styleClass="loading-text"/>
+                        <ProgressIndicator styleClass="loader" maxWidth="20" maxHeight="20"/>
+                        <Label text="Procesando solicitud..." style="-fx-text-fill: white;"/>
                     </HBox>
                 </VBox>
 

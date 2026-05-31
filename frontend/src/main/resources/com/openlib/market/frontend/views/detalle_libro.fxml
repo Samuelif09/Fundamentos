@@ -22,6 +22,7 @@
             
             <Region HBox.hgrow="ALWAYS"/>
             
+            <Button text="🏠 Inicio" onAction="#handleGoToDashboard" styleClass="dashboard-button"/>
             <Button text="← Volver al Catálogo" onAction="#handleBackToCatalog" styleClass="back-button"/>
         </HBox>
     </top>
@@ -45,7 +46,7 @@
                         <Label fx:id="titleLabel" text="Cargando título..." styleClass="detail-title" wrapText="true"/>
                         <Label fx:id="authorLabel" text="Cargando autor..." styleClass="detail-author"/>
                         
-                        <Label fx:id="priceLabel" text="$0.00" styleClass="detail-price"/>
+                        <Label fx:id="priceLabel" text="\$0.00" styleClass="detail-price"/>
                         
                         <VBox spacing="10" styleClass="synopsis-container">
                             <Label text="Sinopsis" styleClass="synopsis-title"/>

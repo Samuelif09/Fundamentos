@@ -164,4 +164,15 @@
     -fx-text-fill: rgba(255,255,255,0.45);
     -fx-font-size: 13px;
 }
-\n.admin-portal-link { -fx-text-fill: #9CA3AF; -fx-font-size: 11px; -fx-underline: false; -fx-border-width: 0; }\n.admin-portal-link:hover { -fx-text-fill: #6B7280; -fx-underline: true; }
+
+.admin-portal-link { -fx-text-fill: #9CA3AF; -fx-font-size: 11px; -fx-underline: false; -fx-border-width: 0; }
+.admin-portal-link:hover { -fx-text-fill: #6B7280; -fx-underline: true; }
+
+/* ── SCROLL PANE (REGISTRO) ──────────────────────── */
+.scroll-container {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+.scroll-container .viewport {
+    -fx-background-color: transparent;
+}

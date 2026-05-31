@@ -21,7 +21,8 @@ public class ActualizarLibroJsonGateway implements IActualizarLibroGateway {
     private List<LibroEditableDto> baseDatosEnMemoria;
 
     public ActualizarLibroJsonGateway() {
-        this.objectMapper = new ObjectMapper();
+        this.objectMapper = new ObjectMapper()
+            .configure(com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         this.jsonFile = new File("libros_publicados.json");
         cargarDatos();
     }

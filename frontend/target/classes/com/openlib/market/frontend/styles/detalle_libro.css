@@ -1,36 +1,35 @@
 /* Main Container */
 .main-container {
-    -fx-background-color: #F8FAFC;
+    -fx-background-color: #0f1225;
     -fx-font-family: "Segoe UI", "Inter", sans-serif;
 }
 
 /* Navbar */
 .navbar {
-    -fx-background-color: #FFFFFF;
-    -fx-border-color: transparent transparent #E2E8F0 transparent;
+    -fx-background-color: #14172a;
     -fx-border-width: 0 0 1 0;
 }
 
 .logo-text {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2563EB;
+    -fx-text-fill: #6c63ff;
 }
 
 .back-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #475569;
+    -fx-text-fill: #94a3b8;
     -fx-font-size: 14px;
     -fx-font-weight: bold;
     -fx-cursor: hand;
     -fx-padding: 8 15;
-    -fx-border-color: #CBD5E1;
+    -fx-border-color: #2a2f4c;
     -fx-border-radius: 8;
     -fx-border-width: 1;
 }
 .back-button:hover {
-    -fx-background-color: #F1F5F9;
-    -fx-text-fill: #0F172A;
+    -fx-background-color: #1e2440;
+    -fx-text-fill: #ffffff;
 }
 
 /* ScrollPane */
@@ -44,10 +43,10 @@
 
 /* Cover Image Container */
 .cover-container {
-    -fx-background-color: #FFFFFF;
+    -fx-background-color: #14172a;
     -fx-background-radius: 12;
     -fx-border-radius: 12;
-    -fx-border-color: #E2E8F0;
+    -fx-border-color: #2a2f4c;
     -fx-border-width: 1;
     -fx-padding: 10;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 15, 0, 0, 5);
@@ -57,42 +56,42 @@
 .detail-title {
     -fx-font-size: 32px;
     -fx-font-weight: bold;
-    -fx-text-fill: #0F172A;
+    -fx-text-fill: #ffffff;
 }
 
 .detail-author {
     -fx-font-size: 18px;
-    -fx-text-fill: #64748B;
+    -fx-text-fill: #94a3b8;
 }
 
 .detail-price {
     -fx-font-size: 28px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2563EB;
+    -fx-text-fill: #6c63ff;
 }
 
 /* Synopsis */
 .synopsis-container {
     -fx-padding: 20 0 0 0;
-    -fx-border-color: #E2E8F0 transparent transparent transparent;
+    -fx-border-color: #2a2f4c transparent transparent transparent;
     -fx-border-width: 1 0 0 0;
 }
 
 .synopsis-title {
     -fx-font-size: 18px;
     -fx-font-weight: bold;
-    -fx-text-fill: #1E293B;
+    -fx-text-fill: #ffffff;
 }
 
 .detail-synopsis {
     -fx-font-size: 15px;
-    -fx-text-fill: #334155;
+    -fx-text-fill: #2a2f4c;
     -fx-line-spacing: 5px;
 }
 
 /* Buttons */
 .add-to-cart-btn {
-    -fx-background-color: #2563EB;
+    -fx-background-color: #6c63ff;
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 16px;
@@ -101,7 +100,7 @@
     -fx-cursor: hand;
 }
 .add-to-cart-btn:hover {
-    -fx-background-color: #1D4ED8;
+    -fx-background-color: #5a52d5;
     -fx-effect: dropshadow(three-pass-box, rgba(37,99,235,0.3), 10, 0, 0, 4);
 }
 

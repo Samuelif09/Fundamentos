@@ -92,9 +92,15 @@ public class SellerRegistrationController {
     }
 
     private void showError(String message) {
-        errorLabel.setText("⚠ " + message);
+        errorLabel.setText("🚨 " + message);
         errorLabel.setVisible(true);
         errorLabel.setManaged(true);
+        
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error en el registro");
+        alert.setHeaderText("No se pudo completar el registro");
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     private void clearError() {

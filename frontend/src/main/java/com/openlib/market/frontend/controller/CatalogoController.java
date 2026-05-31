@@ -159,6 +159,11 @@ public class CatalogoController {
     }
 
     @FXML
+    public void handleGoToDashboard(ActionEvent event) {
+        com.openlib.market.frontend.app.SceneManager.navigateTo("dashboard");
+    }
+
+    @FXML
     public void handleGoToCart(ActionEvent event) {
         com.openlib.market.frontend.app.SceneManager.navigateTo("carrito");
     }

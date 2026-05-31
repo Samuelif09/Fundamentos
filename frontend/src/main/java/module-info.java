@@ -7,6 +7,7 @@ module com.openlib.market.frontend {
     opens com.openlib.market.frontend to javafx.fxml;
     opens com.openlib.market.frontend.controller to javafx.fxml;
     opens com.openlib.market.frontend.model to com.fasterxml.jackson.databind;
+    opens com.openlib.market.frontend.service to com.fasterxml.jackson.databind;
 
     exports com.openlib.market.frontend;
     exports com.openlib.market.frontend.app;

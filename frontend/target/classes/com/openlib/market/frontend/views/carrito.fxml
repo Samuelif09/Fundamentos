@@ -50,21 +50,24 @@
                     <Label text="Resumen del Pedido" styleClass="summary-title"/>
                     <Separator/>
                     
-                    <HBox alignment="SPACE_BETWEEN">
+                    <HBox alignment="CENTER_LEFT">
                         <Label text="Subtotal:" styleClass="summary-label"/>
-                        <Label fx:id="subtotalLabel" text="$0.00" styleClass="summary-value"/>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="subtotalLabel" text="\$0.00" styleClass="summary-value"/>
                     </HBox>
                     
-                    <HBox alignment="SPACE_BETWEEN">
-                        <Label text="Impuestos (19%):" styleClass="summary-label"/>
-                        <Label fx:id="taxesLabel" text="$0.00" styleClass="summary-value"/>
+                    <HBox alignment="CENTER_LEFT">
+                        <Label text="Impuestos:" styleClass="summary-label"/>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="taxesLabel" text="\$0.00" styleClass="summary-value"/>
                     </HBox>
                     
                     <Separator/>
                     
-                    <HBox alignment="SPACE_BETWEEN">
+                    <HBox alignment="CENTER_LEFT">
                         <Label text="Total a Pagar:" styleClass="summary-label-total"/>
-                        <Label fx:id="totalLabel" text="$0.00" styleClass="summary-value-total"/>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="totalLabel" text="\$0.00" styleClass="summary-value-total"/>
                     </HBox>
                     
                     <Region VBox.vgrow="ALWAYS" minHeight="20"/>

@@ -11,7 +11,8 @@ import java.util.concurrent.CompletableFuture;
 public class ProfileService {
 
     public CompletableFuture<UserProfile> getProfile() {
-        return ApiClient.get("/usuarios/me/perfil", UserProfile.class)
+        String email = com.openlib.market.frontend.session.SessionManager.getInstance().getEmail();
+        return ApiClient.get("/usuarios/me/perfil?email=" + email, UserProfile.class)
                 .thenApply(response -> {
                     if (response.isSuccess() && response.getBody() != null) {
                         return response.getBody();
@@ -21,7 +22,8 @@ public class ProfileService {
     }
 
     public CompletableFuture<List<OrderHistoryItem>> getOrderHistory() {
-        return ApiClient.get("/usuarios/me/pedidos", OrderHistoryItem[].class)
+        String email = com.openlib.market.frontend.session.SessionManager.getInstance().getEmail();
+        return ApiClient.get("/usuarios/me/pedidos?email=" + email, OrderHistoryItem[].class)
                 .thenApply(response -> {
                     if (response.isSuccess() && response.getBody() != null) {
                         return Arrays.asList(response.getBody());

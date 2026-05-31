@@ -42,7 +42,7 @@ public class Administrador {
 
     /** Convierte a UsuarioAuth para reutilizar el generador de tokens existente. */
     public UsuarioAuth comoUsuarioAuth() {
-        return new UsuarioAuth(id, email, hashContrasena);
+        return new UsuarioAuth(id, email, hashContrasena, "ADMIN");
     }
 
     public boolean esSuperAdmin() {

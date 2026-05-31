@@ -19,6 +19,7 @@ public class SceneManager {
 
     static {
         ROUTES.put("login",     "/com/openlib/market/frontend/views/login.fxml");
+        ROUTES.put("registro",  "/com/openlib/market/frontend/views/registro.fxml");
         ROUTES.put("dashboard", "/com/openlib/market/frontend/views/dashboard.fxml");
         ROUTES.put("catalogo",  "/com/openlib/market/frontend/views/catalogo.fxml");
         ROUTES.put("detalleLibro", "/com/openlib/market/frontend/views/detalle_libro.fxml");
@@ -57,7 +58,13 @@ public class SceneManager {
             if (resource == null) throw new IOException("FXML no encontrado: " + fxmlPath);
 
             FXMLLoader loader = new FXMLLoader(resource);
-            Scene scene = new Scene(loader.load());
+            double width = 1024;
+            double height = 720;
+            if (primaryStage.getScene() != null) {
+                width = primaryStage.getScene().getWidth();
+                height = primaryStage.getScene().getHeight();
+            }
+            Scene scene = new Scene(loader.load(), width, height);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
