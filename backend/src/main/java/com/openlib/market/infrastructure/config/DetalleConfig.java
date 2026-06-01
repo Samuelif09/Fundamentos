@@ -8,6 +8,7 @@ import com.openlib.market.domain.detalle.IDetalleGateway;
 import com.openlib.market.domain.inventario.IInventarioGateway;
 import com.openlib.market.domain.inventario.IPromocionGateway;
 import com.openlib.market.domain.shared.IEventPublisher;
+import com.openlib.market.domain.registro.IUsuarioGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,8 +21,9 @@ public class DetalleConfig {
             IDetalleGateway detalleGateway, 
             IInventarioGateway inventarioGateway,
             @Autowired(required = false) IEventPublisher eventPublisher,
-            @Autowired(required = false) IPromocionGateway promocionGateway) {
-        return new VerDetalleLibroInteractor(detalleGateway, inventarioGateway, eventPublisher, promocionGateway);
+            @Autowired(required = false) IPromocionGateway promocionGateway,
+            @Autowired(required = false) IUsuarioGateway usuarioGateway) {
+        return new VerDetalleLibroInteractor(detalleGateway, inventarioGateway, eventPublisher, promocionGateway, usuarioGateway);
     }
 
     @Bean

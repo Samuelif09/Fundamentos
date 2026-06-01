@@ -11,6 +11,7 @@ public class Book {
     @JsonProperty("titulo")
     private String title;
     
+    @JsonProperty("autor")
     private String author;
     
     @JsonProperty("precio")

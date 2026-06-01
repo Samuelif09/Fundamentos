@@ -3,6 +3,7 @@ package com.openlib.market.frontend.controller;
 import com.openlib.market.frontend.app.SceneManager;
 import com.openlib.market.frontend.model.Book;
 import com.openlib.market.frontend.service.BookService;
+import com.openlib.market.frontend.service.CartService;
 import com.openlib.market.frontend.session.SessionManager;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -29,6 +30,7 @@ public class DetalleLibroController {
     private VBox loadingContainer;
 
     private final BookService bookService = new BookService();
+    private final CartService cartService = new CartService();
     private Book currentBook;
 
     @FXML
@@ -86,12 +88,22 @@ public class DetalleLibroController {
         if (currentBook == null)
             return;
 
-        // Mocking the add to cart functionality
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Carrito");
-        alert.setHeaderText("¡Libro agregado!");
-        alert.setContentText("El libro '" + currentBook.getTitle() + "' ha sido agregado a tu carrito.");
-        alert.showAndWait();
+        loadingContainer.setVisible(true);
+
+        cartService.addToCart(currentBook.getId(), 1).whenComplete((v, throwable) -> {
+            Platform.runLater(() -> {
+                loadingContainer.setVisible(false);
+                if (throwable != null) {
+                    showError("Error al agregar al carrito", throwable.getMessage());
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Carrito");
+                    alert.setHeaderText("¡Libro agregado!");
+                    alert.setContentText("El libro '" + currentBook.getTitle() + "' ha sido agregado a tu carrito.");
+                    alert.showAndWait();
+                }
+            });
+        });
     }
 
     @FXML

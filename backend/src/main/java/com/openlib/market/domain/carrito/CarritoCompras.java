@@ -59,4 +59,15 @@ public class CarritoCompras {
         }
         return subtotal;
     }
+
+    public void removerItem(String isbn) {
+        items.removeIf(item -> item.getLibroIsbn().equals(isbn));
+    }
+
+    public void actualizarCantidad(String isbn, Cantidad nuevaCantidad) {
+        items.stream()
+                .filter(item -> item.getLibroIsbn().equals(isbn))
+                .findFirst()
+                .ifPresent(item -> item.cambiarCantidad(nuevaCantidad));
+    }
 }

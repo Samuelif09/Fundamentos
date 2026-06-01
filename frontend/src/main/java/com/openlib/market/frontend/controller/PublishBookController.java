@@ -25,6 +25,7 @@ public class PublishBookController {
     @FXML private TextArea   descripcionField;
     @FXML private TextField  precioField;
     @FXML private TextField  isbnField;
+    @FXML private TextField  stockField;
     @FXML private ComboBox<String> categoriaCombo;
 
     // File zones
@@ -110,6 +111,7 @@ public class PublishBookController {
                 precioField.getText().trim(),
                 categoriaCombo.getValue(),
                 isbnField.getText().trim(),
+                stockField.getText().trim(),
                 selectedCoverFile,
                 selectedPreviewFile
         ).whenComplete((response, throwable) -> {
@@ -151,6 +153,15 @@ public class PublishBookController {
             if (price <= 0) throw new NumberFormatException();
         } catch (NumberFormatException e) {
             showError("El precio debe ser un número positivo."); return false;
+        }
+        if (stockField.getText().isBlank()) {
+            showError("La cantidad de stock es obligatoria."); return false;
+        }
+        try {
+            int stock = Integer.parseInt(stockField.getText().trim());
+            if (stock < 0) throw new NumberFormatException();
+        } catch (NumberFormatException e) {
+            showError("El stock debe ser un número entero no negativo."); return false;
         }
         if (selectedCoverFile == null) {
             showError("Debes seleccionar una imagen de portada."); return false;
@@ -216,6 +227,7 @@ public class PublishBookController {
         descripcionField.setDisable(locked);
         precioField.setDisable(locked);
         isbnField.setDisable(locked);
+        stockField.setDisable(locked);
         categoriaCombo.setDisable(locked);
     }
 

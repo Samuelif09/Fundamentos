@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface ContenidoDigitalRepository extends JpaRepository<ContenidoDigitalEntity, String>, JpaSpecificationExecutor<ContenidoDigitalEntity> {
     List<ContenidoDigitalEntity> findByIdVendedor(String idVendedor);
+    List<ContenidoDigitalEntity> findByEstado(String estado, org.springframework.data.domain.Pageable pageable);
 }

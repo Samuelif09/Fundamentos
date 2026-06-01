@@ -73,6 +73,10 @@
                                     <Label text="ISBN" styleClass="field-label"/>
                                     <TextField fx:id="isbnField" promptText="Ej: 978-3-16-148410-0" styleClass="input-field"/>
                                 </VBox>
+                                <VBox spacing="5" HBox.hgrow="ALWAYS">
+                                    <Label text="Stock *" styleClass="field-label"/>
+                                    <TextField fx:id="stockField" promptText="Ej: 10" styleClass="input-field"/>
+                                </VBox>
                             </HBox>
 
                             <VBox spacing="5">

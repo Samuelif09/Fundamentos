@@ -22,7 +22,7 @@ import java.util.Optional;
 public class SellerInventoryController {
 
     @FXML private TableView<SellerBook>              booksTable;
-    @FXML private TableColumn<SellerBook, Long>      colId;
+    @FXML private TableColumn<SellerBook, String>    colId;
     @FXML private TableColumn<SellerBook, String>    colTitle;
     @FXML private TableColumn<SellerBook, Double>    colPrice;
     @FXML private TableColumn<SellerBook, Integer>   colStock;
@@ -82,7 +82,8 @@ public class SellerInventoryController {
                     return;
                 }
                 Label chip = new Label(status.toUpperCase());
-                chip.getStyleClass().add("ACTIVE".equalsIgnoreCase(status) ? "status-active" : "status-paused");
+                boolean isActive = "ACTIVE".equalsIgnoreCase(status) || "ACTIVO".equalsIgnoreCase(status);
+                chip.getStyleClass().add(isActive ? "status-active" : "status-paused");
                 setGraphic(chip);
                 setText(null);
                 setAlignment(Pos.CENTER);
@@ -144,9 +145,9 @@ public class SellerInventoryController {
     }
 
     private void handleTogglePause(SellerBook book) {
-        boolean isActive = "ACTIVE".equalsIgnoreCase(book.getStatus());
-        String newStatus = isActive ? "PAUSED" : "ACTIVE";
-        String action    = isActive ? "pausada" : "reactivada";
+        boolean isActive = "ACTIVE".equalsIgnoreCase(book.getStatus()) || "ACTIVO".equalsIgnoreCase(book.getStatus());
+        String newStatus = isActive ? "PAUSADO" : "ACTIVO";
+        String action    = isActive ? "pausado" : "reactivado";
 
         Alert confirm = new Alert(Alert.AlertType.CONFIRMATION);
         confirm.setTitle("Confirmar acción");

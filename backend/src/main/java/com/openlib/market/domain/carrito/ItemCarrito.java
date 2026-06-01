@@ -30,4 +30,8 @@ public class ItemCarrito {
     public void agregarCantidad(Cantidad cantidadExtra) {
         this.cantidad = this.cantidad.sumar(cantidadExtra);
     }
+
+    public void cambiarCantidad(Cantidad nuevaCantidad) {
+        this.cantidad = nuevaCantidad;
+    }
 }

@@ -6,6 +6,10 @@ public class UsuarioAuth {
     private final String hashContrasena;
     private final String rol;
 
+    public UsuarioAuth(String id, Email email, String hashContrasena) {
+        this(id, email, hashContrasena, "COMPRADOR");
+    }
+
     public UsuarioAuth(String id, Email email, String hashContrasena, String rol) {
         this.id = id;
         this.email = email;

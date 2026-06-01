@@ -128,7 +128,8 @@ public class LoginController implements Initializable {
             SessionManager.getInstance().iniciarSesion(
                     loginData.getToken(),
                     emailField.getText().trim(),
-                    rol
+                    rol,
+                    loginData.getUserId()
             );
 
             // Navegar al dashboard principal o de vendedor

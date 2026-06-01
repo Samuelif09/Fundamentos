@@ -2,6 +2,7 @@ package com.openlib.market.infrastructure.adapter.out.persistence.gateway;
 
 import com.openlib.market.domain.carrito.ILibroGateway;
 import com.openlib.market.domain.carrito.LibroSnapshot;
+import com.openlib.market.domain.detalle.IDetalleGateway;
 import com.openlib.market.domain.detalle.IActualizarLibroGateway;
 import com.openlib.market.domain.detalle.Isbn;
 import com.openlib.market.domain.detalle.Libro;
@@ -15,7 +16,7 @@ import java.util.Optional;
 
 @Component
 @Primary
-public class LibroJpaGateway implements ILibroGateway, IActualizarLibroGateway {
+public class LibroJpaGateway implements ILibroGateway, IActualizarLibroGateway, IDetalleGateway {
 
     private final ContenidoDigitalRepository repository;
     private final LibroMapper mapper;
@@ -46,5 +47,11 @@ public class LibroJpaGateway implements ILibroGateway, IActualizarLibroGateway {
     public void actualizar(Libro libro) {
         repository.save(mapper.toEntity(libro));
         repository.flush();
+    }
+
+    // --- IDetalleGateway ---
+    @Override
+    public Optional<Libro> buscarPorId(Isbn isbn) {
+        return buscarPorIsbn(isbn);
     }
 }

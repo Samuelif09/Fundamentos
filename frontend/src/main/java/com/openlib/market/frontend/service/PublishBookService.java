@@ -29,6 +29,7 @@ public class PublishBookService {
             String precio,
             String categoria,
             String isbn,
+            String stock,
             File coverFile,
             File previewFile) {
 
@@ -42,7 +43,8 @@ public class PublishBookService {
                        .addField("descripcion", descripcion)
                        .addField("precio", precio)
                        .addField("categoria", categoria)
-                       .addField("isbn", isbn);
+                       .addField("isbn", isbn)
+                       .addField("stock", stock);
 
                 // Archivo de portada
                 if (coverFile != null && coverFile.exists()) {

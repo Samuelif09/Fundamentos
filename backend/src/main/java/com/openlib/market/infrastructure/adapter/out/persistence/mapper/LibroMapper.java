@@ -21,7 +21,8 @@ public class LibroMapper {
                 entity.getCategoria(),
                 entity.getIdVendedor(),
                 EstadoLibro.valueOf(entity.getEstado() != null ? entity.getEstado() : "ACTIVO"),
-                entity.getUrlVistaPrevia()
+                entity.getUrlVistaPrevia(),
+                entity.getStockDisponible()
         );
     }
 
@@ -36,7 +37,7 @@ public class LibroMapper {
         entity.setIdVendedor(domain.getIdVendedor());
         entity.setEstado(domain.getEstado().name());
         entity.setUrlVistaPrevia(domain.getUrlVistaPrevia());
-        // El stock no es parte de este agregado (Libro de detalle), se maneja en Inventario
+        entity.setStockDisponible(domain.getStock());
         return entity;
     }
 

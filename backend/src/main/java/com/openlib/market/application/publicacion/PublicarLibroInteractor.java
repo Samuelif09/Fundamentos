@@ -45,7 +45,8 @@ public class PublicarLibroInteractor implements IPublicarLibroUseCase {
                 precio,
                 request.getUrlPortada(),
                 request.getCategoria(),
-                request.getIdVendedor()
+                request.getIdVendedor(),
+                request.getStock()
         );
 
         // 4. Persistir

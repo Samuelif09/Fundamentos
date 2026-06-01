@@ -103,18 +103,81 @@ public class CarritoController {
         infoBox.getChildren().addAll(title, author, price);
         HBox.setHgrow(infoBox, Priority.ALWAYS);
 
-        // Qty & Subtotal
-        VBox amountsBox = new VBox(5);
+        // Qty & Subtotal Controls
+        HBox qtyControls = new HBox(5);
+        qtyControls.setAlignment(Pos.CENTER_RIGHT);
+
+        javafx.scene.control.Button btnMinus = new javafx.scene.control.Button("-");
+        btnMinus.setStyle("-fx-min-width: 24; -fx-min-height: 24; -fx-font-weight: bold;");
+        btnMinus.setOnAction(e -> {
+            if (book != null) {
+                int newQty = item.getQuantity() - 1;
+                if (newQty <= 0) {
+                    handleRemoveItem(book.getId());
+                } else {
+                    handleUpdateQuantity(book.getId(), newQty);
+                }
+            }
+        });
+
+        Label qtyLabel = new Label(String.format(" %d ", item.getQuantity()));
+        qtyLabel.setStyle("-fx-font-size: 14px; -fx-font-weight: bold;");
+
+        javafx.scene.control.Button btnPlus = new javafx.scene.control.Button("+");
+        btnPlus.setStyle("-fx-min-width: 24; -fx-min-height: 24; -fx-font-weight: bold;");
+        btnPlus.setOnAction(e -> {
+            if (book != null) {
+                handleUpdateQuantity(book.getId(), item.getQuantity() + 1);
+            }
+        });
+
+        qtyControls.getChildren().addAll(btnMinus, qtyLabel, btnPlus);
+
+        javafx.scene.control.Button btnDelete = new javafx.scene.control.Button("Eliminar");
+        btnDelete.setStyle("-fx-text-fill: #EF4444; -fx-background-color: transparent; -fx-border-color: #F3F4F6; -fx-border-radius: 4;");
+        btnDelete.setOnAction(e -> {
+            if (book != null) {
+                handleRemoveItem(book.getId());
+            }
+        });
+
+        VBox amountsBox = new VBox(8);
         amountsBox.setAlignment(Pos.CENTER_RIGHT);
-        Label qty = new Label("Cant: " + item.getQuantity());
-        qty.getStyleClass().add("cart-item-qty");
         Label subtotal = new Label(String.format("$%.2f", item.getSubtotal()));
         subtotal.getStyleClass().add("cart-item-subtotal");
-        
-        amountsBox.getChildren().addAll(qty, subtotal);
+
+        amountsBox.getChildren().addAll(subtotal, qtyControls, btnDelete);
 
         card.getChildren().addAll(coverView, infoBox, amountsBox);
         return card;
+    }
+
+    private void handleUpdateQuantity(String isbn, int quantity) {
+        loadingContainer.setVisible(true);
+        cartService.updateQuantity(isbn, quantity).whenComplete((v, throwable) -> {
+            Platform.runLater(() -> {
+                if (throwable != null) {
+                    loadingContainer.setVisible(false);
+                    showError("Error al actualizar cantidad", throwable.getMessage());
+                } else {
+                    loadCart();
+                }
+            });
+        });
+    }
+
+    private void handleRemoveItem(String isbn) {
+        loadingContainer.setVisible(true);
+        cartService.removeItem(isbn).whenComplete((v, throwable) -> {
+            Platform.runLater(() -> {
+                if (throwable != null) {
+                    loadingContainer.setVisible(false);
+                    showError("Error al eliminar item", throwable.getMessage());
+                } else {
+                    loadCart();
+                }
+            });
+        });
     }
 
     @FXML

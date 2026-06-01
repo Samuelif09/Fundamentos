@@ -23,7 +23,7 @@ public class VerInventarioInteractor implements IVerInventarioUseCase {
         List<LibroCatalogo> libros = inventarioGateway.listarPorVendedorId(idVendedor);
 
         return libros.stream()
-                .map(l -> new LibroInventarioDto(l.isbn(), l.titulo(), l.precio(), null, idVendedor))
+                .map(l -> new LibroInventarioDto(l.isbn(), l.titulo(), l.precio(), null, idVendedor, l.stock(), l.estado()))
                 .collect(Collectors.toList());
     }
 }

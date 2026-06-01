@@ -9,6 +9,7 @@ import com.openlib.market.domain.carrito.SesionId;
 import com.openlib.market.infrastructure.adapter.out.persistence.entity.CarritoEntity;
 import com.openlib.market.infrastructure.adapter.out.persistence.entity.ItemCarritoEntity;
 import com.openlib.market.infrastructure.adapter.out.persistence.repository.CarritoRepository;
+import com.openlib.market.infrastructure.adapter.out.persistence.repository.ContenidoDigitalRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
@@ -19,22 +20,47 @@ import java.util.Optional;
 public class CarritoJpaGateway implements ICarritoGateway {
 
     private final CarritoRepository repository;
+    private final ContenidoDigitalRepository bookRepository;
 
-    public CarritoJpaGateway(CarritoRepository repository) {
+    public CarritoJpaGateway(CarritoRepository repository, ContenidoDigitalRepository bookRepository) {
         this.repository = repository;
+        this.bookRepository = bookRepository;
     }
 
     @Override
     public Optional<CarritoCompras> obtenerPorSesionId(SesionId sesionId) {
-        return repository.findById(sesionId.getValor()).map(this::toDomain);
+        return repository.findById(sesionId.getValor())
+                .map(entity -> {
+                    CarritoCompras carrito = new CarritoCompras(sesionId);
+                    for (ItemCarritoEntity item : entity.getItems()) {
+                        double precio = bookRepository.findById(item.getIsbn())
+                                .map(com.openlib.market.infrastructure.adapter.out.persistence.entity.ContenidoDigitalEntity::getPrecio)
+                                .orElse(0.0);
+                        carrito.agregarItem(
+                                new com.openlib.market.domain.carrito.LibroSnapshot(item.getIsbn(), precio),
+                                new Cantidad(item.getCantidad())
+                        );
+                    }
+                    return carrito;
+                });
     }
 
     @Override
     public Optional<CarritoCompras> obtenerPorUsuario(IdUsuario idUsuario) {
-        return repository.findAll().stream()
-                .filter(e -> idUsuario.getId().equals(e.getSesionId()))
-                .findFirst()
-                .map(this::toDomain);
+        return repository.findById(idUsuario.getId())
+                .map(entity -> {
+                    CarritoCompras carrito = new CarritoCompras(idUsuario);
+                    for (ItemCarritoEntity item : entity.getItems()) {
+                        double precio = bookRepository.findById(item.getIsbn())
+                                .map(com.openlib.market.infrastructure.adapter.out.persistence.entity.ContenidoDigitalEntity::getPrecio)
+                                .orElse(0.0);
+                        carrito.agregarItem(
+                                new com.openlib.market.domain.carrito.LibroSnapshot(item.getIsbn(), precio),
+                                new Cantidad(item.getCantidad())
+                        );
+                    }
+                    return carrito;
+                });
     }
 
     @Override
@@ -51,16 +77,5 @@ public class CarritoJpaGateway implements ICarritoGateway {
             entity.addItem(new ItemCarritoEntity(entity, item.getLibroIsbn(), item.getCantidad().getValor()));
         }
         repository.save(entity);
-    }
-
-    private CarritoCompras toDomain(CarritoEntity entity) {
-        CarritoCompras carrito = new CarritoCompras(new SesionId(entity.getSesionId()));
-        for (ItemCarritoEntity item : entity.getItems()) {
-            carrito.agregarItem(
-                    new com.openlib.market.domain.carrito.LibroSnapshot(item.getIsbn(), 0.0),
-                    new Cantidad(item.getCantidad())
-            );
-        }
-        return carrito;
     }
 }
