@@ -29,9 +29,9 @@ public class CarritoController {
     public ResponseEntity<String> agregarItemVisitante(@RequestBody AgregarItemRequestDto request) {
         try {
             agregarCarritoUseCase.agregarAlCarrito(request);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Item agregado al carrito de visitante exitosamente");
+            return ResponseEntity.status(HttpStatus.CREATED).body("{\"message\":\"Item agregado al carrito de visitante exitosamente\"}");
         } catch (com.openlib.market.domain.carrito.StockInsuficienteException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.badRequest().body("{\"error\":\"" + e.getMessage() + "\"}");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
@@ -42,9 +42,9 @@ public class CarritoController {
         try {
             request.setIdUsuario(userId); // Inyectar ID del path (o del token)
             agregarCarritoUseCase.agregarAlCarrito(request);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Item agregado al carrito de usuario exitosamente (con subtotal decorado)");
+            return ResponseEntity.status(HttpStatus.CREATED).body("{\"message\":\"Item agregado al carrito de usuario exitosamente\"}");
         } catch (com.openlib.market.domain.carrito.StockInsuficienteException e) {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("{\"error\":\"" + e.getMessage() + "\"}");
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }

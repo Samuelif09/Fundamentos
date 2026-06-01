@@ -33,6 +33,11 @@ public class PublishBookService {
             File coverFile,
             File previewFile) {
 
+        String userId = com.openlib.market.frontend.session.SessionManager.getInstance().getUserId();
+        if (userId == null || userId.isBlank()) {
+            return CompletableFuture.failedFuture(new RuntimeException("No hay sesión activa"));
+        }
+
         return CompletableFuture.supplyAsync(() -> {
             try {
                 MultipartBodyBuilder builder = new MultipartBodyBuilder();
@@ -67,7 +72,7 @@ public class PublishBookService {
         }).thenCompose(parts -> {
             var bodyPublisher = (java.net.http.HttpRequest.BodyPublisher) ((Object[]) parts)[0];
             var boundary      = (String) ((Object[]) parts)[1];
-            return ApiClient.postMultipart("/vendedores/me/libros", bodyPublisher, boundary, SellerBook.class);
+            return ApiClient.postMultipart("/vendedores/" + userId + "/libros", bodyPublisher, boundary, SellerBook.class);
         });
     }
 
