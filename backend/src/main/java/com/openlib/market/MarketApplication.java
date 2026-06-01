@@ -6,6 +6,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Profile;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import javax.sql.DataSource;
@@ -22,23 +23,4 @@ public class MarketApplication {
         SpringApplication.run(MarketApplication.class, args);
     }
 
-    @Bean
-    public ApplicationRunner datasourceTraceRunner(DataSource dataSource) {
-        return args -> {
-            try (Connection connection = dataSource.getConnection()) {
-                DatabaseMetaData metadata = connection.getMetaData();
-                String url = metadata.getURL();
-                LOGGER.info("[PERSISTENCIA] Datasource activo. url={}, driver={}, user={}",
-                        url,
-                        metadata.getDriverName(),
-                        metadata.getUserName());
-
-                if (url != null && url.contains("jdbc:h2:mem:")) {
-                    LOGGER.warn("[PERSISTENCIA] La base actual es H2 en memoria. Los datos se pierden al reiniciar el servidor.");
-                }
-            } catch (Exception e) {
-                LOGGER.error("[PERSISTENCIA] No fue posible obtener metadata del datasource activo", e);
-            }
-        };
-    }
 }

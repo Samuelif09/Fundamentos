@@ -628,6 +628,7 @@ com/openlib/market/infrastructure/busqueda/BusquedaJsonGateway.class
 com/openlib/market/infrastructure/registro/RegistroJsonGateway$1.class
 com/openlib/market/application/dashboard/VerMetricasDashboardInteractor.class
 com/openlib/market/infrastructure/adapter/out/persistence/gateway/GraficaVentasJpaGateway.class
+com/openlib/market/infrastructure/adapter/out/persistence/gateway/LibroPublicacionJpaGateway.class
 com/openlib/market/application/catalogo/IVerCatalogoUseCase.class
 com/openlib/market/application/tienda/PersonalizarMiTiendaInteractor.class
 com/openlib/market/application/catalogo/VerLibrosRelacionadosInteractor.class

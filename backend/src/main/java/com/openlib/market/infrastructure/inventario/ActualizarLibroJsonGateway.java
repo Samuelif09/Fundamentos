@@ -1,5 +1,6 @@
 package com.openlib.market.infrastructure.inventario;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openlib.market.domain.detalle.IActualizarLibroGateway;
@@ -78,5 +79,6 @@ public class ActualizarLibroJsonGateway implements IActualizarLibroGateway {
         guardarDatos();
     }
 
+    @JsonIgnoreProperties(ignoreUnknown = true)
     private record LibroEditableDto(String isbn, String titulo, String sinopsis, double precio, String urlPortada, String categoria, String idVendedor) {}
 }

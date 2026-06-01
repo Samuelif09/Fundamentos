@@ -26,9 +26,4 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/admin/login")
-    public ResponseEntity<LoginResponseDto> adminLogin(@RequestBody LoginRequestDto request) {
-        LoginResponseDto response = iniciarAutenticacionAdminUseCase.iniciarSesionAdmin(request);
-        return ResponseEntity.ok(response);
-    }
 }
