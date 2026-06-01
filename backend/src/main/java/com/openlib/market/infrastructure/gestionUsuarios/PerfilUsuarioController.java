@@ -2,10 +2,7 @@ package com.openlib.market.infrastructure.gestionUsuarios;
 
 import com.openlib.market.infrastructure.adapter.out.persistence.repository.UsuarioRepository;
 import com.openlib.market.infrastructure.adapter.out.persistence.entity.UsuarioEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
@@ -16,21 +13,57 @@ import java.util.UUID;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/usuarios/me")
+@RequestMapping("/api/v1/usuarios")
 public class PerfilUsuarioController {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @GetMapping("/perfil")
-    public Map<String, Object> getPerfil(@RequestParam(required = false) String email) {
+    // ── /usuarios/me/perfil  (MeResolveFilter reescribe "me" → id real) ──
+    @GetMapping("/me/perfil")
+    public Map<String, Object> getPerfilMe(@RequestParam(required = false) String email) {
+        return buildPerfil(null, email);
+    }
+
+    // ── /usuarios/{userId}/perfil  (ID explícito desde el frontend) ──────
+    @GetMapping("/{userId}/perfil")
+    public Map<String, Object> getPerfilById(@PathVariable String userId,
+                                             @RequestParam(required = false) String email) {
+        return buildPerfil(userId, email);
+    }
+
+    // ── /usuarios/me/pedidos ───────────────────────────────────────────────
+    @GetMapping("/me/pedidos")
+    public List<Map<String, Object>> getPedidosMe(@RequestParam(required = false) String email) {
+        return buildPedidos(email);
+    }
+
+    // ── /usuarios/{userId}/pedidos ────────────────────────────────────────
+    @GetMapping("/{userId}/pedidos")
+    public List<Map<String, Object>> getPedidosById(@PathVariable String userId,
+                                                     @RequestParam(required = false) String email) {
+        return buildPedidos(email);
+    }
+
+    // ── Helpers ────────────────────────────────────────────────────────────
+
+    private Map<String, Object> buildPerfil(String userId, String email) {
         Map<String, Object> perfil = new HashMap<>();
-        
+
         String nombre = "Lector Frecuente";
         String correo = "lector@ejemplo.com";
-        
+
+        // Buscar por email (query param)
         if (email != null && !email.isEmpty()) {
             Optional<UsuarioEntity> optUser = usuarioRepository.findByEmail(email);
+            if (optUser.isPresent()) {
+                nombre = optUser.get().getNombre();
+                correo = optUser.get().getEmail();
+            }
+        }
+        // Buscar por ID (path variable)
+        else if (userId != null && !userId.isEmpty()) {
+            Optional<UsuarioEntity> optUser = usuarioRepository.findById(userId);
             if (optUser.isPresent()) {
                 nombre = optUser.get().getNombre();
                 correo = optUser.get().getEmail();
@@ -40,31 +73,16 @@ public class PerfilUsuarioController {
         perfil.put("fullName", nombre);
         perfil.put("email", correo);
         perfil.put("joinedDate", "Enero 2024");
-        perfil.put("totalBooksOwned", 12);
-        perfil.put("readHours", 45);
-        perfil.put("favoriteGenre", "Ciencia Ficción");
+        perfil.put("totalBooksOwned", 0);
+        perfil.put("readHours", 0);
+        perfil.put("favoriteGenre", "-");
         return perfil;
     }
 
-    @GetMapping("/pedidos")
-    public List<Map<String, Object>> getPedidos(@RequestParam(required = false) String email) {
+    private List<Map<String, Object>> buildPedidos(String email) {
         List<Map<String, Object>> pedidos = new ArrayList<>();
-        
-        Map<String, Object> pedido1 = new HashMap<>();
-        pedido1.put("orderId", UUID.randomUUID().toString().substring(0, 8));
-        pedido1.put("date", "2024-05-10");
-        pedido1.put("total", 25.99);
-        pedido1.put("status", "Completado");
-        
-        Map<String, Object> pedido2 = new HashMap<>();
-        pedido2.put("orderId", UUID.randomUUID().toString().substring(0, 8));
-        pedido2.put("date", "2024-05-15");
-        pedido2.put("total", 14.50);
-        pedido2.put("status", "Completado");
 
-        pedidos.add(pedido1);
-        pedidos.add(pedido2);
-
+        // Por ahora retorna lista vacía (sin pedidos reales aún)
         return pedidos;
     }
 }

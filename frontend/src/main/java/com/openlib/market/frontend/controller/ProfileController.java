@@ -49,20 +49,28 @@ public class ProfileController {
         loadingContainer.setVisible(true);
 
         CompletableFuture<UserProfile> profileFuture = profileService.getProfile();
-        CompletableFuture<List<OrderHistoryItem>> ordersFuture = profileService.getOrderHistory();
+        CompletableFuture<List<OrderHistoryItem>> ordersFuture = profileService.getOrderHistory()
+                .exceptionally(ex -> java.util.Collections.emptyList()); // nunca falla
 
         CompletableFuture.allOf(profileFuture, ordersFuture).whenComplete((v, throwable) -> {
             Platform.runLater(() -> {
                 loadingContainer.setVisible(false);
-                if (throwable != null) {
-                    showError("Error al cargar perfil", throwable.getMessage());
-                } else {
-                    try {
-                        populateProfile(profileFuture.join());
-                        populateOrders(ordersFuture.join());
-                    } catch (Exception e) {
-                        showError("Error procesando datos", e.getMessage());
-                    }
+                try {
+                    UserProfile profile = profileFuture.join();
+                    populateProfile(profile);
+                } catch (Exception e) {
+                    // Mostrar datos mínimos de sesión sin bloquear UI
+                    String email = com.openlib.market.frontend.session.SessionManager.getInstance().getEmail();
+                    UserProfile fallback = new UserProfile();
+                    fallback.setEmail(email != null ? email : "");
+                    fallback.setFullName(email != null ? email.split("@")[0] : "Usuario");
+                    fallback.setJoinedDate("-");
+                    populateProfile(fallback);
+                }
+                try {
+                    populateOrders(ordersFuture.join());
+                } catch (Exception e) {
+                    populateOrders(java.util.Collections.emptyList());
                 }
             });
         });
