@@ -13,13 +13,15 @@ class SolicitarRetiroFinanzasInteractorTest {
 
     private IBilleteraGateway billeteraGateway;
     private IRetiroGateway retiroGateway;
+    private com.openlib.market.infrastructure.adapter.out.persistence.repository.TransaccionBilleteraRepository transaccionBilleteraRepository;
     private SolicitarRetiroFinanzasInteractor interactor;
 
     @BeforeEach
     void setUp() {
         billeteraGateway = mock(IBilleteraGateway.class);
         retiroGateway = mock(IRetiroGateway.class);
-        interactor = new SolicitarRetiroFinanzasInteractor(billeteraGateway, retiroGateway);
+        transaccionBilleteraRepository = mock(com.openlib.market.infrastructure.adapter.out.persistence.repository.TransaccionBilleteraRepository.class);
+        interactor = new SolicitarRetiroFinanzasInteractor(billeteraGateway, retiroGateway, transaccionBilleteraRepository);
     }
 
     @Test

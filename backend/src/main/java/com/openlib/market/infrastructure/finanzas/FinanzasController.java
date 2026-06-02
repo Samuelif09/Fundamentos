@@ -17,18 +17,21 @@ public class FinanzasController {
     private final com.openlib.market.application.finanzas.IExportarVentasUseCase exportarVentasUseCase;
     private final com.openlib.market.application.finanzas.IVerGraficasVentasUseCase verGraficasVentasUseCase;
     private final com.openlib.market.application.finanzas.ISolicitarRetiroFinanzasUseCase solicitarRetiroUseCase;
+    private final com.openlib.market.application.finanzas.ObtenerTransaccionesBilleteraInteractor obtenerTransaccionesBilleteraInteractor;
 
     public FinanzasController(
             IVerFinanzasUseCase verFinanzasUseCase,
             com.openlib.market.application.finanzas.IVerDesgloseFinanzasUseCase verDesgloseUseCase,
             com.openlib.market.application.finanzas.IExportarVentasUseCase exportarVentasUseCase,
             com.openlib.market.application.finanzas.IVerGraficasVentasUseCase verGraficasVentasUseCase,
-            com.openlib.market.application.finanzas.ISolicitarRetiroFinanzasUseCase solicitarRetiroUseCase) {
+            com.openlib.market.application.finanzas.ISolicitarRetiroFinanzasUseCase solicitarRetiroUseCase,
+            com.openlib.market.application.finanzas.ObtenerTransaccionesBilleteraInteractor obtenerTransaccionesBilleteraInteractor) {
         this.verFinanzasUseCase = verFinanzasUseCase;
         this.verDesgloseUseCase = verDesgloseUseCase;
         this.exportarVentasUseCase = exportarVentasUseCase;
         this.verGraficasVentasUseCase = verGraficasVentasUseCase;
         this.solicitarRetiroUseCase = solicitarRetiroUseCase;
+        this.obtenerTransaccionesBilleteraInteractor = obtenerTransaccionesBilleteraInteractor;
     }
 
     @GetMapping("/{idVendedor}/finanzas/ingresos")
@@ -42,18 +45,9 @@ public class FinanzasController {
     }
 
     @GetMapping("/{idVendedor}/finanzas/transacciones")
-    public ResponseEntity<java.util.List<com.openlib.market.application.finanzas.DesgloseFinancieroDto>> obtenerTransacciones(
-            @PathVariable String idVendedor,
-            @RequestParam(value = "page", defaultValue = "0") int page) {
-        
-        // Paginación a nivel de controlador por ahora, asumiendo un gateway que retorne todo o paginado
-        java.util.List<com.openlib.market.application.finanzas.DesgloseFinancieroDto> desglose = verDesgloseUseCase.obtenerDesglose(idVendedor);
-        
-        // Simular paginación simple de 10 elementos (en un sistema real se pasaría Pageable al gateway)
-        int fromIndex = Math.min(page * 10, desglose.size());
-        int toIndex = Math.min(fromIndex + 10, desglose.size());
-        
-        return ResponseEntity.ok(desglose.subList(fromIndex, toIndex));
+    public ResponseEntity<java.util.List<com.openlib.market.application.finanzas.TransactionDto>> obtenerTransaccionesBilletera(
+            @PathVariable String idVendedor) {
+        return ResponseEntity.ok(obtenerTransaccionesBilleteraInteractor.obtenerTransacciones(idVendedor));
     }
 
     @GetMapping("/{idVendedor}/finanzas/exportar")

@@ -6,10 +6,13 @@ public class SolicitarRetiroFinanzasInteractor implements ISolicitarRetiroFinanz
 
     private final IBilleteraGateway billeteraGateway;
     private final IRetiroGateway retiroGateway;
+    private final com.openlib.market.infrastructure.adapter.out.persistence.repository.TransaccionBilleteraRepository transaccionBilleteraRepository;
 
-    public SolicitarRetiroFinanzasInteractor(IBilleteraGateway billeteraGateway, IRetiroGateway retiroGateway) {
+    public SolicitarRetiroFinanzasInteractor(IBilleteraGateway billeteraGateway, IRetiroGateway retiroGateway,
+                                             com.openlib.market.infrastructure.adapter.out.persistence.repository.TransaccionBilleteraRepository transaccionBilleteraRepository) {
         this.billeteraGateway = billeteraGateway;
         this.retiroGateway = retiroGateway;
+        this.transaccionBilleteraRepository = transaccionBilleteraRepository;
     }
 
     @Override
@@ -21,13 +24,20 @@ public class SolicitarRetiroFinanzasInteractor implements ISolicitarRetiroFinanz
         BilleteraVendedor billetera = billeteraGateway.obtenerPorIdVendedor(idVendedor)
                 .orElseGet(() -> new BilleteraVendedor(idVendedor, 0.0));
 
-        // El dominio valida fondos suficientes aquí (lanza FondosInsuficientesException si falla)
+        // El dominio valida fondos suficientes aqu (lanza FondosInsuficientesException si falla)
         billetera.retirar(montoRetiro);
 
         // Crear solicitud en estado PENDIENTE
         SolicitudRetiro solicitud = new SolicitudRetiro(idVendedor, montoRetiro, cuentaDestino);
 
-        // Persistir cambios (secuencial, aceptable en MVP JSON)
+        // Crear registro contable del retiro
+        com.openlib.market.infrastructure.adapter.out.persistence.entity.TransaccionBilleteraEntity tx = 
+            new com.openlib.market.infrastructure.adapter.out.persistence.entity.TransaccionBilleteraEntity(
+                idVendedor, java.time.LocalDateTime.now(), "WITHDRAWAL", "Retiro a cuenta: " + cuentaDestinoStr, -monto
+            );
+
+        // Persistir cambios
+        transaccionBilleteraRepository.save(tx);
         billeteraGateway.guardar(billetera);
         retiroGateway.guardar(solicitud);
     }

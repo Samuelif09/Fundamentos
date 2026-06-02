@@ -58,8 +58,9 @@ public class FinanzasConfig {
     @Bean
     public com.openlib.market.application.finanzas.ISolicitarRetiroFinanzasUseCase solicitarRetiroFinanzasUseCase(
             IBilleteraGateway billeteraGateway,
-            IRetiroGateway retiroGateway) {
-        return new com.openlib.market.application.finanzas.SolicitarRetiroFinanzasInteractor(billeteraGateway, retiroGateway);
+            IRetiroGateway retiroGateway,
+            com.openlib.market.infrastructure.adapter.out.persistence.repository.TransaccionBilleteraRepository transaccionBilleteraRepository) {
+        return new com.openlib.market.application.finanzas.SolicitarRetiroFinanzasInteractor(billeteraGateway, retiroGateway, transaccionBilleteraRepository);
     }
 
     @Bean
