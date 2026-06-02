@@ -125,41 +125,63 @@ public class WalletController {
 
     @FXML
     public void handleWithdraw(ActionEvent event) {
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Solicitar Retiro");
-        dialog.setHeaderText("Ingresa el monto a retirar");
-        dialog.setContentText("Monto ($):");
+        // Paso 1: pedir el monto
+        TextInputDialog montoDialog = new TextInputDialog();
+        montoDialog.setTitle("Solicitar Retiro");
+        montoDialog.setHeaderText("Paso 1: Ingresa el monto a retirar");
+        montoDialog.setContentText("Monto ($):");
 
-        Optional<String> result = dialog.showAndWait();
-        result.ifPresent(value -> {
-            try {
-                double monto = Double.parseDouble(value.replace(",", "."));
-                if (monto <= 0) throw new NumberFormatException();
-                processWithdrawal(monto);
-            } catch (NumberFormatException e) {
-                showError("Monto inválido", "Por favor ingresa un número positivo.");
-            }
-        });
+        Optional<String> montoResult = montoDialog.showAndWait();
+        if (montoResult.isEmpty()) return;
+
+        double monto;
+        try {
+            monto = Double.parseDouble(montoResult.get().replace(",", "."));
+            if (monto <= 0) throw new NumberFormatException();
+        } catch (NumberFormatException e) {
+            showError("Monto inválido", "Por favor ingresa un número positivo.");
+            return;
+        }
+
+        // Paso 2: pedir la cuenta destino
+        TextInputDialog cuentaDialog = new TextInputDialog();
+        cuentaDialog.setTitle("Solicitar Retiro");
+        cuentaDialog.setHeaderText("Paso 2: Ingresa tu número de cuenta o alias");
+        cuentaDialog.setContentText("Cuenta destino:");
+
+        Optional<String> cuentaResult = cuentaDialog.showAndWait();
+        if (cuentaResult.isEmpty() || cuentaResult.get().trim().isEmpty()) {
+            showError("Cuenta requerida", "Debes ingresar una cuenta destino para el retiro.");
+            return;
+        }
+
+        processWithdrawal(monto, cuentaResult.get().trim());
     }
 
-    private void processWithdrawal(double monto) {
+    private void processWithdrawal(double monto, String cuentaDestino) {
         withdrawButton.setDisable(true);
 
-        walletService.requestWithdrawal(monto).whenComplete((response, throwable) -> {
+        walletService.requestWithdrawal(monto, cuentaDestino).whenComplete((response, throwable) -> {
             Platform.runLater(() -> {
                 withdrawButton.setDisable(false);
                 if (throwable != null) {
                     showError("Error en la solicitud", throwable.getMessage());
                 } else if (!response.isSuccess()) {
-                    showError("Error del servidor", response.getErrorMessage());
+                    int status = response.getStatusCode();
+                    if (status == 409) {
+                        showError("Fondos insuficientes", "No tienes saldo suficiente para realizar este retiro.");
+                    } else {
+                        showError("Error del servidor", response.getErrorMessage());
+                    }
                 } else {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Retiro Solicitado");
                     alert.setHeaderText("Solicitud enviada exitosamente");
                     alert.setContentText(String.format(
-                            "Tu solicitud de retiro por $%.2f ha sido recibida.\n\nSerá procesada en los próximos 1-3 días hábiles.", monto));
+                            "Tu solicitud de retiro por $%.2f a la cuenta '%s' ha sido recibida.\n\nSerá procesada en los próximos 1-3 días hábiles.",
+                            monto, cuentaDestino));
                     alert.showAndWait();
-                    loadData(); // Refresh to show new WITHDRAWAL transaction
+                    loadData();
                 }
             });
         });

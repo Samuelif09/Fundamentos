@@ -25,10 +25,10 @@ public class WalletService {
                 });
     }
 
-    public CompletableFuture<ApiResponse<String>> requestWithdrawal(double monto) {
+    public CompletableFuture<ApiResponse<String>> requestWithdrawal(double monto, String cuentaDestino) {
         String idVendedor = SessionManager.getInstance().getUserId();
         String endpoint = "/vendedores/" + idVendedor + "/finanzas/retiros";
-        WithdrawalRequest request = new WithdrawalRequest(monto);
+        WithdrawalRequest request = new WithdrawalRequest(monto, cuentaDestino);
         return ApiClient.post(endpoint, request, String.class);
     }
 }
