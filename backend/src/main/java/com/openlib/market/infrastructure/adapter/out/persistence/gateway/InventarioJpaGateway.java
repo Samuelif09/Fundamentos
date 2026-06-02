@@ -23,4 +23,13 @@ public class InventarioJpaGateway implements IInventarioGateway {
         return repository.findById(isbn)
                 .map(entity -> new StockDisponible(entity.getStockDisponible()));
     }
+
+    @Override
+    @org.springframework.transaction.annotation.Transactional
+    public void agregarStock(String productoId, int cantidad) {
+        var entity = repository.findById(productoId)
+                .orElseThrow(() -> new IllegalArgumentException("El producto con ID " + productoId + " no existe."));
+        entity.setStockDisponible(entity.getStockDisponible() + cantidad);
+        repository.save(entity);
+    }
 }

@@ -4,4 +4,5 @@ import java.util.Optional;
 
 public interface IInventarioGateway {
     Optional<StockDisponible> obtenerStock(String isbn);
+    void agregarStock(String productoId, int cantidad);
 }

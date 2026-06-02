@@ -77,4 +77,9 @@ public class Libro extends ContenidoDigital {
         return new Libro(getId(), getTitulo(), getSinopsis(), getPrecio(), getUrlPortada(), getCategoria(), getIdVendedor(), EstadoLibro.RECHAZADO, getUrlVistaPrevia());
     }
 
+    @Override
+    public boolean requiereControlDeInventario() {
+        return true;
+    }
+
 }

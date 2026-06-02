@@ -11,6 +11,7 @@ import com.openlib.market.infrastructure.adapter.out.persistence.entity.ItemCarr
 import com.openlib.market.infrastructure.adapter.out.persistence.repository.CarritoRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -37,6 +38,7 @@ public class CarritoJpaGateway implements ICarritoGateway {
                 .map(this::toDomain);
     }
 
+    @Transactional // FIX: Transacción atómica para asegurar flush hacia H2
     @Override
     public void guardar(CarritoCompras carrito) {
         String sesionKey = carrito.getSesionId() != null
@@ -48,7 +50,11 @@ public class CarritoJpaGateway implements ICarritoGateway {
 
         entity.getItems().clear();
         for (ItemCarrito item : carrito.getItems()) {
-            entity.addItem(new ItemCarritoEntity(entity, item.getLibroIsbn(), item.getCantidad().getValor()));
+            // FIX: Uso del método helper para sincronización bidireccional antes de persistir
+            ItemCarritoEntity itemEntity = new ItemCarritoEntity();
+            itemEntity.setIsbn(item.getLibroIsbn());
+            itemEntity.setCantidad(item.getCantidad().getValor());
+            entity.agregarItem(itemEntity);
         }
         repository.save(entity);
     }

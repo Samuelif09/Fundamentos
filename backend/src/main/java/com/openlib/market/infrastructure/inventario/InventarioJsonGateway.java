@@ -33,4 +33,9 @@ public class InventarioJsonGateway implements com.openlib.market.domain.catalogo
     public Optional<StockDisponible> obtenerStock(String isbn) {
         return Optional.of(new StockDisponible(10));
     }
+
+    @Override
+    public void agregarStock(String productoId, int cantidad) {
+        // dummy implementation
+    }
 }

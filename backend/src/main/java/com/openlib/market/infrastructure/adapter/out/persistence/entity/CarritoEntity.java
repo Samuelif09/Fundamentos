@@ -15,6 +15,7 @@ public class CarritoEntity {
     @Id
     private String sesionId;
 
+    // FIX: Cascada total (cascade = CascadeType.ALL) y orphanRemoval = true para ciclo de vida de JPA
     @OneToMany(mappedBy = "carrito", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemCarritoEntity> items = new ArrayList<>();
 
@@ -30,7 +31,8 @@ public class CarritoEntity {
     public List<ItemCarritoEntity> getItems() { return items; }
     public void setItems(List<ItemCarritoEntity> items) { this.items = items; }
 
-    public void addItem(ItemCarritoEntity item) {
+    // FIX: Método helper para mantener la sincronización bidireccional
+    public void agregarItem(ItemCarritoEntity item) {
         this.items.add(item);
         item.setCarrito(this);
     }

@@ -81,4 +81,9 @@ public class Audiolibro extends ContenidoDigital {
         }
         return new Audiolibro(getId(), getTitulo(), getSinopsis(), getPrecio(), getUrlPortada(), getCategoria(), getIdVendedor(), EstadoLibro.RECHAZADO, getUrlVistaPrevia(), getDuracion());
     }
+
+    @Override
+    public boolean requiereControlDeInventario() {
+        return false;
+    }
 }

@@ -38,4 +38,9 @@ public class InventarioConfig {
     public IReanudarInventarioUseCase reanudarInventarioUseCase(ILibroPublicacionGateway libroPublicacionGateway) {
         return new ReanudarInventarioInteractor(libroPublicacionGateway);
     }
+
+    @Bean
+    public com.openlib.market.application.inventario.IAbastecerInventarioUseCase abastecerInventarioUseCase(com.openlib.market.domain.inventario.IInventarioGateway inventarioGateway) {
+        return new com.openlib.market.application.inventario.AbastecerInventarioInteractor(inventarioGateway);
+    }
 }

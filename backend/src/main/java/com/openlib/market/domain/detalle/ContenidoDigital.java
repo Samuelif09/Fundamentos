@@ -29,6 +29,7 @@ public abstract class ContenidoDigital {
         this.urlVistaPrevia = urlVistaPrevia;
     }
 
+
     public Isbn getId() { return id; }
     public String getTitulo() { return titulo; }
     public String getSinopsis() { return sinopsis; }
@@ -45,4 +46,6 @@ public abstract class ContenidoDigital {
     public abstract ContenidoDigital reanudar();
     public abstract ContenidoDigital aprobar();
     public abstract ContenidoDigital rechazar(com.openlib.market.domain.curaduria.MotivoRechazo motivo);
+    
+    public abstract boolean requiereControlDeInventario();
 }

@@ -15,7 +15,7 @@ public class ItemCarritoEntity {
     @Id
     private String id;
 
-    @ManyToOne
+    @ManyToOne // FIX: Configura la relación bidireccional hacia el padre
     @JoinColumn(name = "sesion_id", nullable = false)
     private CarritoEntity carrito;
 
@@ -25,7 +25,9 @@ public class ItemCarritoEntity {
     @Column(nullable = false)
     private int cantidad;
 
-    public ItemCarritoEntity() {}
+    public ItemCarritoEntity() {
+        this.id = UUID.randomUUID().toString(); // FIX: Autogenerar el ID por defecto para Hibernate
+    }
 
     public ItemCarritoEntity(CarritoEntity carrito, String isbn, int cantidad) {
         this.id = UUID.randomUUID().toString();
@@ -39,5 +41,8 @@ public class ItemCarritoEntity {
     public void setCarrito(CarritoEntity carrito) { this.carrito = carrito; }
 
     public String getIsbn() { return isbn; }
+    public void setIsbn(String isbn) { this.isbn = isbn; }
+
     public int getCantidad() { return cantidad; }
+    public void setCantidad(int cantidad) { this.cantidad = cantidad; }
 }

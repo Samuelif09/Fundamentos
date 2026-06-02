@@ -42,7 +42,7 @@ public class CursoVirtual extends ContenidoDigital {
         return new CursoVirtual(getId(), getTitulo(), getSinopsis(), getPrecio(), getUrlPortada(), getCategoria(), getIdVendedor(), EstadoLibro.PAUSADO, getUrlVistaPrevia(), getDuracionEstimada());
     }
 
-    
+
     @Override
     public CursoVirtual aprobar() {
         if (getEstado() != EstadoLibro.PENDIENTE) {
@@ -77,5 +77,10 @@ public class CursoVirtual extends ContenidoDigital {
             throw new TransicionEstadoInvalidaException("Solo los cursos en revisión (PENDIENTE) pueden ser rechazados");
         }
         return new CursoVirtual(getId(), getTitulo(), getSinopsis(), getPrecio(), getUrlPortada(), getCategoria(), getIdVendedor(), EstadoLibro.RECHAZADO, getUrlVistaPrevia(), getDuracionEstimada());
+    }
+
+    @Override
+    public boolean requiereControlDeInventario() {
+        return false;
     }
 }
