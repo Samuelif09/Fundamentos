@@ -41,7 +41,8 @@ public class SubirVistaPreviaInteractor implements ISubirVistaPreviaUseCase {
                 libro.getCategoria(),
                 libro.getIdVendedor(),
                 libro.getEstado(),
-                urlVistaPrevia
+                urlVistaPrevia,
+                libro.getStock()
         );
 
         libroGateway.actualizar(libroActualizado);
