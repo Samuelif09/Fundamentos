@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
+import com.openlib.market.infrastructure.adapter.out.persistence.repository.LibroRepository;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -31,8 +32,12 @@ public class CatalogoJpaGatewayTest {
     @Autowired
     private LibroJpaGateway libroJpaGateway;
 
+    @Autowired
+    private LibroRepository libroRepository;
+
     @BeforeEach
     public void setUp() {
+        libroRepository.deleteAll();
         libroJpaGateway.actualizar(new Libro(new Isbn("111"), "Spring Boot in Action", "...", new Precio(30.0), "url", "Programacion", "u1"));
         libroJpaGateway.actualizar(new Libro(new Isbn("222"), "Clean Architecture", "...", new Precio(40.0), "url", "Arquitectura", "u1"));
         libroJpaGateway.actualizar(new Libro(new Isbn("333"), "Clean Code", "...", new Precio(35.0), "url", "Programacion", "u2"));

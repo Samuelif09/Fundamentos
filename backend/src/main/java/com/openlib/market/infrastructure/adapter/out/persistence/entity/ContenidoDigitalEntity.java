@@ -42,6 +42,10 @@ public abstract class ContenidoDigitalEntity {
 
     private double promedioCalificacion = 0.0;
 
+    private java.time.LocalDate fechaPublicacion = java.time.LocalDate.now();
+
+    private int ventasTotales = 0;
+
     public ContenidoDigitalEntity() {}
 
     public ContenidoDigitalEntity(String isbn, String titulo, String sinopsis, double precio, String urlPortada, String categoria, String idVendedor, String estado, String urlVistaPrevia, int stockDisponible) {
@@ -92,4 +96,10 @@ public abstract class ContenidoDigitalEntity {
 
     public double getPromedioCalificacion() { return promedioCalificacion; }
     public void setPromedioCalificacion(double promedioCalificacion) { this.promedioCalificacion = promedioCalificacion; }
+
+    public java.time.LocalDate getFechaPublicacion() { return fechaPublicacion; }
+    public void setFechaPublicacion(java.time.LocalDate fechaPublicacion) { this.fechaPublicacion = fechaPublicacion; }
+
+    public int getVentasTotales() { return ventasTotales; }
+    public void setVentasTotales(int ventasTotales) { this.ventasTotales = ventasTotales; }
 }
