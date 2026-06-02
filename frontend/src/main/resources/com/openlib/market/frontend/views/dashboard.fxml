@@ -80,64 +80,8 @@
                         <VBox.margin><Insets top="20"/></VBox.margin>
                         <Label text="Recomendados para ti" styleClass="section-title" />
                         
-                        <!-- GRID DE LIBROS (Dummy Data) -->
-                        <FlowPane hgap="20" vgap="20">
-                            <!-- Book 1 -->
-                            <VBox styleClass="book-card" prefWidth="180" spacing="10">
-                                <VBox styleClass="book-cover-placeholder" prefHeight="220" prefWidth="150">
-                                    <Label text="🖼️" style="-fx-font-size: 40px; -fx-text-fill: #94a3b8;" />
-                                </VBox>
-                                <Label text="El Imperio Final" styleClass="book-title" wrapText="true" />
-                                <Label text="Brandon Sanderson" styleClass="book-author" />
-                                <HBox alignment="CENTER_LEFT" spacing="10">
-                                    <Label text="\$ 15.99" styleClass="book-price" />
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <Button text="Ver" styleClass="btn-buy" />
-                                </HBox>
-                            </VBox>
-
-                            <!-- Book 2 -->
-                            <VBox styleClass="book-card" prefWidth="180" spacing="10">
-                                <VBox styleClass="book-cover-placeholder" prefHeight="220" prefWidth="150" style="-fx-background-color: #3b2a52;">
-                                    <Label text="🖼️" style="-fx-font-size: 40px; -fx-text-fill: #94a3b8;" />
-                                </VBox>
-                                <Label text="Hábitos Atómicos" styleClass="book-title" wrapText="true" />
-                                <Label text="James Clear" styleClass="book-author" />
-                                <HBox alignment="CENTER_LEFT" spacing="10">
-                                    <Label text="\$ 12.50" styleClass="book-price" />
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <Button text="Ver" styleClass="btn-buy" />
-                                </HBox>
-                            </VBox>
-
-                            <!-- Book 3 -->
-                            <VBox styleClass="book-card" prefWidth="180" spacing="10">
-                                <VBox styleClass="book-cover-placeholder" prefHeight="220" prefWidth="150" style="-fx-background-color: #2a4052;">
-                                    <Label text="🖼️" style="-fx-font-size: 40px; -fx-text-fill: #94a3b8;" />
-                                </VBox>
-                                <Label text="Neuromante" styleClass="book-title" wrapText="true" />
-                                <Label text="William Gibson" styleClass="book-author" />
-                                <HBox alignment="CENTER_LEFT" spacing="10">
-                                    <Label text="\$ 9.99" styleClass="book-price" />
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <Button text="Ver" styleClass="btn-buy" />
-                                </HBox>
-                            </VBox>
-
-                            <!-- Book 4 -->
-                            <VBox styleClass="book-card" prefWidth="180" spacing="10">
-                                <VBox styleClass="book-cover-placeholder" prefHeight="220" prefWidth="150" style="-fx-background-color: #522a36;">
-                                    <Label text="🖼️" style="-fx-font-size: 40px; -fx-text-fill: #94a3b8;" />
-                                </VBox>
-                                <Label text="Dune" styleClass="book-title" wrapText="true" />
-                                <Label text="Frank Herbert" styleClass="book-author" />
-                                <HBox alignment="CENTER_LEFT" spacing="10">
-                                    <Label text="\$ 14.00" styleClass="book-price" />
-                                    <Region HBox.hgrow="ALWAYS" />
-                                    <Button text="Ver" styleClass="btn-buy" />
-                                </HBox>
-                            </VBox>
-                            
+                        <!-- GRID DE LIBROS DINÁMICO -->
+                        <FlowPane fx:id="recommendedFlowPane" hgap="20" vgap="20">
                         </FlowPane>
                     </VBox>
                 </VBox>
