@@ -37,7 +37,7 @@ class CuraduriaDomainTest {
                 "url",
                 "cat",
                 "vendedor1",
-                EstadoLibro.EN_REVISION,
+                EstadoLibro.PENDIENTE,
                 null
         );
 
@@ -59,6 +59,6 @@ class CuraduriaDomainTest {
                 null
         );
 
-        assertThrows(IllegalStateException.class, () -> libro.rechazar(new MotivoRechazo("Motivo valido aqui")));
+        assertThrows(com.openlib.market.domain.shared.AccionNoPermitidaException.class, () -> libro.rechazar(new MotivoRechazo("Motivo valido aqui")));
     }
 }

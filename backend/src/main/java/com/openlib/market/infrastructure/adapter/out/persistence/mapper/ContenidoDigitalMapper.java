@@ -13,7 +13,7 @@ public class ContenidoDigitalMapper {
     public ContenidoDigital toDomain(ContenidoDigitalEntity entity) {
         Isbn isbn = new Isbn(entity.getIsbn());
         Precio precio = new Precio(entity.getPrecio());
-        EstadoLibro estado = EstadoLibro.valueOf(entity.getEstado() != null ? entity.getEstado() : "ACTIVO");
+        EstadoLibro estado = EstadoLibro.valueOf(entity.getEstado() != null ? entity.getEstado() : "PENDIENTE");
 
         if (entity instanceof AudiolibroEntity) {
             AudiolibroEntity audio = (AudiolibroEntity) entity;

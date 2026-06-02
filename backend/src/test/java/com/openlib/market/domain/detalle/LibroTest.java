@@ -31,27 +31,27 @@ class LibroTest {
     void debeIniciarseComoActivoPorDefecto() {
         Isbn isbn = new Isbn("978-3-16-148410-0");
         Libro libro = new Libro(isbn, "Clean Code", "Sinopsis", new Precio(10.0), "url");
-        assertEquals(EstadoLibro.ACTIVO, libro.getEstado());
+        assertEquals(EstadoLibro.PENDIENTE, libro.getEstado());
     }
 
     @Test
     void debePausarLibroExitosamente() {
         Isbn isbn = new Isbn("978-3-16-148410-0");
-        Libro libro = new Libro(isbn, "Clean Code", "Sinopsis", new Precio(10.0), "url");
+        Libro libro = new Libro(isbn, "Clean Code", "Sinopsis", new Precio(10.0), "url").aprobar();
         
         Libro libroPausado = libro.pausar();
         
         assertEquals(EstadoLibro.PAUSADO, libroPausado.getEstado());
         // El original sigue inmutable
-        assertEquals(EstadoLibro.ACTIVO, libro.getEstado());
+        assertEquals(EstadoLibro.PUBLICADO, libro.getEstado());
     }
 
     @Test
     void debeLanzarExcepcionAlPausarLibroYaPausado() {
         Isbn isbn = new Isbn("978-3-16-148410-0");
-        Libro libro = new Libro(isbn, "Clean Code", "Sinopsis", new Precio(10.0), "url").pausar();
+        Libro libro = new Libro(isbn, "Clean Code", "Sinopsis", new Precio(10.0), "url").aprobar().pausar();
         
-        assertThrows(IllegalStateException.class, libro::pausar);
+        assertThrows(com.openlib.market.domain.shared.AccionNoPermitidaException.class, libro::pausar);
     }
 
     @Test
@@ -59,6 +59,6 @@ class LibroTest {
         Isbn isbn = new Isbn("978-3-16-148410-0");
         Libro libro = new Libro(isbn, "Clean Code", "Sinopsis", new Precio(10.0), "url", "categoria", "vendedor", EstadoLibro.BLOQUEADO, null);
         
-        assertThrows(IllegalStateException.class, libro::pausar);
+        assertThrows(TransicionEstadoInvalidaException.class, libro::pausar);
     }
 }

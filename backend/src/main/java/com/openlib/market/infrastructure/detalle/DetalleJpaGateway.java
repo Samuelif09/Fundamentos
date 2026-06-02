@@ -32,7 +32,7 @@ public class DetalleJpaGateway implements IDetalleGateway {
                         entity.getUrlPortada(),
                         entity.getCategoria(),
                         entity.getIdVendedor(),
-                        entity.getEstado() != null ? EstadoLibro.valueOf(entity.getEstado()) : EstadoLibro.ACTIVO,
+                        entity.getEstado() != null ? EstadoLibro.valueOf(entity.getEstado()) : EstadoLibro.PENDIENTE,
                         entity.getUrlVistaPrevia()
                 ));
     }

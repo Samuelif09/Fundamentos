@@ -27,7 +27,7 @@ class DespublicarInventarioInteractorTest {
 
     @Test
     void debeDespublicarLibroExitosamenteSiEsPropietario() {
-        Libro libroActivo = new Libro(new Isbn("isbn-1"), "T", "S", new Precio(10), "U", "C", "seller-1");
+        Libro libroActivo = new Libro(new Isbn("isbn-1"), "T", "S", new Precio(10), "U", "C", "seller-1").aprobar();
         when(libroGateway.obtenerPorIsbn("isbn-1")).thenReturn(Optional.of(libroActivo));
 
         interactor.despublicar("seller-1", "isbn-1");
@@ -37,7 +37,7 @@ class DespublicarInventarioInteractorTest {
 
     @Test
     void debeLanzarExcepcionSiVendedorNoEsPropietario() {
-        Libro libroActivo = new Libro(new Isbn("isbn-1"), "T", "S", new Precio(10), "U", "C", "seller-1");
+        Libro libroActivo = new Libro(new Isbn("isbn-1"), "T", "S", new Precio(10), "U", "C", "seller-1").aprobar();
         when(libroGateway.obtenerPorIsbn("isbn-1")).thenReturn(Optional.of(libroActivo));
 
         assertThrows(IllegalStateException.class, () -> interactor.despublicar("hacker-2", "isbn-1"));

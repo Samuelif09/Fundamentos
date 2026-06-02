@@ -52,6 +52,18 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
+    @ExceptionHandler(com.openlib.market.domain.detalle.TransicionEstadoInvalidaException.class)
+    public ResponseEntity<Map<String, Object>> handleTransicionEstadoInvalida(
+            com.openlib.market.domain.detalle.TransicionEstadoInvalidaException ex) {
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ExceptionHandler(com.openlib.market.domain.shared.AccionNoPermitidaException.class)
+    public ResponseEntity<Map<String, Object>> handleAccionNoPermitida(
+            com.openlib.market.domain.shared.AccionNoPermitidaException ex) {
+        return buildErrorResponse(HttpStatus.FORBIDDEN, ex.getMessage());
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGenericException(Exception ex) {
         ex.printStackTrace();

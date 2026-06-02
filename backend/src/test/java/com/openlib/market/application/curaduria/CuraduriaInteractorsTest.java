@@ -38,8 +38,8 @@ class CuraduriaInteractorsTest {
 
     @Test
     void debeRetornarLibrosEnRevisionConDatosDeVendedor() {
-        Libro libro = new Libro(new Isbn("isbn1"), "Titulo", "Sinopsis", new Precio(10.0), "url", "cat", "seller1", EstadoLibro.EN_REVISION, null);
-        when(curaduriaGateway.listarPorEstado(EstadoLibro.EN_REVISION, 0, 10)).thenReturn(List.of(libro));
+        Libro libro = new Libro(new Isbn("isbn1"), "Titulo", "Sinopsis", new Precio(10.0), "url", "cat", "seller1", EstadoLibro.PENDIENTE, null);
+        when(curaduriaGateway.listarPorEstado(EstadoLibro.PENDIENTE, 0, 10)).thenReturn(List.of(libro));
         when(vendedorGateway.obtenerPorId("seller1")).thenReturn(Optional.of(new Vendedor("seller1", "user1", new RazonSocial("Mi Tienda"), new IdentificacionTributaria("12345"))));
 
         List<LibroParaRevisionDto> result = revisarInteractor.listarLibrosPendientes(0, 10);
@@ -51,7 +51,7 @@ class CuraduriaInteractorsTest {
 
     @Test
     void debeRechazarLibroYNotificarAlVendedor() {
-        Libro libro = new Libro(new Isbn("isbn1"), "Titulo", "Sinopsis", new Precio(10.0), "url", "cat", "seller1", EstadoLibro.EN_REVISION, null);
+        Libro libro = new Libro(new Isbn("isbn1"), "Titulo", "Sinopsis", new Precio(10.0), "url", "cat", "seller1", EstadoLibro.PENDIENTE, null);
         when(curaduriaGateway.obtenerPorIsbn("isbn1")).thenReturn(Optional.of(libro));
 
         rechazarInteractor.rechazarLibro("isbn1", "El libro contiene errores ortográficos graves.");
