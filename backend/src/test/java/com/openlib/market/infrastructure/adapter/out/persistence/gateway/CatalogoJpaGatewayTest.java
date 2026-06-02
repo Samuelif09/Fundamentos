@@ -31,8 +31,12 @@ public class CatalogoJpaGatewayTest {
     @Autowired
     private LibroJpaGateway libroJpaGateway;
 
+    @Autowired
+    private com.openlib.market.infrastructure.adapter.out.persistence.repository.ContenidoDigitalRepository repository;
+
     @BeforeEach
     public void setUp() {
+        repository.deleteAll();
         libroJpaGateway.actualizar(new Libro(new Isbn("111"), "Spring Boot in Action", "...", new Precio(30.0), "url", "Programacion", "u1"));
         libroJpaGateway.actualizar(new Libro(new Isbn("222"), "Clean Architecture", "...", new Precio(40.0), "url", "Arquitectura", "u1"));
         libroJpaGateway.actualizar(new Libro(new Isbn("333"), "Clean Code", "...", new Precio(35.0), "url", "Programacion", "u2"));

@@ -78,7 +78,7 @@ public class LibroPublicacionJsonGateway implements ILibroPublicacionGateway, IC
                         dto.urlPortada(),
                         dto.categoria(),
                         dto.idVendedor(),
-                        dto.estado() != null ? dto.estado() : com.openlib.market.domain.detalle.EstadoLibro.ACTIVO,
+                        dto.estado() != null ? dto.estado() : com.openlib.market.domain.detalle.EstadoLibro.PENDIENTE,
                         dto.urlVistaPrevia()
                 ));
     }

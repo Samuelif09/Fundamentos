@@ -37,7 +37,7 @@ class CuraduriaDomainTest {
                 "url",
                 "cat",
                 "vendedor1",
-                EstadoLibro.EN_REVISION,
+                EstadoLibro.PENDIENTE,
                 null
         );
 

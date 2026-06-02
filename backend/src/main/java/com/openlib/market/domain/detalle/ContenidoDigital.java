@@ -25,7 +25,7 @@ public abstract class ContenidoDigital {
         this.categoria = categoria;
         this.idVendedor = idVendedor;
         this.tipoFormato = tipoFormato;
-        this.estado = estado != null ? estado : EstadoLibro.ACTIVO;
+        this.estado = estado != null ? estado : EstadoLibro.PENDIENTE;
         this.urlVistaPrevia = urlVistaPrevia;
     }
 
@@ -42,5 +42,7 @@ public abstract class ContenidoDigital {
 
     public abstract ContenidoDigital actualizarPrecio(Precio nuevoPrecio);
     public abstract ContenidoDigital pausar();
+    public abstract ContenidoDigital reanudar();
+    public abstract ContenidoDigital aprobar();
     public abstract ContenidoDigital rechazar(com.openlib.market.domain.curaduria.MotivoRechazo motivo);
 }

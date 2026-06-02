@@ -9,6 +9,8 @@ import com.openlib.market.domain.curaduria.ICuraduriaGateway;
 import com.openlib.market.domain.vendedor.IVendedorGateway;
 import com.openlib.market.application.curaduria.IRechazarCuraduriaContenidoUseCase;
 import com.openlib.market.application.curaduria.RechazarCuraduriaContenidoInteractor;
+import com.openlib.market.application.curaduria.IAprobarCuraduriaContenidoUseCase;
+import com.openlib.market.application.curaduria.AprobarCuraduriaContenidoInteractor;
 import com.openlib.market.domain.notificacion.INotificacionGateway;
 @Configuration
 public class CuraduriaConfig {
@@ -27,5 +29,11 @@ public class CuraduriaConfig {
             INotificacionGateway notificacionGateway) {
 
         return new RechazarCuraduriaContenidoInteractor(curaduriaGateway, notificacionGateway);
+    }
+
+    @Bean
+    public IAprobarCuraduriaContenidoUseCase aprobarCuraduriaContenidoUseCase(
+            ICuraduriaGateway curaduriaGateway) {
+        return new AprobarCuraduriaContenidoInteractor(curaduriaGateway);
     }
 }

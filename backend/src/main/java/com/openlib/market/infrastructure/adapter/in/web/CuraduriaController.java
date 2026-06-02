@@ -1,5 +1,6 @@
 package com.openlib.market.infrastructure.adapter.in.web;
 
+import com.openlib.market.application.curaduria.IAprobarCuraduriaContenidoUseCase;
 import com.openlib.market.application.curaduria.IRechazarCuraduriaContenidoUseCase;
 import com.openlib.market.application.curaduria.IRevisarCuraduriaContenidoUseCase;
 import com.openlib.market.application.curaduria.LibroParaRevisionDto;
@@ -16,11 +17,14 @@ public class CuraduriaController {
 
     private final IRevisarCuraduriaContenidoUseCase revisarCuraduriaUseCase;
     private final IRechazarCuraduriaContenidoUseCase rechazarCuraduriaUseCase;
+    private final IAprobarCuraduriaContenidoUseCase aprobarCuraduriaUseCase;
 
     public CuraduriaController(IRevisarCuraduriaContenidoUseCase revisarCuraduriaUseCase,
-                               IRechazarCuraduriaContenidoUseCase rechazarCuraduriaUseCase) {
+                               IRechazarCuraduriaContenidoUseCase rechazarCuraduriaUseCase,
+                               IAprobarCuraduriaContenidoUseCase aprobarCuraduriaUseCase) {
         this.revisarCuraduriaUseCase = revisarCuraduriaUseCase;
         this.rechazarCuraduriaUseCase = rechazarCuraduriaUseCase;
+        this.aprobarCuraduriaUseCase = aprobarCuraduriaUseCase;
     }
 
     @GetMapping("/libros-pendientes")
@@ -45,9 +49,12 @@ public class CuraduriaController {
 
     @PostMapping("/libros/{id}/aprobar")
     public ResponseEntity<String> approveBook(@PathVariable String id) {
-        // Todo: Implementar IAprobarCuraduriaContenidoUseCase si fuese necesario.
-        // Simulamos aprobación exitosa para mantener el flujo con el frontend.
-        return ResponseEntity.ok("Libro aprobado correctamente");
+        try {
+            aprobarCuraduriaUseCase.aprobarLibro(id);
+            return ResponseEntity.ok("Libro aprobado correctamente");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
     @PostMapping("/libros/{id}/rechazar")

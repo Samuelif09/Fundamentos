@@ -64,7 +64,9 @@
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/cupon/AplicarCuponRequestDto.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/cupon/AplicarCuponResponseDto.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/cupon/IAplicarCuponUseCase.java
+/home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/curaduria/AprobarCuraduriaContenidoInteractor.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/curaduria/DetectarCuraduriaContenidoInteractor.java
+/home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/curaduria/IAprobarCuraduriaContenidoUseCase.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/curaduria/IDetectarCuraduriaContenidoUseCase.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/curaduria/IRechazarCuraduriaContenidoUseCase.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/curaduria/IRevisarCuraduriaContenidoUseCase.java
@@ -127,8 +129,10 @@
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/inventario/IActualizarInventarioUseCase.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/inventario/ICrearDescuentoInventarioUseCase.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/inventario/IDespublicarInventarioUseCase.java
+/home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/inventario/IReanudarInventarioUseCase.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/inventario/IVerInventarioUseCase.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/inventario/LibroInventarioDto.java
+/home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/inventario/ReanudarInventarioInteractor.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/inventario/VerInventarioInteractor.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/marketing/BannerDto.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/application/marketing/GestionarBannersInteractor.java
@@ -348,6 +352,7 @@
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/domain/detalle/LibroNoEncontradoException.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/domain/detalle/Precio.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/domain/detalle/TipoFormato.java
+/home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/domain/detalle/TransicionEstadoInvalidaException.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/domain/estadisticas/EstadisticaLector.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/domain/explorar/CriterioTendencia.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/domain/explorar/ITendenciaGateway.java
@@ -455,6 +460,7 @@
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/domain/resena/IResenaGateway.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/domain/resena/Resena.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/domain/resena/RespuestaDuplicadaException.java
+/home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/domain/shared/AccionNoPermitidaException.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/domain/shared/IEventPublisher.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/domain/soporte/Disputa.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/domain/soporte/ElementoReportado.java
@@ -728,6 +734,7 @@
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/infrastructure/inventario/InventarioController.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/infrastructure/inventario/InventarioJsonGateway.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/infrastructure/inventario/PromocionJsonGateway.java
+/home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/infrastructure/inventario/ReanudarInventarioController.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/infrastructure/listadeseos/ListaDeseosDummyGateway.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/infrastructure/marketing/BannerJsonGateway.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/backend/src/main/java/com/openlib/market/infrastructure/marketing/MarketingAdminController.java

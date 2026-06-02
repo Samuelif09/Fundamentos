@@ -31,7 +31,7 @@ class LibroTest {
     void debeIniciarseComoActivoPorDefecto() {
         Isbn isbn = new Isbn("978-3-16-148410-0");
         Libro libro = new Libro(isbn, "Clean Code", "Sinopsis", new Precio(10.0), "url");
-        assertEquals(EstadoLibro.ACTIVO, libro.getEstado());
+        assertEquals(EstadoLibro.PENDIENTE, libro.getEstado());
     }
 
     @Test
@@ -43,7 +43,7 @@ class LibroTest {
         
         assertEquals(EstadoLibro.PAUSADO, libroPausado.getEstado());
         // El original sigue inmutable
-        assertEquals(EstadoLibro.ACTIVO, libro.getEstado());
+        assertEquals(EstadoLibro.PENDIENTE, libro.getEstado());
     }
 
     @Test

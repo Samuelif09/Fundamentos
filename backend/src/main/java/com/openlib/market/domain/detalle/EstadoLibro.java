@@ -1,9 +1,9 @@
 package com.openlib.market.domain.detalle;
 
 public enum EstadoLibro {
-    ACTIVO,
+    PUBLICADO,
     PAUSADO,
     BLOQUEADO,
-    EN_REVISION,
+    PENDIENTE,
     RECHAZADO
 }
