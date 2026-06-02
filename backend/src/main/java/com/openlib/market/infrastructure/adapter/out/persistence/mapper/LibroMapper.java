@@ -20,7 +20,7 @@ public class LibroMapper {
                 entity.getUrlPortada(),
                 entity.getCategoria(),
                 entity.getIdVendedor(),
-                EstadoLibro.valueOf(entity.getEstado() != null ? entity.getEstado() : "ACTIVO"),
+                EstadoLibro.valueOf(entity.getEstado() != null ? entity.getEstado() : "PENDIENTE"),
                 entity.getUrlVistaPrevia()
         );
     }

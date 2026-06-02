@@ -1,6 +1,5 @@
 package com.openlib.market.infrastructure.adapter.in.web;
 
-import com.openlib.market.domain.autenticacion.CredencialesInvalidasException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.NoHandlerFoundException;
@@ -45,11 +44,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<Map<String, Object>> handleNoHandlerFound(NoHandlerFoundException ex) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, "Recurso no encontrado");
-    }
-
-    @ExceptionHandler(CredencialesInvalidasException.class)
-    public ResponseEntity<String> handleCredencialesInvalidas(CredencialesInvalidasException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(com.openlib.market.domain.detalle.TransicionEstadoInvalidaException.class)

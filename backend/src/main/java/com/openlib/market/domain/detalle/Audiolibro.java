@@ -1,5 +1,7 @@
 package com.openlib.market.domain.detalle;
 
+import com.openlib.market.domain.soporte.TransicionEstadoInvalidaException;
+
 public class Audiolibro extends ContenidoDigital {
     
     private final DuracionEnMinutos duracion;
@@ -43,26 +45,28 @@ public class Audiolibro extends ContenidoDigital {
     }
 
     @Override
-    public Audiolibro reanudar() {
-        if (getEstado() == EstadoLibro.RECHAZADO || getEstado() == EstadoLibro.BLOQUEADO) {
-            throw new TransicionEstadoInvalidaException("No se puede alterar el estado de un audiolibro bloqueado o rechazado");
-        }
-        if (getEstado() == EstadoLibro.PUBLICADO) {
-            throw new com.openlib.market.domain.shared.AccionNoPermitidaException("El audiolibro ya está publicado");
-        }
-        if (getEstado() != EstadoLibro.PAUSADO) {
-            throw new TransicionEstadoInvalidaException("Solo los audiolibros PAUSADOS pueden ser reanudados");
-        }
-        return new Audiolibro(getId(), getTitulo(), getSinopsis(), getPrecio(), getUrlPortada(), getCategoria(), getIdVendedor(), EstadoLibro.PUBLICADO, getUrlVistaPrevia(), getDuracion());
-    }
-
-    @Override
     public Audiolibro aprobar() {
         if (getEstado() != EstadoLibro.PENDIENTE) {
             throw new TransicionEstadoInvalidaException("Solo los audiolibros en revisión (PENDIENTE) pueden ser aprobados");
         }
         return new Audiolibro(getId(), getTitulo(), getSinopsis(), getPrecio(), getUrlPortada(), getCategoria(), getIdVendedor(), EstadoLibro.PUBLICADO, getUrlVistaPrevia(), getDuracion());
     }
+
+    @Override
+    public Audiolibro reanudar() {
+        if (getEstado() == EstadoLibro.RECHAZADO || getEstado() == EstadoLibro.BLOQUEADO) {
+            throw new com.openlib.market.domain.detalle.TransicionEstadoInvalidaException("No se puede alterar el estado de un audiolibro bloqueado o rechazado");
+        }
+        if (getEstado() == EstadoLibro.PUBLICADO) {
+            throw new com.openlib.market.domain.shared.AccionNoPermitidaException("El audiolibro ya está publicado");
+        }
+        if (getEstado() != EstadoLibro.PAUSADO) {
+            throw new com.openlib.market.domain.detalle.TransicionEstadoInvalidaException("Solo los audiolibros PAUSADOS pueden ser reanudados");
+        }
+        return new Audiolibro(getId(), getTitulo(), getSinopsis(), getPrecio(), getUrlPortada(), getCategoria(), getIdVendedor(), EstadoLibro.PUBLICADO, getUrlVistaPrevia(), getDuracion());
+    }
+
+
 
     @Override
     public Audiolibro rechazar(com.openlib.market.domain.curaduria.MotivoRechazo motivo) {

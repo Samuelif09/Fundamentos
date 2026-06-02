@@ -42,24 +42,25 @@ public class CursoVirtual extends ContenidoDigital {
         return new CursoVirtual(getId(), getTitulo(), getSinopsis(), getPrecio(), getUrlPortada(), getCategoria(), getIdVendedor(), EstadoLibro.PAUSADO, getUrlVistaPrevia(), getDuracionEstimada());
     }
 
+    
     @Override
-    public CursoVirtual reanudar() {
-        if (getEstado() == EstadoLibro.RECHAZADO || getEstado() == EstadoLibro.BLOQUEADO) {
-            throw new TransicionEstadoInvalidaException("No se puede alterar el estado de un curso bloqueado o rechazado");
-        }
-        if (getEstado() == EstadoLibro.PUBLICADO) {
-            throw new com.openlib.market.domain.shared.AccionNoPermitidaException("El curso ya está publicado");
-        }
-        if (getEstado() != EstadoLibro.PAUSADO) {
-            throw new TransicionEstadoInvalidaException("Solo los cursos PAUSADOS pueden ser reanudados");
+    public CursoVirtual aprobar() {
+        if (getEstado() != EstadoLibro.PENDIENTE) {
+            throw new TransicionEstadoInvalidaException("Solo los cursos en revisión (PENDIENTE) pueden ser aprobados");
         }
         return new CursoVirtual(getId(), getTitulo(), getSinopsis(), getPrecio(), getUrlPortada(), getCategoria(), getIdVendedor(), EstadoLibro.PUBLICADO, getUrlVistaPrevia(), getDuracionEstimada());
     }
 
     @Override
-    public CursoVirtual aprobar() {
-        if (getEstado() != EstadoLibro.PENDIENTE) {
-            throw new TransicionEstadoInvalidaException("Solo los cursos en revisión (PENDIENTE) pueden ser aprobados");
+    public CursoVirtual reanudar() {
+        if (getEstado() == EstadoLibro.RECHAZADO || getEstado() == EstadoLibro.BLOQUEADO) {
+            throw new com.openlib.market.domain.detalle.TransicionEstadoInvalidaException("No se puede alterar el estado de un curso bloqueado o rechazado");
+        }
+        if (getEstado() == EstadoLibro.PUBLICADO) {
+            throw new com.openlib.market.domain.shared.AccionNoPermitidaException("El curso ya está publicado");
+        }
+        if (getEstado() != EstadoLibro.PAUSADO) {
+            throw new com.openlib.market.domain.detalle.TransicionEstadoInvalidaException("Solo los cursos PAUSADOS pueden ser reanudados");
         }
         return new CursoVirtual(getId(), getTitulo(), getSinopsis(), getPrecio(), getUrlPortada(), getCategoria(), getIdVendedor(), EstadoLibro.PUBLICADO, getUrlVistaPrevia(), getDuracionEstimada());
     }
