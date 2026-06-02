@@ -32,19 +32,6 @@ public class PerfilUsuarioController {
         return buildPerfil(userId, email);
     }
 
-    // ── /usuarios/me/pedidos ───────────────────────────────────────────────
-    @GetMapping("/me/pedidos")
-    public List<Map<String, Object>> getPedidosMe(@RequestParam(required = false) String email) {
-        return buildPedidos(email);
-    }
-
-    // ── /usuarios/{userId}/pedidos ────────────────────────────────────────
-    @GetMapping("/{userId}/pedidos")
-    public List<Map<String, Object>> getPedidosById(@PathVariable String userId,
-                                                     @RequestParam(required = false) String email) {
-        return buildPedidos(email);
-    }
-
     // ── Helpers ────────────────────────────────────────────────────────────
 
     private Map<String, Object> buildPerfil(String userId, String email) {

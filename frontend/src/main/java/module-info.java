@@ -3,6 +3,7 @@ module com.openlib.market.frontend {
     requires javafx.fxml;
     requires java.net.http;
     requires com.fasterxml.jackson.databind;
+    requires java.desktop;
 
     opens com.openlib.market.frontend to javafx.fxml;
     opens com.openlib.market.frontend.controller to javafx.fxml;

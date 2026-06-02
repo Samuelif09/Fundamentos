@@ -9,7 +9,7 @@ import java.util.concurrent.CompletableFuture;
 public class SellerDashboardService {
 
     public CompletableFuture<SellerFinance> getFinances() {
-        return ApiClient.get("/vendedores/me/finanzas/ingresos", SellerFinance.class)
+        return ApiClient.get("/vendedores/me/dashboard/finanzas", SellerFinance.class)
                 .thenApply(response -> {
                     if (response.isSuccess() && response.getBody() != null) {
                         return response.getBody();
@@ -19,7 +19,7 @@ public class SellerDashboardService {
     }
 
     public CompletableFuture<SellerSalesMetrics> getMetrics() {
-        return ApiClient.get("/vendedores/me/metricas/ventas", SellerSalesMetrics.class)
+        return ApiClient.get("/vendedores/me/dashboard/metricas", SellerSalesMetrics.class)
                 .thenApply(response -> {
                     if (response.isSuccess() && response.getBody() != null) {
                         return response.getBody();

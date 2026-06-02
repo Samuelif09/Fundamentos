@@ -70,4 +70,8 @@ public class CarritoCompras {
                 .findFirst()
                 .ifPresent(item -> item.cambiarCantidad(nuevaCantidad));
     }
+
+    public void vaciar() {
+        this.items.clear();
+    }
 }

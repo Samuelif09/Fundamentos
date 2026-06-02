@@ -103,12 +103,17 @@ public class BibliotecaController {
     }
 
     private void handleDownload(Book book) {
-        // Simulando la descarga
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Descarga Iniciada");
-        alert.setHeaderText("Descargando " + book.getTitle());
-        alert.setContentText("El archivo EPUB/PDF se está descargando en tu equipo.");
-        alert.showAndWait();
+        try {
+            String userId = com.openlib.market.frontend.session.SessionManager.getInstance().getUserId();
+            if (userId == null || userId.isEmpty()) {
+                showError("No hay sesión", "Debes iniciar sesión para descargar el libro.");
+                return;
+            }
+            String url = "http://localhost:8080/api/v1/biblioteca/" + book.getId() + "/descargar?userId=" + userId;
+            java.awt.Desktop.getDesktop().browse(new java.net.URI(url));
+        } catch (Exception e) {
+            showError("Error de descarga", "No se pudo abrir el archivo PDF: " + e.getMessage());
+        }
     }
 
     @FXML

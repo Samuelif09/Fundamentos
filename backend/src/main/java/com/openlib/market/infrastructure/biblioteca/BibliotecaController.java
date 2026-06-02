@@ -14,9 +14,18 @@ import org.springframework.web.bind.annotation.*;
 public class BibliotecaController {
 
     private final IDescargarPostCompraUseCase descargarUseCase;
+    private final com.openlib.market.application.biblioteca.IVerBibliotecaUseCase verBibliotecaUseCase;
 
-    public BibliotecaController(IDescargarPostCompraUseCase descargarUseCase) {
+    public BibliotecaController(
+            IDescargarPostCompraUseCase descargarUseCase,
+            com.openlib.market.application.biblioteca.IVerBibliotecaUseCase verBibliotecaUseCase) {
         this.descargarUseCase = descargarUseCase;
+        this.verBibliotecaUseCase = verBibliotecaUseCase;
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<java.util.List<com.openlib.market.domain.catalogo.LibroCatalogo>> listarBiblioteca(@PathVariable("userId") String userId) {
+        return ResponseEntity.ok(verBibliotecaUseCase.obtenerBibliotecaUsuario(userId));
     }
 
     @GetMapping("/{idLibro}/descargar")
@@ -29,7 +38,13 @@ public class BibliotecaController {
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.parseMediaType(archivo.getMimeType()));
-            headers.setContentDispositionFormData("attachment", idLibro + ".pdf");
+            
+            String filename = idLibro + ".pdf";
+            if (archivo.getUrl() != null && archivo.getUrl().contains("/")) {
+                filename = archivo.getUrl().substring(archivo.getUrl().lastIndexOf('/') + 1);
+            }
+            
+            headers.setContentDispositionFormData("attachment", filename);
 
             return new ResponseEntity<>(archivo.getContenidoFisico(), headers, HttpStatus.OK);
 

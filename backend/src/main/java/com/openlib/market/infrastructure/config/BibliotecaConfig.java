@@ -16,4 +16,10 @@ public class BibliotecaConfig {
             IAlmacenamientoGateway almacenamientoGateway) {
         return new DescargarPostCompraInteractor(bibliotecaGateway, almacenamientoGateway);
     }
+
+    @Bean
+    public com.openlib.market.application.biblioteca.IVerBibliotecaUseCase verBibliotecaUseCase(
+            IBibliotecaGateway bibliotecaGateway) {
+        return new com.openlib.market.application.biblioteca.VerBibliotecaInteractor(bibliotecaGateway);
+    }
 }

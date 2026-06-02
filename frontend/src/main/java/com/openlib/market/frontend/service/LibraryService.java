@@ -10,8 +10,11 @@ import java.util.concurrent.CompletableFuture;
 public class LibraryService {
 
     public CompletableFuture<List<Book>> getMyLibrary() {
-        // Alias "me" para el usuario activo de la sesión
-        String url = "/usuarios/me/biblioteca";
+        String userId = com.openlib.market.frontend.session.SessionManager.getInstance().getUserId();
+        if (userId == null || userId.isBlank()) {
+            return CompletableFuture.failedFuture(new IllegalStateException("No hay sesión activa para acceder a la biblioteca."));
+        }
+        String url = "/biblioteca/" + userId;
         
         return ApiClient.get(url, Book[].class)
                 .thenApply(response -> {

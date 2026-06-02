@@ -15,8 +15,10 @@ public class CheckoutConfig {
     @Bean
     public IIngresarCheckoutUseCase ingresarCheckoutUseCase(
             IPasarelaPagoGateway pasarelaPago, 
-            IEventPublisher eventPublisher) {
-        return new IngresarCheckoutInteractor(pasarelaPago, eventPublisher);
+            IEventPublisher eventPublisher,
+            com.openlib.market.domain.carrito.ICarritoGateway carritoGateway,
+            com.openlib.market.domain.pago.IPedidoGateway pedidoGateway) {
+        return new IngresarCheckoutInteractor(pasarelaPago, eventPublisher, carritoGateway, pedidoGateway);
     }
 
     @Bean

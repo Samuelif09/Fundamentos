@@ -62,9 +62,9 @@ public class CheckoutController {
                 if (throwable != null) {
                     showError("Error al procesar el pago: " + throwable.getMessage());
                 } else if (response != null) {
-                    if (response.getStatus() == null || "COMPLETED".equalsIgnoreCase(response.getStatus()) || "SUCCESS".equalsIgnoreCase(response.getStatus())) {
+                    if (response.getStatus() == null || "COMPLETED".equalsIgnoreCase(response.getStatus()) || "SUCCESS".equalsIgnoreCase(response.getStatus()) || "PAGADO".equalsIgnoreCase(response.getStatus())) {
                         showSuccess("¡Pago completado con éxito! Tu orden #" + response.getOrderId() + " está en camino.");
-                        SceneManager.navigateTo("catalogo");
+                        SceneManager.navigateTo("biblioteca");
                     } else {
                         showError("El pago fue rechazado o está pendiente: " + response.getMessage());
                     }

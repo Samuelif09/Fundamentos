@@ -18,18 +18,18 @@ public class PedidoController {
         this.ingresarCheckoutUseCase = ingresarCheckoutUseCase;
     }
 
-    @PostMapping("/checkout")
-    public ResponseEntity<CheckoutResponseDto> procesarCheckout(@RequestBody CheckoutFrontendRequestDto frontRequest) {
-        // En una implementación real con Autenticación (Spring Security), el idUsuario se obtendría del JWT en contexto.
-        // Simulamos valores fijos para completar el CheckoutFlow del Frontend por ahora.
-        String idUsuario = "usuario-autenticado-123";
+    @PostMapping("/{userId}/checkout")
+    public ResponseEntity<CheckoutResponseDto> procesarCheckout(
+            @PathVariable("userId") String idUsuario,
+            @RequestBody CheckoutFrontendRequestDto frontRequest) {
+
         String idPedidoGenerado = UUID.randomUUID().toString().substring(0, 8);
 
-        // Mapeamos a la petición del backend (mockeando el carrito actual y monto)
+        // Mapeamos a la petición del backend (monto ya no es necesario pasarlo quemado, el interactor lo calculará)
         CheckoutRequestDto backRequest = new CheckoutRequestDto(
                 idUsuario,
                 idPedidoGenerado,
-                15000.0, // Monto simulado
+                0.0, // Monto calculado en el interactor
                 frontRequest.getPaymentMethod()
         );
 

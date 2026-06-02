@@ -9,7 +9,11 @@ import java.util.concurrent.CompletableFuture;
 public class CheckoutService {
 
     public CompletableFuture<CheckoutResponse> processCheckout(CheckoutRequest request) {
-        String url = "/pedidos/checkout";
+        String userId = com.openlib.market.frontend.session.SessionManager.getInstance().getUserId();
+        if (userId == null || userId.isEmpty()) {
+            return CompletableFuture.failedFuture(new IllegalStateException("No hay sesión activa."));
+        }
+        String url = "/pedidos/" + userId + "/checkout";
         return ApiClient.post(url, request, CheckoutResponse.class)
                 .thenApply(response -> {
                     if (response.isSuccess() && response.getBody() != null) {
