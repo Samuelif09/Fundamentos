@@ -30,4 +30,10 @@ public class ResenaConfig {
             ILibroPublicacionGateway libroPublicacionGateway) {
         return new ResponderReputacionInteractor(resenaGateway, libroPublicacionGateway);
     }
+
+    @Bean
+    public com.openlib.market.application.resena.IAgregarResenaUseCase agregarResenaUseCase(
+            IResenaGateway resenaGateway) {
+        return new com.openlib.market.application.resena.AgregarResenaInteractor(resenaGateway);
+    }
 }

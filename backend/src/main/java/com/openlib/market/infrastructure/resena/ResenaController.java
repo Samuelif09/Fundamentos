@@ -15,10 +15,14 @@ public class ResenaController {
 
     private final IVerResenasUseCase verResenasUseCase;
     private final ILeerResenasUseCase leerResenasUseCase;
+    private final com.openlib.market.application.resena.IAgregarResenaUseCase agregarResenaUseCase;
 
-    public ResenaController(IVerResenasUseCase verResenasUseCase, ILeerResenasUseCase leerResenasUseCase) {
+    public ResenaController(IVerResenasUseCase verResenasUseCase, 
+                            ILeerResenasUseCase leerResenasUseCase,
+                            com.openlib.market.application.resena.IAgregarResenaUseCase agregarResenaUseCase) {
         this.verResenasUseCase = verResenasUseCase;
         this.leerResenasUseCase = leerResenasUseCase;
+        this.agregarResenaUseCase = agregarResenaUseCase;
     }
 
     @GetMapping("/{id}/resenas")
@@ -35,6 +39,20 @@ public class ResenaController {
         try {
             List<ResenaResponseDto> resenas = leerResenasUseCase.leerResenas(id, offset, limit);
             return ResponseEntity.ok(resenas);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().build();
+        } catch (Exception e) {
+            return ResponseEntity.internalServerError().build();
+        }
+    }
+
+    @PostMapping("/{isbn}/resenas")
+    public ResponseEntity<Void> agregarResena(
+            @PathVariable("isbn") String isbn,
+            @RequestBody com.openlib.market.application.resena.AgregarResenaRequestDto request) {
+        try {
+            agregarResenaUseCase.ejecutar(isbn, request);
+            return ResponseEntity.ok().build();
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().build();
         } catch (Exception e) {
