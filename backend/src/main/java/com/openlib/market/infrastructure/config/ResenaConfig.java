@@ -36,4 +36,16 @@ public class ResenaConfig {
             IResenaGateway resenaGateway) {
         return new com.openlib.market.application.resena.AgregarResenaInteractor(resenaGateway);
     }
+
+    @Bean
+    public com.openlib.market.application.resena.IEliminarResenaUseCase eliminarResenaUseCase(
+            IResenaGateway resenaGateway) {
+        return new com.openlib.market.application.resena.EliminarResenaInteractor(resenaGateway);
+    }
+
+    @Bean
+    public com.openlib.market.application.resena.IModerarResenaUseCase moderarResenaUseCase(
+            IResenaGateway resenaGateway) {
+        return new com.openlib.market.application.resena.ModerarResenaInteractor(resenaGateway);
+    }
 }

@@ -93,5 +93,15 @@ public class ResenaJsonGateway implements IResenaGateway {
         }
     }
 
+    @Override
+    public void eliminar(String id) {
+        baseDatosEnMemoria.removeIf(dto -> dto.id().equals(id));
+        try {
+            objectMapper.writeValue(jsonFile, baseDatosEnMemoria);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     private record ResenaDto(String id, String isbnLibro, int calificacion, String texto, LocalDate fecha, String respuestaVendedor) {}
 }
