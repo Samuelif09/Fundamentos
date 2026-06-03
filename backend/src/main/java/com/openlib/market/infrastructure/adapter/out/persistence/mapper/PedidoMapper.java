@@ -40,10 +40,12 @@ public class PedidoMapper {
         entity.setTipoMetodoPago(domain.getTipoMetodoPago() != null ? domain.getTipoMetodoPago().name() : null);
         
         if (domain.getItems() != null) {
-            java.util.List<com.openlib.market.infrastructure.adapter.out.persistence.entity.ItemPedidoEntity> entityItems = domain.getItems().stream()
-                    .map(i -> new com.openlib.market.infrastructure.adapter.out.persistence.entity.ItemPedidoEntity(entity, i.getIsbn(), i.getCantidad(), i.getPrecioUnitario()))
-                    .collect(java.util.stream.Collectors.toList());
-            entity.setItems(entityItems);
+            for (com.openlib.market.domain.pago.ItemPedido i : domain.getItems()) {
+                com.openlib.market.infrastructure.adapter.out.persistence.entity.ItemPedidoEntity itemEntity = new com.openlib.market.infrastructure.adapter.out.persistence.entity.ItemPedidoEntity(
+                        entity, i.getIsbn(), i.getCantidad(), i.getPrecioUnitario()
+                );
+                entity.addItem(itemEntity);
+            }
         }
         return entity;
     }

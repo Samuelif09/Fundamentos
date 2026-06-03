@@ -29,9 +29,23 @@ public class ProcesarCheckoutInteractor {
         CarritoCompras carrito = carritoGateway.obtenerPorSesionId(sesionId)
                 .orElseThrow(() -> new ReglaNegocioInvalidaException("El carrito no existe para la sesión indicada"));
 
+        // FIX: Sumar los subtotales de los ítems de manera explícita (Mapeo de Carrito a Pedido)
+        double sumatoriaSubtotales = 0.0;
+        java.util.List<com.openlib.market.domain.pago.ItemPedido> itemsPedido = new java.util.ArrayList<>();
+        
+        for (com.openlib.market.domain.carrito.ItemCarrito itemCarrito : carrito.getItems()) {
+            com.openlib.market.domain.pago.ItemPedido itemPedido = new com.openlib.market.domain.pago.ItemPedido(
+                    itemCarrito.getLibroIsbn(),
+                    itemCarrito.getCantidad().getValor(),
+                    itemCarrito.getPrecioUnitario()
+            );
+            itemsPedido.add(itemPedido);
+            sumatoriaSubtotales += (itemCarrito.getCantidad().getValor() * itemCarrito.getPrecioUnitario());
+        }
+
         // Calcular total con Decorators
-        CalculadorPrecio calculadorBase = new PrecioBase(carrito.getTotal());
-        CalculadorPrecio calculadorConImpuesto = new ImpuestoDecorator(calculadorBase, 0.19); // 19% IVA por ejemplo
+        CalculadorPrecio calculadorBase = new PrecioBase(sumatoriaSubtotales);
+        CalculadorPrecio calculadorConImpuesto = new ImpuestoDecorator(calculadorBase, 0.19); // 19% IVA
         double totalCalculado = calculadorConImpuesto.calcularTotal();
 
         // Procesar pago
@@ -52,10 +66,15 @@ public class ProcesarCheckoutInteractor {
         // Crear pedido mediante factory
         Pedido pedido = pedidoFactory.crearDesdeCarrito(carrito, sesionIdStr, totalCalculado, idUsuario, metodoPago);
 
+        // FIX: Transferencia lógica y explícita de los agregados (ítems) al Pedido recién creado
+        for (com.openlib.market.domain.pago.ItemPedido item : itemsPedido) {
+            pedido.addItem(item);
+        }
+
         // Cambiar estado del pedido usando el patrón State
         pedido.marcarComoPagado();
 
-        // Guardar pedido
+        // Guardar pedido (ya hidratado con todos los Items)
         pedidoGateway.guardar(pedido);
 
         // Emitir Evento (Observer)
