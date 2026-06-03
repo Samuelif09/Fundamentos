@@ -18,24 +18,17 @@ import java.util.Map;
 public class AdminDashboardController {
 
     private final IVerDashboardMetricasUseCase verDashboardMetricasUseCase;
+    private final com.openlib.market.application.dashboardGlobal.ObtenerKpisDashboardInteractor obtenerKpisDashboardInteractor;
 
-    public AdminDashboardController(IVerDashboardMetricasUseCase verDashboardMetricasUseCase) {
+    public AdminDashboardController(IVerDashboardMetricasUseCase verDashboardMetricasUseCase,
+                                    com.openlib.market.application.dashboardGlobal.ObtenerKpisDashboardInteractor obtenerKpisDashboardInteractor) {
         this.verDashboardMetricasUseCase = verDashboardMetricasUseCase;
+        this.obtenerKpisDashboardInteractor = obtenerKpisDashboardInteractor;
     }
 
     @GetMapping("/kpis")
     public ResponseEntity<AdminKpiDto> getKpis() {
-        // En un caso real, cada métrica se obtiene de un Gateway o Interactor.
-        // Dado que la UI requiere estos cuatro valores simultáneamente,
-        // combinaremos valores simulados con consultas si estuvieran disponibles.
-        
-        AdminKpiDto kpis = new AdminKpiDto(
-                1250,      // totalUsers
-                12,        // pendingSellers (Curaduría)
-                840,       // totalBooks
-                25600.50   // platformRevenue
-        );
-        return ResponseEntity.ok(kpis);
+        return ResponseEntity.ok(obtenerKpisDashboardInteractor.ejecutar());
     }
 
     @GetMapping("/graficas")
