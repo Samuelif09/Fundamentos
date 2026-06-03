@@ -6,4 +6,5 @@ public interface ICarritoGateway {
     Optional<CarritoCompras> obtenerPorSesionId(SesionId sesionId);
     Optional<CarritoCompras> obtenerPorUsuario(IdUsuario idUsuario);
     void guardar(CarritoCompras carrito);
+    void eliminarPorSesionId(SesionId sesionId);
 }

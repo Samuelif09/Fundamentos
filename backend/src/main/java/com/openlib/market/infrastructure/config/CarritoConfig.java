@@ -23,4 +23,12 @@ public class CarritoConfig {
         return new AgregarCarritoInteractor(carritoGateway, libroGateway, inventarioGateway, contenidoGateway);
     }
 
+    @Bean
+    public com.openlib.market.application.carrito.IVerCarritoUseCase verCarritoUseCase(
+            ICarritoGateway carritoGateway,
+            IContenidoDigitalGateway contenidoGateway
+    ) {
+        return new com.openlib.market.application.carrito.VerCarritoInteractor(carritoGateway, contenidoGateway);
+    }
+
 }

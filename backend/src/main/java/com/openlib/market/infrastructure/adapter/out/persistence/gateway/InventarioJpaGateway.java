@@ -32,4 +32,13 @@ public class InventarioJpaGateway implements IInventarioGateway {
         entity.setStockDisponible(entity.getStockDisponible() + cantidad);
         repository.save(entity);
     }
+
+    @Override
+    @org.springframework.transaction.annotation.Transactional
+    public void restarStock(String productoId, int cantidad) {
+        var entity = repository.findById(productoId)
+                .orElseThrow(() -> new IllegalArgumentException("El producto con ID " + productoId + " no existe."));
+        entity.setStockDisponible(entity.getStockDisponible() - cantidad);
+        repository.save(entity);
+    }
 }

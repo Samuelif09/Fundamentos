@@ -58,16 +58,33 @@ public class Pedido {
         this.items.add(item);
     }
 
+    private com.openlib.market.domain.checkout.PedidoState pedidoState;
+
     public void setIdUsuario(String idUsuario) { this.idUsuario = idUsuario; }
 
-    public void marcarComoPagado() {
-        if (this.estado != EstadoPedido.PENDIENTE) {
-            throw new IllegalStateException("Solo se puede pagar un pedido pendiente");
+    public void setEstado(EstadoPedido estado) {
+        this.estado = estado;
+    }
+
+    public void setPedidoState(com.openlib.market.domain.checkout.PedidoState pedidoState) {
+        this.pedidoState = pedidoState;
+    }
+
+    public void procesarPago() {
+        if (this.pedidoState == null) {
+            if (this.estado == EstadoPedido.PAGADO) this.pedidoState = new com.openlib.market.domain.checkout.PagadoState();
+            else if (this.estado == EstadoPedido.FALLIDO) this.pedidoState = new com.openlib.market.domain.checkout.FallidoState();
+            else this.pedidoState = new com.openlib.market.domain.checkout.PendientePagoState();
         }
-        this.estado = EstadoPedido.PAGADO;
+        this.pedidoState.procesarPago(this);
+    }
+
+    public void marcarComoPagado() {
+        procesarPago();
     }
 
     public void marcarComoFallido() {
         this.estado = EstadoPedido.FALLIDO;
+        this.pedidoState = new com.openlib.market.domain.checkout.FallidoState();
     }
 }

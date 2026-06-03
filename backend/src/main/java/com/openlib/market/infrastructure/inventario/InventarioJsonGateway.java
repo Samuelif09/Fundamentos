@@ -38,4 +38,9 @@ public class InventarioJsonGateway implements com.openlib.market.domain.catalogo
     public void agregarStock(String productoId, int cantidad) {
         // dummy implementation
     }
+
+    @Override
+    public void restarStock(String productoId, int cantidad) {
+        // dummy implementation
+    }
 }

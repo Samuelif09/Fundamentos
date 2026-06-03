@@ -16,6 +16,7 @@ public class ItemCarritoEntity {
     private String id;
 
     @ManyToOne // FIX: Configura la relación bidireccional hacia el padre
+    @org.hibernate.annotations.OnDelete(action = org.hibernate.annotations.OnDeleteAction.CASCADE)
     @JoinColumn(name = "sesion_id", nullable = false)
     private CarritoEntity carrito;
 

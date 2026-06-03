@@ -59,4 +59,9 @@ public class CarritoCompras {
         }
         return subtotal;
     }
+
+    public void vaciar() {
+        this.items.clear();
+        this.cuponAplicado = null;
+    }
 }
