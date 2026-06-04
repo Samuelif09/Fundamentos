@@ -49,7 +49,8 @@ public class UsuarioMapper {
                 entity.getId(),
                 new com.openlib.market.domain.autenticacion.Email(entity.getEmail()),
                 entity.getPassword(),
-                entity.getRol()
+                entity.getRol(),
+                entity.getEstadoCuenta()
         );
     }
 }

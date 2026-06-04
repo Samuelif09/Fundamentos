@@ -27,6 +27,16 @@ public class UsuarioEntity {
     @Column(name = "motivo_suspension")
     private String motivoSuspension;
 
+    @Column(name = "fecha_registro")
+    private java.time.LocalDate fechaRegistro;
+
+    @PrePersist
+    protected void onCreate() {
+        if (fechaRegistro == null) {
+            fechaRegistro = java.time.LocalDate.now();
+        }
+    }
+
     public UsuarioEntity() {}
 
     public String getId() { return id; }
@@ -49,4 +59,7 @@ public class UsuarioEntity {
 
     public String getMotivoSuspension() { return motivoSuspension; }
     public void setMotivoSuspension(String motivoSuspension) { this.motivoSuspension = motivoSuspension; }
+
+    public java.time.LocalDate getFechaRegistro() { return fechaRegistro; }
+    public void setFechaRegistro(java.time.LocalDate fechaRegistro) { this.fechaRegistro = fechaRegistro; }
 }

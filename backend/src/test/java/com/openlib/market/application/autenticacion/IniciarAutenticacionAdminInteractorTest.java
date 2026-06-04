@@ -17,52 +17,52 @@ import static org.mockito.Mockito.*;
 @DisplayName("A-01: IniciarAutenticacionAdminInteractor")
 class IniciarAutenticacionAdminInteractorTest {
 
-    private IAdminGateway adminGateway;
+    private IUsuarioAuthGateway usuarioGateway;
     private IVerificadorPasswordGateway verificadorPassword;
     private ITokenGeneratorGateway tokenGenerator;
     private IniciarAutenticacionAdminInteractor interactor;
-
+ 
     @BeforeEach
     void setUp() {
-        adminGateway = mock(IAdminGateway.class);
+        usuarioGateway = mock(IUsuarioAuthGateway.class);
         verificadorPassword = mock(IVerificadorPasswordGateway.class);
         tokenGenerator = mock(ITokenGeneratorGateway.class);
-        interactor = new IniciarAutenticacionAdminInteractor(adminGateway, verificadorPassword, tokenGenerator);
+        interactor = new IniciarAutenticacionAdminInteractor(usuarioGateway, verificadorPassword, tokenGenerator);
     }
-
+ 
     @Test
-    @DisplayName("Debe lanzar CredencialesInvalidasException si el email no existe en admins")
+    @DisplayName("Debe lanzar CredencialesInvalidasException si el email no existe en la base de datos")
     void debeLanzarExcepcionSiEmailNoExiste() {
-        when(adminGateway.buscarPorEmail(any(Email.class))).thenReturn(Optional.empty());
-
+        when(usuarioGateway.buscarPorEmail(any(Email.class))).thenReturn(Optional.empty());
+ 
         LoginRequestDto req = new LoginRequestDto("nadie@openlib.com", "123456");
         assertThrows(CredencialesInvalidasException.class,
-                () -> interactor.iniciarSesionAdmin(req));
+                 () -> interactor.iniciarSesionAdmin(req));
     }
-
+ 
     @Test
     @DisplayName("Debe lanzar CredencialesInvalidasException si la contraseña es incorrecta")
     void debeLanzarExcepcionSiPasswordIncorrecto() {
-        Administrador admin = new Administrador("a-1", new Email("admin@openlib.com"), "hashed", Rol.ROLE_ADMIN);
-        when(adminGateway.buscarPorEmail(any(Email.class))).thenReturn(Optional.of(admin));
+        UsuarioAuth usuario = new UsuarioAuth("a-1", new Email("admin@openlib.com"), "hashed", "ADMIN");
+        when(usuarioGateway.buscarPorEmail(any(Email.class))).thenReturn(Optional.of(usuario));
         when(verificadorPassword.verificar(any(PasswordPlano.class), eq("hashed"))).thenReturn(false);
-
+ 
         LoginRequestDto req = new LoginRequestDto("admin@openlib.com", "wrongpass");
         assertThrows(CredencialesInvalidasException.class,
-                () -> interactor.iniciarSesionAdmin(req));
+                 () -> interactor.iniciarSesionAdmin(req));
     }
-
+ 
     @Test
     @DisplayName("Debe retornar token JWT si las credenciales de admin son válidas")
     void debeRetornarTokenSiCredencialesAdminValidas() {
-        Administrador admin = new Administrador("a-1", new Email("admin@openlib.com"), "hashed", Rol.ROLE_ADMIN);
-        when(adminGateway.buscarPorEmail(any(Email.class))).thenReturn(Optional.of(admin));
+        UsuarioAuth usuario = new UsuarioAuth("a-1", new Email("admin@openlib.com"), "hashed", "ADMIN");
+        when(usuarioGateway.buscarPorEmail(any(Email.class))).thenReturn(Optional.of(usuario));
         when(verificadorPassword.verificar(any(PasswordPlano.class), eq("hashed"))).thenReturn(true);
         when(tokenGenerator.generar(any(UsuarioAuth.class))).thenReturn(new TokenAcceso("jwt.admin.token"));
-
+ 
         LoginRequestDto req = new LoginRequestDto("admin@openlib.com", "correctpass");
         LoginResponseDto res = interactor.iniciarSesionAdmin(req);
-
+ 
         assertEquals("jwt.admin.token", res.getToken());
     }
 
@@ -74,6 +74,18 @@ class IniciarAutenticacionAdminInteractorTest {
         assertThrows(AccesoDenegadoException.class, () ->
                 new Administrador("u-1", new Email("comprador@openlib.com"), "hash", Rol.ROLE_BUYER)
         );
+    }
+
+    @Test
+    @DisplayName("AccesoDenegadoException si el usuario tiene credenciales correctas pero rol COMPRADOR")
+    void debeLanzarAccesoDenegadoSiUsuarioTieneRolComprador() {
+        UsuarioAuth usuario = new UsuarioAuth("u-1", new Email("comprador@openlib.com"), "hashed", "COMPRADOR");
+        when(usuarioGateway.buscarPorEmail(any(Email.class))).thenReturn(Optional.of(usuario));
+        when(verificadorPassword.verificar(any(PasswordPlano.class), eq("hashed"))).thenReturn(true);
+
+        LoginRequestDto req = new LoginRequestDto("comprador@openlib.com", "correctpass");
+        assertThrows(AccesoDenegadoException.class,
+                () -> interactor.iniciarSesionAdmin(req));
     }
 
     @Test

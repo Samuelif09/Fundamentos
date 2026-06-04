@@ -1,6 +1,9 @@
 package com.openlib.market.application.autenticacion;
 
 import com.openlib.market.domain.autenticacion.*;
+import com.openlib.market.domain.vendedor.IVendedorGateway;
+import com.openlib.market.domain.vendedor.Vendedor;
+import com.openlib.market.domain.vendedor.EstadoVerificacion;
 
 import java.util.Optional;
 
@@ -10,13 +13,16 @@ public class IniciarAutenticacionInteractor implements IIniciarAutenticacionUseC
     private final IUsuarioAuthGateway usuarioGateway;
     private final IVerificadorPasswordGateway verificadorPassword;
     private final ITokenGeneratorGateway tokenGenerator;
+    private final IVendedorGateway vendedorGateway;
 
     public IniciarAutenticacionInteractor(IUsuarioAuthGateway usuarioGateway,
             IVerificadorPasswordGateway verificadorPassword,
-            ITokenGeneratorGateway tokenGenerator) {
+            ITokenGeneratorGateway tokenGenerator,
+            IVendedorGateway vendedorGateway) {
         this.usuarioGateway = usuarioGateway;
         this.verificadorPassword = verificadorPassword;
         this.tokenGenerator = tokenGenerator;
+        this.vendedorGateway = vendedorGateway;
     }
 
     @Override
@@ -51,6 +57,24 @@ public class IniciarAutenticacionInteractor implements IIniciarAutenticacionUseC
 
         if (!esValida) {
             throw new CredencialesInvalidasException();
+        }
+
+        // Bloquear cuentas con estado diferente a ACTIVO
+        String estadoCuenta = usuario.getEstadoCuenta();
+        if (estadoCuenta != null) {
+            if ("PENDIENTE".equalsIgnoreCase(estadoCuenta)) {
+                throw new AccesoDenegadoException("Tu cuenta está pendiente de aprobación por el administrador. Recibirás acceso una vez revisada tu solicitud.");
+            }
+            if ("SUSPENDIDO".equalsIgnoreCase(estadoCuenta) || "BANEADO".equalsIgnoreCase(estadoCuenta)) {
+                throw new AccesoDenegadoException("Tu cuenta ha sido suspendida. Contacta al soporte para más información.");
+            }
+        }
+
+        if ("VENDEDOR".equalsIgnoreCase(usuario.getRol())) {
+            Optional<Vendedor> vendedorOpt = vendedorGateway.obtenerPorIdUsuario(usuario.getId());
+            if (vendedorOpt.isEmpty() || vendedorOpt.get().getEstadoVerificacion() != EstadoVerificacion.APROBADO) {
+                throw new AccesoDenegadoException("La cuenta de vendedor está pendiente de aprobación.");
+            }
         }
 
         TokenAcceso token = tokenGenerator.generar(usuario);

@@ -2,6 +2,7 @@ package com.openlib.market.infrastructure.config;
 
 import com.openlib.market.application.autenticacion.*;
 import com.openlib.market.domain.autenticacion.*;
+import com.openlib.market.domain.vendedor.IVendedorGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,9 +21,10 @@ public class AuthConfig {
     public IIniciarAutenticacionUseCase iniciarAutenticacionUseCase(
             IUsuarioAuthGateway usuarioGateway,
             IVerificadorPasswordGateway verificadorPassword,
-            ITokenGeneratorGateway tokenGenerator) {
+            ITokenGeneratorGateway tokenGenerator,
+            IVendedorGateway vendedorGateway) {
 
-        return new IniciarAutenticacionInteractor(usuarioGateway, verificadorPassword, tokenGenerator);
+        return new IniciarAutenticacionInteractor(usuarioGateway, verificadorPassword, tokenGenerator, vendedorGateway);
     }
 
     @Bean

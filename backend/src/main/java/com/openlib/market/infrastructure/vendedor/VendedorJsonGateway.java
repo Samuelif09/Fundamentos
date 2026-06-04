@@ -82,6 +82,20 @@ public class VendedorJsonGateway implements IVendedorGateway {
     }
 
     @Override
+    public Optional<Vendedor> obtenerPorIdUsuario(String idUsuario) {
+        return baseDatosEnMemoria.stream()
+                .filter(dto -> dto.idUsuario().equals(idUsuario))
+                .map(dto -> new Vendedor(
+                        dto.id(),
+                        dto.idUsuario(),
+                        new RazonSocial(dto.razonSocial()),
+                        new IdentificacionTributaria(dto.identificacionTributaria()),
+                        dto.estadoVerificacion() != null ? EstadoVerificacion.valueOf(dto.estadoVerificacion()) : EstadoVerificacion.NO_INICIADO
+                ))
+                .findFirst();
+    }
+
+    @Override
     public boolean existePorIdentificacionTributaria(String identificacionTributaria) {
         return baseDatosEnMemoria.stream()
                 .anyMatch(v -> v.identificacionTributaria().equals(identificacionTributaria));

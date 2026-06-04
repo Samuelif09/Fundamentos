@@ -7,4 +7,5 @@ public interface IVendedorGateway {
     void actualizar(Vendedor vendedor);
     boolean existePorIdentificacionTributaria(String identificacionTributaria);
     Optional<Vendedor> obtenerPorId(String id);
+    Optional<Vendedor> obtenerPorIdUsuario(String idUsuario);
 }

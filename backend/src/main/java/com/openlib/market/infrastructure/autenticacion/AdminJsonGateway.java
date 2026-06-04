@@ -40,11 +40,16 @@ public class AdminJsonGateway implements IAdminGateway {
         }
         // Administrador por defecto para entornos de desarrollo/prueba
         this.baseDatosEnMemoria = new ArrayList<>();
-        this.baseDatosEnMemoria.add(new AdminDto("admin-1", "admin@openlib.com", "admin123", "ROLE_ADMIN", new ArrayList<>()));
+        this.baseDatosEnMemoria.add(new AdminDto("admin-1", "admin@openlib.com", "YWRtaW4xMjM=", "ROLE_ADMIN", new ArrayList<>()));
     }
 
     @Override
     public Optional<Administrador> buscarPorEmail(Email email) {
+        System.out.println("DEBUG ADMIN GATEWAY: searching for email: " + email.getDireccion());
+        System.out.println("DEBUG ADMIN GATEWAY: baseDatosEnMemoria size: " + baseDatosEnMemoria.size());
+        for (AdminDto dto : baseDatosEnMemoria) {
+            System.out.println("DEBUG ADMIN GATEWAY: found in list -> email: " + dto.email() + ", rol: " + dto.rol());
+        }
         return baseDatosEnMemoria.stream()
                 .filter(dto -> dto.email().equalsIgnoreCase(email.getDireccion()))
                 .filter(dto -> "ROLE_ADMIN".equals(dto.rol()))

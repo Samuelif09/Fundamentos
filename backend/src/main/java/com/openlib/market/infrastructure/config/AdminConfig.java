@@ -49,10 +49,10 @@ public class AdminConfig {
     // ── A-01: Autenticación Admin ──────────────────────────────────────────────
     @Bean
     public IIniciarAutenticacionAdminUseCase iniciarAutenticacionAdminUseCase(
-            IAdminGateway adminGateway,
+            com.openlib.market.domain.autenticacion.IUsuarioAuthGateway usuarioGateway,
             IVerificadorPasswordGateway verificadorPassword,
             ITokenGeneratorGateway tokenGenerator) {
-        return new IniciarAutenticacionAdminInteractor(adminGateway, verificadorPassword, tokenGenerator);
+        return new IniciarAutenticacionAdminInteractor(usuarioGateway, verificadorPassword, tokenGenerator);
     }
 
     // ── A-02: Dashboard KPIs ───────────────────────────────────────────────────

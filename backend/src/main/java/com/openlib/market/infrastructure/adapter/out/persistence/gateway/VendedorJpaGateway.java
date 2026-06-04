@@ -47,4 +47,9 @@ public class VendedorJpaGateway implements IVendedorGateway {
     public Optional<Vendedor> obtenerPorId(String id) {
         return repository.findById(id).map(mapper::toDomain);
     }
+
+    @Override
+    public Optional<Vendedor> obtenerPorIdUsuario(String idUsuario) {
+        return repository.findByIdUsuario(idUsuario).map(mapper::toDomain);
+    }
 }

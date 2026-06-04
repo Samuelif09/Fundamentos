@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface VendedorRepository extends JpaRepository<VendedorEntity, String> {
     boolean existsByIdentificacionTributaria(String identificacionTributaria);
     Optional<VendedorEntity> findByIdUsuario(String idUsuario);
+    long countByEstadoVerificacion(String estadoVerificacion);
 }

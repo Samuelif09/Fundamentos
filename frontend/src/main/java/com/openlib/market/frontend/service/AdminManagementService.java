@@ -7,6 +7,7 @@ import com.openlib.market.frontend.model.AdminUser;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 
 public class AdminManagementService {
@@ -23,11 +24,16 @@ public class AdminManagementService {
                 });
     }
 
-    public CompletableFuture<ApiResponse<String>> suspendUser(String id) {
-        return ApiClient.post("/admin/usuarios/" + id + "/suspender", null, String.class);
+    public CompletableFuture<ApiResponse<String>> suspendUser(String id, String motivo) {
+        Map<String, String> body = Map.of("motivo", motivo);
+        return ApiClient.post("/admin/usuarios/" + id + "/suspender", body, String.class);
     }
 
     public CompletableFuture<ApiResponse<String>> reactivateUser(String id) {
+        return ApiClient.post("/admin/usuarios/" + id + "/reactivar", null, String.class);
+    }
+
+    public CompletableFuture<ApiResponse<String>> approveUser(String id) {
         return ApiClient.post("/admin/usuarios/" + id + "/reactivar", null, String.class);
     }
 
@@ -43,7 +49,8 @@ public class AdminManagementService {
                 });
     }
 
-    public CompletableFuture<ApiResponse<String>> refundOrder(String id) {
-        return ApiClient.post("/admin/pedidos/" + id + "/reembolsar", null, String.class);
+    public CompletableFuture<ApiResponse<String>> refundOrder(String id, String motivo) {
+        Map<String, String> body = Map.of("motivo", motivo);
+        return ApiClient.post("/admin/pedidos/" + id + "/reembolsar", body, String.class);
     }
 }

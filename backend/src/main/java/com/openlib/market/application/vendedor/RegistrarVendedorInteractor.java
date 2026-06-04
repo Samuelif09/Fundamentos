@@ -38,14 +38,15 @@ public class RegistrarVendedorInteractor implements IRegistrarVendedorUseCase {
         String hashedPassword = passwordEncoder.encode(password.getValor());
         Password passwordParaGuardar = Password.desdeHash(hashedPassword);
 
-        // 3. Crear el Usuario base, forzando rol VENDEDOR
-        // Usamos el constructor completo para setear el rol directamente
+        // 3. Crear el Usuario base con rol VENDEDOR y estado PENDIENTE (pendiente de aprobación)
         Usuario usuario = new Usuario(
             java.util.UUID.randomUUID().toString(),
-            request.getNombre(), 
-            email, 
+            request.getNombre(),
+            email,
             passwordParaGuardar,
-            RolUsuario.VENDEDOR
+            RolUsuario.VENDEDOR,
+            EstadoCuenta.PENDIENTE,
+            null
         );
 
         // 4. Crear el perfil de Vendedor asociado

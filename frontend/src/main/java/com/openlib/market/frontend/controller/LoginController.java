@@ -103,16 +103,32 @@ public class LoginController implements Initializable {
 
     // ── Procesamiento de respuesta (SIEMPRE en hilo bg, UI via runLater) ─
 
+    private String obtenerMensajeError(ApiResponse<LoginResponse> response) {
+        if (response.getErrorMessage() != null && response.getErrorMessage().trim().startsWith("{")) {
+            try {
+                com.fasterxml.jackson.databind.JsonNode node = new com.fasterxml.jackson.databind.ObjectMapper()
+                        .readTree(response.getErrorMessage());
+                if (node.has("message")) {
+                    return node.get("message").asText();
+                }
+            } catch (Exception e) {
+                // Fallback a los mensajes estándar
+            }
+        }
+        return switch (response.getStatusCode()) {
+            case 401 -> "Credenciales incorrectas. Verifica tu email y contraseña.";
+            case 403 -> "Tu cuenta de vendedor todavía no tiene acceso a la aplicación (pendiente de aprobación).";
+            case 0   -> "No se pudo conectar con el servidor. ¿Está ejecutándose el backend?";
+            default  -> "Error inesperado (" + response.getStatusCode() + "). Intenta de nuevo.";
+        };
+    }
+
     private void procesarRespuestaLogin(ApiResponse<LoginResponse> response) {
         Platform.runLater(() -> {
             setLoading(false);
 
             if (!response.isSuccess()) {
-                String msg = switch (response.getStatusCode()) {
-                    case 401 -> "Credenciales incorrectas. Verifica tu email y contraseña.";
-                    case 0   -> "No se pudo conectar con el servidor. ¿Está ejecutándose el backend?";
-                    default  -> "Error inesperado (" + response.getStatusCode() + "). Intenta de nuevo.";
-                };
+                String msg = obtenerMensajeError(response);
                 mostrarError(msg);
                 return;
             }
@@ -125,18 +141,23 @@ public class LoginController implements Initializable {
 
             // Guardar token en sesin
             String rol = loginData.getRol() != null ? loginData.getRol() : "USUARIO";
-            SessionManager.getInstance().iniciarSesion(
-                    loginData.getToken(),
-                    emailField.getText().trim(),
-                    rol,
-                    loginData.getUserId()
-            );
-
-            // Navegar al dashboard principal o de vendedor
-            if ("VENDEDOR".equalsIgnoreCase(rol)) {
-                SceneManager.navigateTo("dashboard_vendedor");
+            if ("ADMIN".equalsIgnoreCase(rol) || "ROLE_ADMIN".equalsIgnoreCase(rol)) {
+                SessionManager.getInstance().iniciarSesionAdmin(loginData.getToken(), emailField.getText().trim());
+                SceneManager.navigateTo("dashboard_admin");
             } else {
-                SceneManager.navigateTo("dashboard");
+                SessionManager.getInstance().iniciarSesion(
+                        loginData.getToken(),
+                        emailField.getText().trim(),
+                        rol,
+                        loginData.getUserId()
+                );
+                
+                // Navegar al dashboard principal o de vendedor
+                if ("VENDEDOR".equalsIgnoreCase(rol)) {
+                    SceneManager.navigateTo("dashboard_vendedor");
+                } else {
+                    SceneManager.navigateTo("dashboard");
+                }
             }
         });
     }

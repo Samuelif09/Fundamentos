@@ -9,4 +9,8 @@ public class AccesoDenegadoException extends RuntimeException {
     public AccesoDenegadoException() {
         super("Acceso denegado: se requiere rol ADMIN para este recurso.");
     }
+
+    public AccesoDenegadoException(String message) {
+        super(message);
+    }
 }
