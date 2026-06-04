@@ -55,6 +55,6 @@ public class IniciarAutenticacionInteractor implements IIniciarAutenticacionUseC
 
         TokenAcceso token = tokenGenerator.generar(usuario);
 
-        return new LoginResponseDto(token.getToken());
+        return new LoginResponseDto(token.getToken(), usuario.getId());
     }
 }

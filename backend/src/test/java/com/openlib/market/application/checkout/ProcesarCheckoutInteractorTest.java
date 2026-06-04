@@ -25,6 +25,8 @@ class ProcesarCheckoutInteractorTest {
     private IPasarelaPagoSimuladaGateway pasarelaPagoGateway;
     private ICheckoutEventPublisher eventPublisher;
     private PedidoFactory pedidoFactory;
+    private com.openlib.market.domain.inventario.IInventarioGateway inventarioGateway;
+    private com.openlib.market.domain.detalle.IContenidoDigitalGateway contenidoGateway;
     private ProcesarCheckoutInteractor interactor;
 
     @BeforeEach
@@ -34,13 +36,17 @@ class ProcesarCheckoutInteractorTest {
         pasarelaPagoGateway = mock(IPasarelaPagoSimuladaGateway.class);
         eventPublisher = mock(ICheckoutEventPublisher.class);
         pedidoFactory = new PedidoFactory();
+        inventarioGateway = mock(com.openlib.market.domain.inventario.IInventarioGateway.class);
+        contenidoGateway = mock(com.openlib.market.domain.detalle.IContenidoDigitalGateway.class);
 
         interactor = new ProcesarCheckoutInteractor(
                 carritoGateway,
                 pedidoGateway,
                 pasarelaPagoGateway,
                 eventPublisher,
-                pedidoFactory
+                pedidoFactory,
+                inventarioGateway,
+                contenidoGateway
         );
     }
 

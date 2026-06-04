@@ -6,6 +6,263 @@
   <component name="ChangeListManager">
     <list default="true" id="698303ef-5d81-46b4-9821-c341f7351f32" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/openlibdb.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/openlibdb.mv.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/data/openlibdb.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/backend/data/openlibdb.trace.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/application/autenticacion/IniciarAutenticacionAdminInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/application/autenticacion/IniciarAutenticacionAdminInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/application/autenticacion/IniciarAutenticacionInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/application/autenticacion/IniciarAutenticacionInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/application/autenticacion/LoginResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/application/autenticacion/LoginResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/application/checkout/ProcesarCheckoutInteractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/application/checkout/ProcesarCheckoutInteractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/domain/carrito/CarritoCompras.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/domain/carrito/CarritoCompras.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/domain/carrito/ItemCarrito.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/domain/carrito/ItemCarrito.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/infrastructure/carrito/CarritoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/infrastructure/carrito/CarritoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/infrastructure/config/CarritoConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/infrastructure/config/CarritoConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/infrastructure/config/CheckoutConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/openlib/market/infrastructure/config/CheckoutConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/openlib/market/application/checkout/ProcesarCheckoutInteractorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/openlib/market/application/checkout/ProcesarCheckoutInteractorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/OpenLibApp.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/app/SceneManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/AdminConfigController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/AdminCurationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/AdminDashboardController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/AdminLoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/AdminManagementController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/AdminSupportController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/BibliotecaController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/CarritoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/CatalogoController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/CheckoutController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/DashboardController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/DetalleLibroController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/MyStoreController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/ProfileController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/PublishBookController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/SellerDashboardController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/SellerInventoryController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/SellerRegistrationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/controller/WalletController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/http/ApiClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/http/ApiResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/http/MultipartBodyBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/AdminChartData.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/AdminKpi.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/AdminOrder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/AdminUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/AffiliateLink.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/Book.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/Cart.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/CartItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/CheckoutRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/CheckoutResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/LoginRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/LoginResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/OrderHistoryItem.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/PaymentMethodStatusRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/PendingBook.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/RegistrationResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/RejectReasonRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/SellerBook.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/SellerFinance.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/SellerRegistrationRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/SellerSalesMetrics.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/StoreProfile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/SupportTicket.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/SysCategory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/SysCommission.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/SysPaymentMethod.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/TicketReplyRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/Transaction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/UserProfile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/model/WithdrawalRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/AdminDashboardService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/AdminManagementService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/AuthService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/BookService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/CartService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/CheckoutService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/CurationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/LibraryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/ProfileService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/PublishBookService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/SellerDashboardService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/SellerInventoryService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/StoreService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/SupportService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/SystemConfigService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/service/WalletService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/com/openlib/market/frontend/session/SessionManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/java/module-info.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/admin_login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/biblioteca.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/billetera_vendedor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/carrito.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/catalogo.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/checkout.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/config_admin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/curaduria_admin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/dashboard_admin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/dashboard_vendedor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/detalle_libro.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/gestion_admin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/inventario_vendedor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/mi_tienda.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/perfil.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/publicar_libro.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/registro_vendedor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/styles/soporte_admin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/admin_login.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/biblioteca.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/billetera_vendedor.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/carrito.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/catalogo.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/checkout.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/config_admin.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/curaduria_admin.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/dashboard.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/dashboard_admin.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/dashboard_vendedor.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/detalle_libro.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/gestion_admin.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/inventario_vendedor.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/login.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/mi_tienda.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/perfil.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/publicar_libro.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/registro_vendedor.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/main/resources/com/openlib/market/frontend/views/soporte_admin.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/OpenLibApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/app/SceneManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminConfigController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminConfigController$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminConfigController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminCurationController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminCurationController$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminCurationController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminDashboardController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminLoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminManagementController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminManagementController$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminManagementController$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminManagementController$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminManagementController$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminManagementController$6.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminManagementController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminSupportController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/AdminSupportController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/BibliotecaController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/CarritoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/CatalogoController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/CheckoutController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/DashboardController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/DetalleLibroController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/LoginController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/MyStoreController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/ProfileController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/PublishBookController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/SellerDashboardController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/SellerInventoryController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/SellerInventoryController$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/SellerInventoryController$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/SellerInventoryController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/SellerRegistrationController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/WalletController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/WalletController$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/controller/WalletController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/http/ApiClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/http/ApiResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/http/MultipartBodyBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/AdminChartData$DataPoint.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/AdminChartData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/AdminKpi.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/AdminOrder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/AdminUser.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/AffiliateLink.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/Book.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/Cart.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/CartItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/CheckoutRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/CheckoutResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/LoginRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/LoginResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/OrderHistoryItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/PaymentMethodStatusRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/PendingBook.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/RegistrationResponse.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/RejectReasonRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/SellerBook.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/SellerFinance.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/SellerRegistrationRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/SellerSalesMetrics.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/StoreProfile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/SupportTicket.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/SysCategory.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/SysCommission.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/SysPaymentMethod.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/TicketReplyRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/Transaction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/UserProfile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/model/WithdrawalRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/AdminDashboardService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/AdminManagementService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/AuthService$1RecuperarPasswordRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/AuthService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/BookService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/CartService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/CheckoutService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/CurationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/LibraryService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/ProfileService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/PublishBookService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/SellerDashboardService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/SellerInventoryService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/StoreService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/SupportService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/SystemConfigService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/service/WalletService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/session/SessionManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/admin_login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/biblioteca.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/billetera_vendedor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/carrito.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/catalogo.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/checkout.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/config_admin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/curaduria_admin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/dashboard_admin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/dashboard_vendedor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/detalle_libro.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/gestion_admin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/inventario_vendedor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/mi_tienda.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/perfil.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/publicar_libro.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/registro_vendedor.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/styles/soporte_admin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/admin_login.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/biblioteca.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/billetera_vendedor.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/carrito.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/catalogo.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/checkout.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/config_admin.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/curaduria_admin.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/dashboard.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/dashboard_admin.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/dashboard_vendedor.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/detalle_libro.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/gestion_admin.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/inventario_vendedor.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/login.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/mi_tienda.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/perfil.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/publicar_libro.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/registro_vendedor.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/com/openlib/market/frontend/views/soporte_admin.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/classes/module-info.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,26 +288,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "develop",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/silvaaa/Documents/uni/fundamentos/proyectoFundamentos",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;testlogs&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/silvaaa/Documents/uni/fundamentos/proyectoFundamentos&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.dev.executor&quot;: &quot;Run&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
   }
-}]]></component>
+}</component>
+  <component name="RunManager">
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/frontend/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>

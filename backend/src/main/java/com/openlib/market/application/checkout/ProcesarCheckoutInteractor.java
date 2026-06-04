@@ -15,13 +15,24 @@ public class ProcesarCheckoutInteractor {
     private final IPasarelaPagoSimuladaGateway pasarelaPagoGateway;
     private final ICheckoutEventPublisher eventPublisher;
     private final PedidoFactory pedidoFactory;
+    private final com.openlib.market.domain.inventario.IInventarioGateway inventarioGateway;
+    private final com.openlib.market.domain.detalle.IContenidoDigitalGateway contenidoGateway;
 
-    public ProcesarCheckoutInteractor(ICarritoGateway carritoGateway, IPedidoGateway pedidoGateway, IPasarelaPagoSimuladaGateway pasarelaPagoGateway, ICheckoutEventPublisher eventPublisher, PedidoFactory pedidoFactory) {
+    public ProcesarCheckoutInteractor(
+            ICarritoGateway carritoGateway, 
+            IPedidoGateway pedidoGateway, 
+            IPasarelaPagoSimuladaGateway pasarelaPagoGateway, 
+            ICheckoutEventPublisher eventPublisher, 
+            PedidoFactory pedidoFactory,
+            com.openlib.market.domain.inventario.IInventarioGateway inventarioGateway,
+            com.openlib.market.domain.detalle.IContenidoDigitalGateway contenidoGateway) {
         this.carritoGateway = carritoGateway;
         this.pedidoGateway = pedidoGateway;
         this.pasarelaPagoGateway = pasarelaPagoGateway;
         this.eventPublisher = eventPublisher;
         this.pedidoFactory = pedidoFactory;
+        this.inventarioGateway = inventarioGateway;
+        this.contenidoGateway = contenidoGateway;
     }
 
     public void ejecutar(String sesionIdStr, String idUsuario, String metodoPagoStr) {
@@ -39,6 +50,22 @@ public class ProcesarCheckoutInteractor {
                     itemCarrito.getCantidad().getValor(),
                     itemCarrito.getPrecioUnitario()
             );
+            
+            // Validar stock antes de procesar
+            contenidoGateway.obtenerContenidoPorId(itemCarrito.getLibroIsbn()).ifPresent(contenido -> {
+                if (contenido.requiereControlDeInventario()) {
+                    int stockDisponible = inventarioGateway.obtenerStock(itemCarrito.getLibroIsbn())
+                            .map(com.openlib.market.domain.inventario.StockDisponible::getCantidad)
+                            .orElse(0);
+                    if (itemCarrito.getCantidad().getValor() > stockDisponible) {
+                        throw new com.openlib.market.domain.carrito.StockInsuficienteException(
+                                itemCarrito.getLibroIsbn(), 
+                                itemCarrito.getCantidad().getValor(), 
+                                stockDisponible);
+                    }
+                }
+            });
+            
             itemsPedido.add(itemPedido);
             sumatoriaSubtotales += (itemCarrito.getCantidad().getValor() * itemCarrito.getPrecioUnitario());
         }

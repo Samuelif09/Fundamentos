@@ -31,4 +31,10 @@ public class CarritoConfig {
         return new com.openlib.market.application.carrito.VerCarritoInteractor(carritoGateway, contenidoGateway);
     }
 
+    @Bean
+    public com.openlib.market.application.carrito.IActualizarCarritoUseCase actualizarCarritoUseCase(
+            ICarritoGateway carritoGateway
+    ) {
+        return new com.openlib.market.application.carrito.ActualizarCarritoInteractor(carritoGateway);
+    }
 }

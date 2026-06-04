@@ -1,0 +1,87 @@
+cosas por arreglar de la api:
+-registro y login de admin (error 500)
+-ver detalle libro no esta comprobando los datos de h2, solo funciona con los quemados
+-explorar tendencias no esta comprobando los datos de h2, solo funciona con los quemados
+- averiguar por que se esta borrando apenas se mete algo en el carrito y por que no existe el libro q quiero
+- carrito no existe o por lo menos no se deja ver
+- checkout_simulado y procesar_pago funciona con los datos quemados y no con los de la bd
+- como las compras no estan haciendo nada en persistencia el historial no sirve en esta ruta {{base_url}}/api/v1/usuarios/{{id_usuario}}/pedidos?offset=0&limit=10
+- no hay lista-deseos
+- revisar este {{base_url}}/api/v1/biblioteca/{{id_libro}}/descargar?userId={{id_usuario}} porque no veo llamadas al back, puede ser porque no hay pdf
+- implementar reseñas (error 500)
+- pilas con esto que sale al publicar un libro 
+
+Hibernate: insert into contenidos_digitales (categoria,estado,id_vendedor,precio,promedio_calificacion,sinopsis,stock_disponible,titulo,url_portada,url_vista_previa,isbn) values (?,?,?,?,?,?,?,?,?,?,?)
+Hibernate: insert into libros (isbn) values (?)
+
+- Error logico en pausar/despublicar libro. la api le permite al vendedor poner el estado del libro en "PAUSADO", pero de ahi en adelante 
+  ese libro queda bloqueado. Si se intenta poner el estado en "ACTIVO" o "PUBLICADO", no se ve ninguna llamada en la api y postman devuelve
+  400 Bad Request, pero si se intenta poner otra vez en "PAUSADO" postman manda 403 Forbidden y la api muestra esto
+  Hibernate: select cde1_0.isbn,case when cde1_1.isbn is not null then 1 when cde1_2.isbn is not null then 2 when cde1_3.isbn is not null then 3     end,cde1_0.categoria,cde1_0.estado,cde1_0.id_vendedor,cde1_0.precio,cde1_0.promedio_calificacion,cde1_0.sinopsis,cde1_0.stock_disponible,cde1_0.titulo,cde1_0.url_portada,cde1_0.url_vista_previa,cde1_1.duracion_minutos,cde1_2.duracion_estimada_minutos from contenidos_digitales cde1_0 left join audiolibros cde1_1 on cde1_0.isbn=cde1_1.isbn left join cursos_virtuales cde1_2 on cde1_0.isbn=cde1_2.isbn left join libros cde1_3 on cde1_0.isbn=cde1_3.isbn where cde1_0.isbn=?
+  
+- reporte de ingresos del vendedor parece funcionar bien, devuelve la id esperada pero como todavia no hay carrito, sus ingresos estan en 0. Hay que comprobarlo una vez se implemente por completo el carrito, checkout y pago del cliente
+
+- ver liquidaciones y transacciones {{base_url}}/api/v1/vendedores/{{id_vendedor}}/finanzas/transacciones?page=0 devuelve 200 ok, pero su json esta vacio. No se cuales campos son los que llenan esta consulta y toca comprobar que servicio falta implementear para que se llene y devuelva lo esperado. Cabe aclarar que en la terminal que corre el backend, no se registra ninguna llamada
+
+- ver metricas vendedor (grafica) devuelve un json vacio con codigo 200 y el back registra la siguiente consulta
+Hibernate: select tfe1_0.id_transaccion,tfe1_0.fecha,tfe1_0.id_vendedor,tfe1_0.subtotal from transacciones_financieras tfe1_0 where tfe1_0.id_vendedor=?
+toca revisar cual servicio llena los campos mencionados
+
+- solicitar retiro devuelve 409 conflict y se ve la siguiente consulta en la terminal del back
+Hibernate: select be1_0.id_vendedor,be1_0.saldo_disponible,be1_0.version from billeteras be1_0 where be1_0.id_vendedor=?
+
+- Configuracion de tienda (subir banner) devuelve 400 bad request, un json vacio y no realiza ninguna llamada a la clase
+
+- listar libros pendientes devuelve 200 ok y hace la siguiente consulta
+Hibernate: select cde1_0.isbn,case when cde1_1.isbn is not null then 1 when cde1_2.isbn is not null then 2 when cde1_3.isbn is not null then 3 end,cde1_0.categoria,cde1_0.estado,cde1_0.id_vendedor,cde1_0.precio,cde1_0.promedio_calificacion,cde1_0.sinopsis,cde1_0.stock_disponible,cde1_0.titulo,cde1_0.url_portada,cde1_0.url_vista_previa,cde1_1.duracion_minutos,cde1_2.duracion_estimada_minutos from contenidos_digitales cde1_0 left join audiolibros cde1_1 on cde1_0.isbn=cde1_1.isbn left join cursos_virtuales cde1_2 on cde1_0.isbn=cde1_2.isbn left join libros cde1_3 on cde1_0.isbn=cde1_3.isbn
+
+devuelve un json vacio pero asumo que es porque en h2 no hay ningun libro pendiente de aprobacion. Sin embargo, el vendedor publica libros y estos pasan instantaneamente a publicados, nunca pasan por revision del admin.
+
+- aprobar y rechazar libro funcionan a la perfeccion, aprueban y rechazan el libro con el id_libro correspondiente, pero son irrelevantes porque en la logica de la api los libros publicados nunca pasan a aprobacion, se publican directamente. Es necesario implementar logica de negocio para que cuando un vendedor publique un libro, este pase a un portal de aprobacion donde el administrador correspondiente lo apruebe o rechace segun sea necesario. Sin embbargo, una vez rechazado el libro, aprobar libro deja de alterar su estado, dejan de aparecer sus llamadas en la terminal del back,y el valor de RECHAZADO en h2 persiste.
+
+- listar categorias devuelve 200 ok, un json vacio y la siguiente consulta
+67cc2035-da06-4514-910e-de6649f4149b
+Hibernate: select ce1_0.id,ce1_0.estado,ce1_0.nombre from categorias ce1_0
+no entiendo por que está vacio si los libros insertados ya tienen valores en su columna de categoria
+
+- crear categoria funciona a la perfeccion, la crea, devuelve 200 ok, y al llamar a listar categorias aparece la que se acaba de crear. Sin embargo,
+no entiendo lo que concierne a la categoria, pues los libros en h2 ya tienen categorias y estas no aparecian anteriormente.
+
+- crear etiqueta devuelve 404 not found, envia el siguiente json:
+{
+  "nombre": "Bestseller"
+}
+a la siguiente ruta:
+ 
+{{base_url}}/api/v1/admin/etiquetas
+
+- auditar reseña devuelve 400 not found, al enviar el siguiente json:
+{
+  "estado": "OCULTA",
+  "motivo": "Lenguaje inapropiado que viola las políticas de la comunidad."
+}
+
+a la siguiente ruta:
+{{base_url}}/api/v1/admin/resenas/{{id_resena}}/estado
+
+- listar usuarios no esta conectado con la api, pues retorna un json lleno de mocks o datos quemados en la memoria del programa, es necesario conectarlo
+con el resto del back
+
+-  suspender usuario funciona, manda codigo 200 ok y la terminal del back muestra lo siguiente
+Hibernate: update usuarios set email=?,estado_cuenta=?,motivo_suspension=?,nombre=?,password=?,rol=? where id=?
+Enviando EMAIL de suspensión a test@openlib.com por el motivo: Violación reiterada de las políticas de publicación y derechos de autor.
+
+- reactivar usuario no hace llamada a la api. postman muestra codigo 200 ok al hacer un POST en la siguiente ruta 
+{{base_url}}/api/v1/admin/usuarios/{{id_usuario}}/reactivar 
+pero el valor del estado suspendido del usuario se mantiene
+
+- obtener kpis devuelve 200 ok pero no hace ninguna llamada a la api, esta funcionando con los mocks quemados en la memoria del programa
+
+- obtener graficas (ventas y usuarios)  devuelve 200 ok pero no hace ninguna llamada a la api, esta funcionando con los mocks quemados en la memoria del programa
+
+- listar transacciones (Plataforma) devuelve un json vacio, codigo 200 ok y la terminal del bakc muestra la siguiente consulta
+Hibernate: select pe1_0.id,pe1_0.estado,pe1_0.fecha,pe1_0.id_usuario,pe1_0.sesion_id,pe1_0.tipo_metodo_pago,pe1_0.total from pedidos pe1_0
+Hibernate: select pe1_0.id,pe1_0.estado,pe1_0.fecha,pe1_0.id_usuario,pe1_0.sesion_id,pe1_0.tipo_metodo_pago,pe1_0.total from pedidos pe1_0 offset ? rows fetch first ? rows only
+
+- reembolsar devuelve 400 porque no hay ningun pedido activo de momento, al parecer funciona correctamente. Es necesario probarlo apenas todos los 
+demas servicios se solucionen y se generen los pedidos dentro de h2 correctamente

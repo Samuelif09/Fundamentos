@@ -52,8 +52,10 @@ public class CheckoutConfig {
             com.openlib.market.domain.pago.IPedidoGateway pedidoGateway,
             IPasarelaPagoSimuladaGateway pasarelaPagoGateway,
             ICheckoutEventPublisher eventPublisher,
-            PedidoFactory pedidoFactory) {
-        return new ProcesarCheckoutInteractor(carritoGateway, pedidoGateway, pasarelaPagoGateway, eventPublisher, pedidoFactory);
+            PedidoFactory pedidoFactory,
+            IInventarioGateway inventarioGateway,
+            IContenidoDigitalGateway contenidoGateway) {
+        return new ProcesarCheckoutInteractor(carritoGateway, pedidoGateway, pasarelaPagoGateway, eventPublisher, pedidoFactory, inventarioGateway, contenidoGateway);
     }
 
     @Bean
