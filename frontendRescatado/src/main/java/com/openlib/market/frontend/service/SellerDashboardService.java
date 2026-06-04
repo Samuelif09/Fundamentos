@@ -9,7 +9,8 @@ import java.util.concurrent.CompletableFuture;
 public class SellerDashboardService {
 
     public CompletableFuture<SellerFinance> getFinances() {
-        return ApiClient.get("/vendedores/me/dashboard/finanzas", SellerFinance.class)
+        String userId = com.openlib.market.frontend.session.SessionManager.getInstance().getUserId();
+        return ApiClient.get("/vendedores/" + userId + "/dashboard/finanzas", SellerFinance.class)
                 .thenApply(response -> {
                     if (response.isSuccess() && response.getBody() != null) {
                         return response.getBody();
@@ -19,7 +20,8 @@ public class SellerDashboardService {
     }
 
     public CompletableFuture<SellerSalesMetrics> getMetrics() {
-        return ApiClient.get("/vendedores/me/dashboard/metricas", SellerSalesMetrics.class)
+        String userId = com.openlib.market.frontend.session.SessionManager.getInstance().getUserId();
+        return ApiClient.get("/vendedores/" + userId + "/dashboard/metricas", SellerSalesMetrics.class)
                 .thenApply(response -> {
                     if (response.isSuccess() && response.getBody() != null) {
                         return response.getBody();

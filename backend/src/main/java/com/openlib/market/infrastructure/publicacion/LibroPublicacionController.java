@@ -11,22 +11,43 @@ import org.springframework.web.bind.annotation.*;
 public class LibroPublicacionController {
 
     private final IPublicarLibroUseCase publicarLibroUseCase;
+    private final com.openlib.market.infrastructure.adapter.out.persistence.repository.VendedorRepository vendedorRepository;
 
-    public LibroPublicacionController(IPublicarLibroUseCase publicarLibroUseCase) {
+    public LibroPublicacionController(IPublicarLibroUseCase publicarLibroUseCase,
+                                      com.openlib.market.infrastructure.adapter.out.persistence.repository.VendedorRepository vendedorRepository) {
         this.publicarLibroUseCase = publicarLibroUseCase;
+        this.vendedorRepository = vendedorRepository;
     }
 
-    @PostMapping("/{sellerId}/libros")
-    public ResponseEntity<String> publicarLibro(@PathVariable String sellerId, @RequestBody PublicarLibroRequestDto request) {
-        // En una API real, se usaría el ID validado por el token JWT o Request DTO re-mapeado, aquí aseguramos la URL
+    @PostMapping(value = "/{sellerId}/libros", consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<String> publicarLibro(
+            @PathVariable String sellerId,
+            @RequestParam("titulo") String titulo,
+            @RequestParam("descripcion") String descripcion,
+            @RequestParam("precio") double precio,
+            @RequestParam("categoria") String categoria,
+            @RequestParam("isbn") String isbn,
+            @RequestParam(value = "autor", required = false) String autor,
+            @RequestParam(value = "stock", required = false) String stock,
+            @RequestPart(value = "portada", required = false) org.springframework.web.multipart.MultipartFile portada,
+            @RequestPart(value = "archivoPreview", required = false) org.springframework.web.multipart.MultipartFile archivoPreview) {
+        
+        // Traducir idUsuario a idVendedor si es necesario
+        String realIdVendedor = vendedorRepository.findByIdUsuario(sellerId)
+                .map(v -> v.getId())
+                .orElse(sellerId);
+
+        // Simulamos guardado o asignamos un default
+        String urlPortada = (portada != null && !portada.isEmpty()) ? "/portadas/" + portada.getOriginalFilename() : "https://via.placeholder.com/150";
+
         PublicarLibroRequestDto securedRequest = new PublicarLibroRequestDto(
-                sellerId,
-                request.getIsbn(),
-                request.getTitulo(),
-                request.getSinopsis(),
-                request.getPrecio(),
-                request.getUrlPortada(),
-                request.getCategoria()
+                realIdVendedor,
+                isbn,
+                titulo,
+                descripcion,
+                precio,
+                urlPortada,
+                categoria
         );
         
         publicarLibroUseCase.publicar(securedRequest);

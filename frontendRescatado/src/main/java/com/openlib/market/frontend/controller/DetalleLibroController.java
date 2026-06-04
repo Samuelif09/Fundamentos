@@ -29,12 +29,24 @@ public class DetalleLibroController {
     @FXML
     private VBox loadingContainer;
 
+    @FXML
+    private VBox reviewsContainer;
+    @FXML
+    private javafx.scene.control.ComboBox<Integer> ratingCombo;
+    @FXML
+    private javafx.scene.control.TextArea reviewTextArea;
+
     private final BookService bookService = new BookService();
     private final CartService cartService = new CartService();
+    private final com.openlib.market.frontend.service.ReviewService reviewService = new com.openlib.market.frontend.service.ReviewService();
     private Book currentBook;
 
     @FXML
     public void initialize() {
+        if (ratingCombo != null) {
+            ratingCombo.getItems().addAll(1, 2, 3, 4, 5);
+        }
+
         String bookId = SessionManager.getInstance().getCurrentBookId();
         if (bookId == null || bookId.isEmpty()) {
             showError("Error", "No se ha seleccionado ningún libro.");
@@ -57,6 +69,75 @@ public class DetalleLibroController {
                 } else if (book != null) {
                     this.currentBook = book;
                     populateView(book);
+                    loadReviews(bookId);
+                }
+            });
+        });
+    }
+
+    private void loadReviews(String bookId) {
+        reviewService.getReviews(bookId).whenComplete((reviews, throwable) -> {
+            Platform.runLater(() -> {
+                if (reviewsContainer != null) {
+                    reviewsContainer.getChildren().clear();
+                    if (throwable == null && reviews != null && !reviews.isEmpty()) {
+                        for (com.openlib.market.frontend.model.Review r : reviews) {
+                            VBox reviewBox = new VBox(5);
+                            reviewBox.setStyle("-fx-padding: 10; -fx-border-color: #444; -fx-border-radius: 5; -fx-background-color: #2b2b2b;");
+                            
+                            Label ratingLabel = new Label("⭐".repeat(r.getCalificacion()) + " (" + r.getCalificacion() + "/5)");
+                            ratingLabel.setStyle("-fx-text-fill: #ffd700; -fx-font-weight: bold;");
+                            
+                            Label dateLabel = new Label(r.getFecha() != null ? r.getFecha() : "");
+                            dateLabel.setStyle("-fx-text-fill: #888; -fx-font-size: 10px;");
+                            
+                            Label textLabel = new Label(r.getTexto());
+                            textLabel.setWrapText(true);
+                            textLabel.setStyle("-fx-text-fill: #ddd;");
+                            
+                            reviewBox.getChildren().addAll(ratingLabel, textLabel, dateLabel);
+                            reviewsContainer.getChildren().add(reviewBox);
+                        }
+                    } else {
+                        Label noReviewsLabel = new Label("Aún no hay reseñas. ¡Sé el primero!");
+                        noReviewsLabel.setStyle("-fx-text-fill: #888;");
+                        reviewsContainer.getChildren().add(noReviewsLabel);
+                    }
+                }
+            });
+        });
+    }
+
+    @FXML
+    public void handleSubmitReview(ActionEvent event) {
+        if (currentBook == null) return;
+        
+        Integer rating = ratingCombo.getValue();
+        String text = reviewTextArea.getText();
+
+        if (rating == null || text == null || text.trim().isEmpty()) {
+            showError("Campos incompletos", "Por favor selecciona una calificación y escribe tu reseña.");
+            return;
+        }
+
+        com.openlib.market.frontend.model.ReviewRequest request = new com.openlib.market.frontend.model.ReviewRequest(text.trim(), rating);
+        
+        loadingContainer.setVisible(true);
+        reviewService.postReview(currentBook.getId(), request).whenComplete((v, throwable) -> {
+            Platform.runLater(() -> {
+                loadingContainer.setVisible(false);
+                if (throwable != null) {
+                    showError("Error al publicar reseña", throwable.getMessage());
+                } else {
+                    reviewTextArea.clear();
+                    ratingCombo.setValue(null);
+                    
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Reseña Publicada");
+                    alert.setHeaderText("¡Gracias por tu opinión!");
+                    alert.showAndWait();
+                    
+                    loadReviews(currentBook.getId()); // Recargar reseñas
                 }
             });
         });

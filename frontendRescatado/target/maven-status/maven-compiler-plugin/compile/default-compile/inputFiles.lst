@@ -9,6 +9,7 @@
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/model/LoginResponse.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/model/CartItem.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/model/SupportTicket.java
+/home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/model/ReviewRequest.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/http/MultipartBodyBuilder.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/session/SessionManager.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/model/UserRegistrationRequest.java
@@ -40,6 +41,7 @@
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/controller/CatalogoController.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/model/AdminOrder.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/model/Book.java
+/home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/model/Review.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/service/AdminManagementService.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/controller/ProfileController.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/model/SysPaymentMethod.java
@@ -49,6 +51,7 @@
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/service/SupportService.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/model/AdminChartData.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/model/OrderHistoryItem.java
+/home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/service/ReviewService.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/model/AffiliateLink.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/controller/MyStoreController.java
 /home/silvaaa/Documents/uni/fundamentos/salvacion/proyectoFundamentos/frontendRescatado/src/main/java/com/openlib/market/frontend/controller/BibliotecaController.java
