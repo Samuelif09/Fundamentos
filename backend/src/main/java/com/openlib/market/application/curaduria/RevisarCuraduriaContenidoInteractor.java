@@ -20,7 +20,7 @@ public class RevisarCuraduriaContenidoInteractor implements IRevisarCuraduriaCon
 
     @Override
     public List<LibroParaRevisionDto> listarLibrosPendientes(int page, int size) {
-        List<Libro> pendientes = curaduriaGateway.listarPorEstado(EstadoLibro.EN_REVISION, page, size);
+        List<Libro> pendientes = curaduriaGateway.listarPorEstado(EstadoLibro.PENDIENTE, page, size);
 
         return pendientes.stream().map(libro -> {
             String nombreVendedor = "Desconocido";

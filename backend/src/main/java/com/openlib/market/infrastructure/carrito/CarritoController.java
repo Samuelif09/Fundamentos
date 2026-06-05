@@ -11,9 +11,17 @@ import org.springframework.web.bind.annotation.*;
 public class CarritoController {
 
     private final IAgregarCarritoUseCase agregarCarritoUseCase;
+    private final com.openlib.market.application.carrito.IVerCarritoUseCase verCarritoUseCase;
+    private final com.openlib.market.application.carrito.IActualizarCarritoUseCase actualizarCarritoUseCase;
 
-    public CarritoController(IAgregarCarritoUseCase agregarCarritoUseCase) {
+    public CarritoController(
+            IAgregarCarritoUseCase agregarCarritoUseCase, 
+            com.openlib.market.application.carrito.IVerCarritoUseCase verCarritoUseCase,
+            com.openlib.market.application.carrito.IActualizarCarritoUseCase actualizarCarritoUseCase
+    ) {
         this.agregarCarritoUseCase = agregarCarritoUseCase;
+        this.verCarritoUseCase = verCarritoUseCase;
+        this.actualizarCarritoUseCase = actualizarCarritoUseCase;
     }
 
     @PostMapping("/items")
@@ -38,6 +46,21 @@ public class CarritoController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("/usuarios/{userId}/carrito")
+    public ResponseEntity<com.openlib.market.application.carrito.CarritoResponseDto> verCarrito(@PathVariable String userId) {
+        return ResponseEntity.ok(verCarritoUseCase.verCarritoUsuario(userId));
+    }
+
+    @DeleteMapping("/usuarios/{userId}/carrito/items/{isbn}")
+    public ResponseEntity<Void> eliminarItem(@PathVariable String userId, @PathVariable String isbn) {
+        try {
+            actualizarCarritoUseCase.eliminarItem(userId, isbn);
+            return ResponseEntity.ok().build();
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.notFound().build();
         }
     }
 }

@@ -32,6 +32,6 @@ class PedidoTest {
     void noDebePermitirPagarSiNoEstaPendiente() {
         Pedido pedido = new Pedido("sesion-123", 100.0, TipoMetodoPago.TARJETA);
         pedido.marcarComoFallido();
-        assertThrows(IllegalStateException.class, pedido::marcarComoPagado);
+        assertThrows(com.openlib.market.domain.shared.AccionNoPermitidaException.class, pedido::marcarComoPagado);
     }
 }

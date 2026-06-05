@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openlib.market.domain.detalle.ILibroPublicacionGateway;
 import com.openlib.market.domain.detalle.Libro;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -13,6 +14,7 @@ import java.util.List;
 import com.openlib.market.domain.curaduria.ICuraduriaGateway;
 
 @Component
+@Profile("mock")
 public class LibroPublicacionJsonGateway implements ILibroPublicacionGateway, ICuraduriaGateway {
 
     private final ObjectMapper objectMapper;
@@ -56,7 +58,7 @@ public class LibroPublicacionJsonGateway implements ILibroPublicacionGateway, IC
                 libro.getUrlPortada(),
                 libro.getCategoria(),
                 libro.getIdVendedor(),
-                libro.getEstado(),
+                com.openlib.market.domain.detalle.EstadoLibro.PENDIENTE,
                 libro.getUrlVistaPrevia()
         );
         baseDatosEnMemoria.add(dto);
@@ -76,7 +78,7 @@ public class LibroPublicacionJsonGateway implements ILibroPublicacionGateway, IC
                         dto.urlPortada(),
                         dto.categoria(),
                         dto.idVendedor(),
-                        dto.estado() != null ? dto.estado() : com.openlib.market.domain.detalle.EstadoLibro.ACTIVO,
+                        dto.estado() != null ? dto.estado() : com.openlib.market.domain.detalle.EstadoLibro.PENDIENTE,
                         dto.urlVistaPrevia()
                 ));
     }

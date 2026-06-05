@@ -9,8 +9,10 @@ import com.openlib.market.domain.carrito.SesionId;
 import com.openlib.market.infrastructure.adapter.out.persistence.entity.CarritoEntity;
 import com.openlib.market.infrastructure.adapter.out.persistence.entity.ItemCarritoEntity;
 import com.openlib.market.infrastructure.adapter.out.persistence.repository.CarritoRepository;
+import com.openlib.market.domain.carrito.ILibroGateway;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -19,9 +21,11 @@ import java.util.Optional;
 public class CarritoJpaGateway implements ICarritoGateway {
 
     private final CarritoRepository repository;
+    private final ILibroGateway libroGateway;
 
-    public CarritoJpaGateway(CarritoRepository repository) {
+    public CarritoJpaGateway(CarritoRepository repository, ILibroGateway libroGateway) {
         this.repository = repository;
+        this.libroGateway = libroGateway;
     }
 
     @Override
@@ -37,6 +41,7 @@ public class CarritoJpaGateway implements ICarritoGateway {
                 .map(this::toDomain);
     }
 
+    @Transactional // FIX: Transacción atómica para asegurar flush hacia H2
     @Override
     public void guardar(CarritoCompras carrito) {
         String sesionKey = carrito.getSesionId() != null
@@ -48,16 +53,30 @@ public class CarritoJpaGateway implements ICarritoGateway {
 
         entity.getItems().clear();
         for (ItemCarrito item : carrito.getItems()) {
-            entity.addItem(new ItemCarritoEntity(entity, item.getLibroIsbn(), item.getCantidad().getValor()));
+            // FIX: Uso del método helper para sincronización bidireccional antes de persistir
+            ItemCarritoEntity itemEntity = new ItemCarritoEntity();
+            itemEntity.setIsbn(item.getLibroIsbn());
+            itemEntity.setCantidad(item.getCantidad().getValor());
+            entity.agregarItem(itemEntity);
         }
         repository.save(entity);
+    }
+
+    @Transactional
+    @Override
+    public void eliminarPorSesionId(SesionId sesionId) {
+        repository.borrarItemsPorSesionId(sesionId.getValor());
+        repository.borrarDirectoPorSesionId(sesionId.getValor());
     }
 
     private CarritoCompras toDomain(CarritoEntity entity) {
         CarritoCompras carrito = new CarritoCompras(new SesionId(entity.getSesionId()));
         for (ItemCarritoEntity item : entity.getItems()) {
+            double precio = libroGateway.obtenerPorIsbn(item.getIsbn())
+                    .map(com.openlib.market.domain.carrito.LibroSnapshot::getPrecio)
+                    .orElse(0.0);
             carrito.agregarItem(
-                    new com.openlib.market.domain.carrito.LibroSnapshot(item.getIsbn(), 0.0),
+                    new com.openlib.market.domain.carrito.LibroSnapshot(item.getIsbn(), precio),
                     new Cantidad(item.getCantidad())
             );
         }

@@ -6,6 +6,9 @@ import com.openlib.market.domain.vendedor.IVendedorGateway;
 import com.openlib.market.domain.vendedor.IdentificacionTributaria;
 import com.openlib.market.domain.vendedor.RazonSocial;
 import com.openlib.market.domain.vendedor.Vendedor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -15,7 +18,10 @@ import java.util.Optional;
 import com.openlib.market.domain.vendedor.EstadoVerificacion;
 
 @Component
+@Profile("mock")
 public class VendedorJsonGateway implements IVendedorGateway {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(VendedorJsonGateway.class);
 
     private final ObjectMapper objectMapper;
     private final File jsonFile;
@@ -24,6 +30,7 @@ public class VendedorJsonGateway implements IVendedorGateway {
     public VendedorJsonGateway() {
         this.objectMapper = new ObjectMapper();
         this.jsonFile = new File("vendedores.json");
+        LOGGER.info("[PERSISTENCIA_JSON] VendedorJsonGateway inicializado. Archivo={}", jsonFile.getAbsolutePath());
         cargarDatos();
     }
 
@@ -50,6 +57,8 @@ public class VendedorJsonGateway implements IVendedorGateway {
 
     @Override
     public void guardar(Vendedor vendedor) {
+        LOGGER.info("[PERSISTENCIA_JSON] Guardando vendedor en archivo {}. id={}, idUsuario={}, nit={}",
+            jsonFile.getAbsolutePath(), vendedor.getId(), vendedor.getIdUsuario(), vendedor.getIdentificacionTributaria().getValor());
         VendedorDto dto = new VendedorDto(
                 vendedor.getId(),
                 vendedor.getIdUsuario(),
@@ -59,6 +68,7 @@ public class VendedorJsonGateway implements IVendedorGateway {
         );
         baseDatosEnMemoria.add(dto);
         guardarDatos();
+        LOGGER.info("[PERSISTENCIA_JSON] Vendedor persistido en archivo {}. id={}", jsonFile.getAbsolutePath(), vendedor.getId());
     }
 
     @Override

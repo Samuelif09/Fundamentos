@@ -10,6 +10,7 @@ import com.openlib.market.domain.almacenamiento.IAlmacenamientoVistaPreviaGatewa
 import com.openlib.market.domain.detalle.ILibroPublicacionGateway;
 import com.openlib.market.domain.detalle.IContenidoDigitalGateway;
 import com.openlib.market.domain.registro.IUsuarioGateway;
+import com.openlib.market.domain.vendedor.IVendedorGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -19,8 +20,9 @@ public class PublicacionConfig {
     @Bean
     public IPublicarLibroUseCase publicarLibroUseCase(
             ILibroPublicacionGateway libroGateway,
-            IUsuarioGateway usuarioGateway) {
-        return new PublicarLibroInteractor(libroGateway, usuarioGateway);
+            IUsuarioGateway usuarioGateway,
+            IVendedorGateway vendedorGateway) {
+        return new PublicarLibroInteractor(libroGateway, usuarioGateway, vendedorGateway);
     }
 
     @Bean

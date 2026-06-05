@@ -56,7 +56,6 @@ public class IniciarAutenticacionAdminInteractor implements IIniciarAutenticacio
         // AC-001: La sesión expira en 4h de inactividad (esto se configurará en el JWT de Entrega 2).
         TokenAcceso token = tokenGenerator.generar(admin.comoUsuarioAuth());
 
-        // Retorna requiereMfa = true para forzar el flujo 2FA en el frontend
-        return new LoginResponseDto(token.getToken(), true);
+        return new LoginResponseDto(token.getToken(), true, admin.getId());
     }
 }

@@ -10,13 +10,17 @@ import org.springframework.stereotype.Component;
 public class ResenaMapper {
 
     public Resena toDomain(ResenaEntity entity) {
-        return new Resena(
+        Resena resena = new Resena(
                 entity.getId(),
                 entity.getIsbnLibro(),
                 new Calificacion(entity.getCalificacion()),
                 entity.getTexto(),
                 entity.getFecha()
         );
+        if (entity.getEstado() != null) {
+            resena.restaurarEstado(com.openlib.market.domain.resena.EstadoResena.valueOf(entity.getEstado()), entity.getMotivo());
+        }
+        return resena;
     }
 
     public ResenaEntity toEntity(Resena domain, ContenidoDigitalEntity libro) {
@@ -25,7 +29,9 @@ public class ResenaMapper {
                 libro,
                 domain.getCalificacion().getValor(),
                 domain.getTexto(),
-                domain.getFecha()
+                domain.getFecha(),
+                domain.getEstado().name(),
+                domain.getMotivoModeracion()
         );
     }
 }

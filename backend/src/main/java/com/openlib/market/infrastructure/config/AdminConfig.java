@@ -119,5 +119,12 @@ public class AdminConfig {
     public IVerSoporteUseCase verSoporteUseCase(ITicketSoporteGateway ticketGateway) {
         return new VerSoporteInteractor(ticketGateway);
     }
+
+    @Bean
+    public com.openlib.market.application.dashboardGlobal.ObtenerKpisDashboardInteractor obtenerKpisDashboardInteractor(
+            com.openlib.market.domain.dashboardGlobal.IKpiReadGateway kpiReadGateway,
+            com.openlib.market.application.finanzas.GenerarRentabilidadPlataformaInteractor rentabilidadPlataformaInteractor) {
+        return new com.openlib.market.application.dashboardGlobal.ObtenerKpisDashboardInteractor(kpiReadGateway, rentabilidadPlataformaInteractor);
+    }
 }
 

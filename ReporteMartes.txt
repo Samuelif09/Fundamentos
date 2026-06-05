@@ -1,0 +1,41 @@
+¡Descansa tranquilo! Ha sido una jornada de programación intensiva pero con resultados arquitectónicos impecables. Hemos blindado gran parte de la Épica 3 y avanzado a pasos agigantados con la Épica 4.
+
+Aquí tienes el Reporte de Estado y Avances del Proyecto OpenLib para que mañana puedas retomar exactamente en este punto sin perder contexto. Puedes copiar y guardar este reporte.
+
+🚀 Reporte de Arquitectura y Desarrollo - Proyecto OpenLib
+Fecha de Corte: Final de Jornada Rama Activa: feature/dashboard-vendedor Estado del Build: BUILD SUCCESS (371 Pruebas Unitarias Aprobadas)
+
+📌 Hitos Alcanzados
+1. Resolución de Ciclo de Vida Transaccional (Checkout & Carrito)
+Problema: El carrito de compras y sus ítems huérfanos no se borraban de la base de datos (H2) después de completarse un pago exitoso, y arrojaban excepciones de violación de llaves foráneas (ConstraintViolationException).
+Solución Aplicada:
+Se reemplazó @TransactionalEventListener por un @EventListener síncrono en SpringCheckoutListenerAdapter para asegurar que el evento se resuelva en el mismo contexto de la transacción base.
+Se forzó un borrado en masa de dos tiempos desde CarritoRepository usando @Modifying(clearAutomatically = true, flushAutomatically = true) y sintaxis HQL explícita (DELETE FROM ItemCarritoEntity... seguido de DELETE FROM CarritoEntity...). Esto salta el retardo del Flush de JPA y vuelve atómica y segura la persistencia.
+2. Implementación de CQRS & Endpoint de Visualización de Carrito
+Requerimiento: El Frontend necesitaba consumir el carrito activo del usuario con sus subtotales y el total consolidado con impuestos (Decorator).
+Solución Aplicada:
+Se implementó el caso de uso genérico IVerCarritoUseCase -> VerCarritoInteractor.
+Se integró el patrón Decorator (PrecioBase + ImpuestoDecorator al 19%) para enviar siempre el total financiero final.
+El endpoint GET /api/v1/carrito/usuarios/{userId}/carrito está vivo, inyectado mediante CarritoConfig puramente con Spring, tolerando carritos vacíos de forma limpia (sin arrojar Error 404).
+3. Épica 4: Finanzas y Dashboards (Patrón Strategy + CQRS)
+Requerimiento: Dashboards de ingreso neto para vendedores deduciendo automáticamente la comisión de la plataforma.
+Solución Aplicada:
+Patrón Strategy: Se implementó una fábrica (ComisionFactory) que evalúa el tipo de producto. Si es un libro físico devuelve ComisionFisicaStrategy (10%), si es audiolibro/curso digital devuelve ComisionDigitalStrategy (20%).
+Segregación CQRS (Read Model): Para no saturar la JVM mapeando entidades @Entity enteras para sumar campos matemáticos, se creó VentasJpaReadGateway.
+Se usó una proyección nativa HQL (SELECT TYPE(c), i.precioUnitario...) cruzando Contenidos, Pedidos e ItemsPedido que mapea directamente sobre un objeto en memoria plano (VentaPlanaDto).
+El GenerarReporteIngresosInteractor orquesta la suma, restando las comisiones con fracciones exactas (BigDecimal), exponiendo el endpoint GET /api/v1/vendedores/{idVendedor}/finanzas/ingresos.
+4. Fix Definitivo de Dominio: Hidratación de Pedidos
+Problema: Al completar el checkout, la tabla ITEMS_PEDIDO seguía vacía porque el interactuador del núcleo no estaba transfiriendo los ítems al modelo del Pedido antes de enviarlo a Infraestructura.
+Solución Aplicada:
+Refactor de Mapeo Bidireccional: Corregimos el PedidoMapper (JPA) forzando el mapeo del hijo hacia el padre en el constructor para respetar las referencias relacionales de JPA (CascadeType.ALL y mappedBy).
+Dominio en ProcesarCheckoutInteractor: Agregamos lógica que itera sobre los ítems del carrito y los convierte uno a uno en objetos ItemPedido de dominio usando pedido.addItem(item), sincronizando perfectamente el flujo.
+🧭 Próximos Pasos (Pendientes para Mañana)
+Para reanudar mañana desde este punto, te sugiero las siguientes directrices:
+
+Pruebas End-to-End con Postman / Swagger:
+Validar un flujo de compra completo atacando H2 para comprobar el volcado final en la tabla ITEMS_PEDIDO y PEDIDOS.
+Validar Métricas del Vendedor:
+Generar una orden con productos mezclados (Físicos y Digitales), y disparar la ruta GET /api/v1/vendedores/{idVendedor}/finanzas/ingresos para corroborar que la estrategia calcule el 10% y el 20% de deducción respectivamente.
+Avanzar en Épica 4:
+Proceder a la fase de métricas administrativas del Marketplace (ej. Dashboard general de rentabilidad de la plataforma).
+Excelente sesión. Descansa bien, y mañana seguimos compilando código limpio. ¡Hasta mañana!

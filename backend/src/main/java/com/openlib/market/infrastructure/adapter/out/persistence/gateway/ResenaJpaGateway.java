@@ -67,4 +67,19 @@ public class ResenaJpaGateway implements IResenaGateway {
         libro.setPromedioCalificacion(promedio != null ? promedio : 0.0);
         contenidoDigitalRepository.save(libro);
     }
+
+    @Override
+    public void eliminar(String id) {
+        resenaRepository.findById(id).ifPresent(entity -> {
+            String isbn = entity.getIsbnLibro();
+            resenaRepository.delete(entity);
+            resenaRepository.flush();
+
+            Double promedio = resenaRepository.calcularPromedioPorIsbn(isbn);
+            contenidoDigitalRepository.findById(isbn).ifPresent(libro -> {
+                libro.setPromedioCalificacion(promedio != null ? promedio : 0.0);
+                contenidoDigitalRepository.save(libro);
+            });
+        });
+    }
 }

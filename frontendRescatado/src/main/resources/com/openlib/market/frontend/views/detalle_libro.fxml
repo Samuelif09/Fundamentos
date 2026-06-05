@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.TextFlow?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.openlib.market.frontend.controller.DetalleLibroController"
+            stylesheets="@../styles/detalle_libro.css"
+            styleClass="main-container">
+
+    <!-- Top Navbar -->
+    <top>
+        <HBox styleClass="navbar" spacing="20" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="15" right="30" bottom="15" left="30"/>
+            </padding>
+            <Label text="OpenLib Market" styleClass="logo-text"/>
+            
+            <Region HBox.hgrow="ALWAYS"/>
+            
+            <Button text="🏠 Inicio" onAction="#handleGoToDashboard" styleClass="dashboard-button"/>
+            <Button text="← Volver al Catálogo" onAction="#handleBackToCatalog" styleClass="back-button"/>
+        </HBox>
+    </top>
+
+    <!-- Main Content -->
+    <center>
+        <StackPane>
+            <ScrollPane fitToWidth="true" styleClass="detail-scroll-pane">
+                <padding>
+                    <Insets top="40" right="40" bottom="40" left="40"/>
+                </padding>
+                
+                <VBox spacing="40" alignment="TOP_CENTER" maxWidth="1000">
+                    <HBox spacing="40" alignment="TOP_CENTER">
+                        <!-- Left Column: Cover Image -->
+                        <VBox styleClass="cover-container" alignment="TOP_CENTER" minWidth="300" maxWidth="300">
+                            <ImageView fx:id="coverImage" fitWidth="300" preserveRatio="true"/>
+                        </VBox>
+                        
+                        <!-- Right Column: Details -->
+                        <VBox spacing="20" HBox.hgrow="ALWAYS">
+                            <Label fx:id="titleLabel" text="Cargando título..." styleClass="detail-title" wrapText="true"/>
+                            <Label fx:id="authorLabel" text="Cargando autor..." styleClass="detail-author"/>
+                            
+                            <Label fx:id="priceLabel" text="\$0.00" styleClass="detail-price"/>
+                            
+                            <VBox spacing="10" styleClass="synopsis-container">
+                                <Label text="Sinopsis" styleClass="synopsis-title"/>
+                                <Label fx:id="synopsisLabel" text="Cargando sinopsis..." wrapText="true" styleClass="detail-synopsis"/>
+                            </VBox>
+                            
+                            <Region VBox.vgrow="ALWAYS" minHeight="20"/>
+                            
+                            <HBox spacing="15" alignment="CENTER_LEFT">
+                                <Button text="Agregar al Carrito" onAction="#handleAddToCart" styleClass="add-to-cart-btn"/>
+                            </HBox>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Reviews Section -->
+                    <VBox spacing="20" styleClass="reviews-section">
+                        <Label text="Reseñas del Libro" styleClass="reviews-title"/>
+                        
+                        <!-- List of existing reviews -->
+                        <VBox fx:id="reviewsContainer" spacing="15" styleClass="reviews-list">
+                            <!-- Reviews will be injected here -->
+                        </VBox>
+
+                        <!-- Add new review form -->
+                        <VBox spacing="10" styleClass="add-review-container">
+                            <Label text="Agregar una Reseña" styleClass="add-review-title"/>
+                            
+                            <HBox spacing="10" alignment="CENTER_LEFT">
+                                <Label text="Calificación:"/>
+                                <ComboBox fx:id="ratingCombo" promptText="Estrellas"/>
+                            </HBox>
+                            
+                            <TextArea fx:id="reviewTextArea" promptText="Escribe tu opinión aquí..." prefRowCount="4" wrapText="true"/>
+                            <Button text="Publicar Reseña" onAction="#handleSubmitReview" styleClass="submit-review-btn"/>
+                        </VBox>
+                    </VBox>
+                </VBox>
+            </ScrollPane>
+            
+            <!-- Loading indicator -->
+            <VBox fx:id="loadingContainer" alignment="CENTER" visible="true" styleClass="loading-overlay">
+                <ProgressIndicator/>
+                <Label text="Cargando detalle del libro..."/>
+            </VBox>
+        </StackPane>
+    </center>
+
+</BorderPane>

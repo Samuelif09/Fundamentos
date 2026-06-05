@@ -30,4 +30,22 @@ public class ResenaConfig {
             ILibroPublicacionGateway libroPublicacionGateway) {
         return new ResponderReputacionInteractor(resenaGateway, libroPublicacionGateway);
     }
+
+    @Bean
+    public com.openlib.market.application.resena.IAgregarResenaUseCase agregarResenaUseCase(
+            IResenaGateway resenaGateway) {
+        return new com.openlib.market.application.resena.AgregarResenaInteractor(resenaGateway);
+    }
+
+    @Bean
+    public com.openlib.market.application.resena.IEliminarResenaUseCase eliminarResenaUseCase(
+            IResenaGateway resenaGateway) {
+        return new com.openlib.market.application.resena.EliminarResenaInteractor(resenaGateway);
+    }
+
+    @Bean
+    public com.openlib.market.application.resena.IModerarResenaUseCase moderarResenaUseCase(
+            IResenaGateway resenaGateway) {
+        return new com.openlib.market.application.resena.ModerarResenaInteractor(resenaGateway);
+    }
 }

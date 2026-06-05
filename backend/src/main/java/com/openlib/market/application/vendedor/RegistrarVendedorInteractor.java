@@ -5,8 +5,12 @@ import com.openlib.market.domain.vendedor.IVendedorGateway;
 import com.openlib.market.domain.vendedor.IdentificacionTributaria;
 import com.openlib.market.domain.vendedor.RazonSocial;
 import com.openlib.market.domain.vendedor.Vendedor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RegistrarVendedorInteractor implements IRegistrarVendedorUseCase {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RegistrarVendedorInteractor.class);
 
     private final IRegistroGateway registroGateway;
     private final IVendedorGateway vendedorGateway;
@@ -22,15 +26,19 @@ public class RegistrarVendedorInteractor implements IRegistrarVendedorUseCase {
 
     @Override
     public void registrar(RegistrarVendedorRequestDto request) {
+        LOGGER.info("[REGISTRO_VENDEDOR] Inicia caso de uso. email={}, nit={}", request.getEmail(), request.getIdentificacionTributaria());
+
         // 1. Validar identificacion tributaria (Value Object valida formato, Gateway valida existencia)
         IdentificacionTributaria identTrib = new IdentificacionTributaria(request.getIdentificacionTributaria());
         if (vendedorGateway.existePorIdentificacionTributaria(identTrib.getValor())) {
+            LOGGER.warn("[REGISTRO_VENDEDOR] NIT duplicado detectado: {}", identTrib.getValor());
             throw new IllegalArgumentException("La identificación tributaria ya está registrada.");
         }
 
         // 2. Crear y validar email y password
         Email email = new Email(request.getEmail());
         if (registroGateway.existeEmail(email)) {
+            LOGGER.warn("[REGISTRO_VENDEDOR] Email duplicado detectado: {}", email.getValor());
             throw new EmailDuplicadoException("El email ya se encuentra registrado");
         }
 
@@ -53,7 +61,9 @@ public class RegistrarVendedorInteractor implements IRegistrarVendedorUseCase {
         Vendedor vendedor = new Vendedor(usuario.getId(), razonSocial, identTrib);
 
         // 5. Persistir (Idealmente transaccional)
+        LOGGER.info("[REGISTRO_VENDEDOR] Persistiendo usuario id={} y vendedor id={}.", usuario.getId(), vendedor.getId());
         registroGateway.guardar(usuario);
         vendedorGateway.guardar(vendedor);
+        LOGGER.info("[REGISTRO_VENDEDOR] Persistencia completada. usuarioId={}, vendedorId={}", usuario.getId(), vendedor.getId());
     }
 }

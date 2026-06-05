@@ -33,4 +33,9 @@ public class CarritoJsonGateway implements ICarritoGateway {
             carritosMemoria.put(carrito.getSesionId().getValor(), carrito);
         }
     }
+
+    @Override
+    public void eliminarPorSesionId(SesionId sesionId) {
+        carritosMemoria.remove(sesionId.getValor());
+    }
 }

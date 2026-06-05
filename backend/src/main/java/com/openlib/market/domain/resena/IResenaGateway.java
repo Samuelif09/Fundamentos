@@ -8,4 +8,5 @@ public interface IResenaGateway {
     List<Resena> listarPorLibroId(String isbnLibro, int offset, int limit);
     Optional<Resena> obtenerPorId(String id);
     void actualizar(Resena resena);
+    void eliminar(String id);
 }

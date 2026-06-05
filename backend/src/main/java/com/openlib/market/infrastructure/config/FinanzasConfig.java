@@ -71,4 +71,30 @@ public class FinanzasConfig {
     public DescargarFacturaUseCase descargarFacturaUseCase(IFacturacionGateway facturacionGateway) {
         return new DescargarFacturaUseCase(facturacionGateway);
     }
+
+    @Bean
+    public com.openlib.market.domain.finanzas.ComisionFactory comisionFactory() {
+        return new com.openlib.market.domain.finanzas.ComisionFactory();
+    }
+
+    @Bean
+    public com.openlib.market.application.finanzas.GenerarReporteIngresosInteractor generarReporteIngresosInteractor(
+            com.openlib.market.domain.finanzas.IVentasReadGateway ventasReadGateway,
+            com.openlib.market.domain.finanzas.ComisionFactory comisionFactory) {
+        return new com.openlib.market.application.finanzas.GenerarReporteIngresosInteractor(ventasReadGateway, comisionFactory);
+    }
+
+    @Bean
+    public com.openlib.market.application.finanzas.GenerarRentabilidadPlataformaInteractor generarRentabilidadPlataformaInteractor(
+            com.openlib.market.domain.finanzas.IVentasReadGateway ventasReadGateway,
+            com.openlib.market.domain.finanzas.ComisionFactory comisionFactory) {
+        return new com.openlib.market.application.finanzas.GenerarRentabilidadPlataformaInteractor(ventasReadGateway, comisionFactory);
+    }
+
+    @Bean
+    public com.openlib.market.application.finanzas.GenerarMetricasVentasVendedorInteractor generarMetricasVentasVendedorInteractor(
+            com.openlib.market.domain.finanzas.IVentasReadGateway ventasReadGateway,
+            com.openlib.market.domain.finanzas.ComisionFactory comisionFactory) {
+        return new com.openlib.market.application.finanzas.GenerarMetricasVentasVendedorInteractor(ventasReadGateway, comisionFactory);
+    }
 }

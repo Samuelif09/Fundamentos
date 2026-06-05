@@ -28,15 +28,21 @@ public class ResenaEntity {
     private String texto;
 
     private LocalDate fecha;
+    
+    private String estado;
+    
+    private String motivo;
 
     public ResenaEntity() {}
 
-    public ResenaEntity(String id, ContenidoDigitalEntity libro, int calificacion, String texto, LocalDate fecha) {
+    public ResenaEntity(String id, ContenidoDigitalEntity libro, int calificacion, String texto, LocalDate fecha, String estado, String motivo) {
         this.id = id;
         this.libro = libro;
         this.calificacion = calificacion;
         this.texto = texto;
         this.fecha = fecha;
+        this.estado = estado;
+        this.motivo = motivo;
     }
 
     public String getId() { return id; }
@@ -45,4 +51,6 @@ public class ResenaEntity {
     public int getCalificacion() { return calificacion; }
     public String getTexto() { return texto; }
     public LocalDate getFecha() { return fecha; }
+    public String getEstado() { return estado; }
+    public String getMotivo() { return motivo; }
 }

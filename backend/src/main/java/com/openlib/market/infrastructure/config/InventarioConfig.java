@@ -6,6 +6,8 @@ import com.openlib.market.application.inventario.IDespublicarInventarioUseCase;
 import com.openlib.market.application.inventario.DespublicarInventarioInteractor;
 import com.openlib.market.application.inventario.ICrearDescuentoInventarioUseCase;
 import com.openlib.market.application.inventario.CrearDescuentoInventarioInteractor;
+import com.openlib.market.application.inventario.IReanudarInventarioUseCase;
+import com.openlib.market.application.inventario.ReanudarInventarioInteractor;
 import com.openlib.market.domain.catalogo.IInventarioGateway;
 import com.openlib.market.domain.detalle.ILibroPublicacionGateway;
 import com.openlib.market.domain.inventario.IPromocionGateway;
@@ -30,5 +32,15 @@ public class InventarioConfig {
             ILibroPublicacionGateway libroPublicacionGateway,
             IPromocionGateway promocionGateway) {
         return new CrearDescuentoInventarioInteractor(libroPublicacionGateway, promocionGateway);
+    }
+
+    @Bean
+    public IReanudarInventarioUseCase reanudarInventarioUseCase(ILibroPublicacionGateway libroPublicacionGateway) {
+        return new ReanudarInventarioInteractor(libroPublicacionGateway);
+    }
+
+    @Bean
+    public com.openlib.market.application.inventario.IAbastecerInventarioUseCase abastecerInventarioUseCase(com.openlib.market.domain.inventario.IInventarioGateway inventarioGateway) {
+        return new com.openlib.market.application.inventario.AbastecerInventarioInteractor(inventarioGateway);
     }
 }

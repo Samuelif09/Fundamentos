@@ -9,6 +9,8 @@ public class Resena {
     private final String texto;
     private final LocalDate fecha;
     private ComentarioRespuesta respuestaVendedor;
+    private EstadoResena estado;
+    private String motivoModeracion;
 
     public Resena(String id, String isbnLibro, Calificacion calificacion, String texto, LocalDate fecha) {
         if (isbnLibro == null || isbnLibro.trim().isEmpty()) {
@@ -22,6 +24,8 @@ public class Resena {
         this.calificacion = calificacion;
         this.texto = texto;
         this.fecha = fecha != null ? fecha : LocalDate.now();
+        this.estado = EstadoResena.ACTIVA;
+        this.motivoModeracion = null;
     }
 
     public String getId() { return id; }
@@ -36,5 +40,19 @@ public class Resena {
             throw new RespuestaDuplicadaException();
         }
         this.respuestaVendedor = respuesta;
+    }
+
+    public EstadoResena getEstado() { return estado; }
+    public String getMotivoModeracion() { return motivoModeracion; }
+
+    public void moderar(EstadoResena nuevoEstado, String motivo) {
+        this.estado = nuevoEstado;
+        this.motivoModeracion = motivo;
+    }
+
+    // Para reconstruir desde la BD
+    public void restaurarEstado(EstadoResena estado, String motivo) {
+        this.estado = estado;
+        this.motivoModeracion = motivo;
     }
 }

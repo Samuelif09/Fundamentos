@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/api/v1/admin/curaduria")
+@RestController
+@RequestMapping("/api/v2/admin/curaduria")
 public class CuraduriaAdminController {
 
     private final IRevisarCuraduriaContenidoUseCase revisarUseCase;

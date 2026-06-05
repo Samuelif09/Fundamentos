@@ -15,6 +15,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(apiKeySecurityInterceptor);
+        registry.addInterceptor(apiKeySecurityInterceptor)
+                .excludePathPatterns("/h2-console/**", "/error");
     }
 }

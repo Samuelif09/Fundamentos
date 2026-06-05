@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
  * Controlador REST para A-01: Autenticación de administradores.
  * Endpoint: POST /api/v1/auth/admin/login
  */
+@RestController
 @RequestMapping("/api/v1/auth/admin")
 public class AdminAuthController {
 

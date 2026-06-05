@@ -2,6 +2,8 @@ package com.openlib.market.infrastructure.adapter.in.web;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.servlet.NoHandlerFoundException;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -32,6 +34,28 @@ public class GlobalExceptionHandler {
     public ResponseEntity<Map<String, Object>> handlePagoRechazado(
             com.openlib.market.application.pago.PagoRechazadoException ex) {
         return buildErrorResponse(HttpStatus.PAYMENT_REQUIRED, ex.getMessage());
+    }
+
+    @ExceptionHandler(NoResourceFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleNoResourceFound(NoResourceFoundException ex) {
+        return buildErrorResponse(HttpStatus.NOT_FOUND, "Recurso no encontrado");
+    }
+
+    @ExceptionHandler(NoHandlerFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleNoHandlerFound(NoHandlerFoundException ex) {
+        return buildErrorResponse(HttpStatus.NOT_FOUND, "Recurso no encontrado");
+    }
+
+    @ExceptionHandler(com.openlib.market.domain.detalle.TransicionEstadoInvalidaException.class)
+    public ResponseEntity<Map<String, Object>> handleTransicionEstadoInvalida(
+            com.openlib.market.domain.detalle.TransicionEstadoInvalidaException ex) {
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage());
+    }
+
+    @ExceptionHandler(com.openlib.market.domain.shared.AccionNoPermitidaException.class)
+    public ResponseEntity<Map<String, Object>> handleAccionNoPermitida(
+            com.openlib.market.domain.shared.AccionNoPermitidaException ex) {
+        return buildErrorResponse(HttpStatus.FORBIDDEN, ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)

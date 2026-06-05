@@ -25,6 +25,10 @@ public class ListaDeseosEntity {
 
     public ListaDeseosEntity() {}
 
+    public ListaDeseosEntity(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
     public ListaDeseosEntity(String idUsuario, Set<String> isbns) {
         this.idUsuario = idUsuario;
         this.isbns = isbns;

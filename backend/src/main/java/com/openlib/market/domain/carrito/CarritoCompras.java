@@ -48,6 +48,23 @@ public class CarritoCompras {
         }
     }
 
+    public void removerItem(String isbn) {
+        items.removeIf(item -> item.getLibroIsbn().equals(isbn));
+    }
+
+    public void actualizarCantidad(String isbn, int nuevaCantidad) {
+        if (nuevaCantidad <= 0) {
+            removerItem(isbn);
+            return;
+        }
+        for (ItemCarrito item : items) {
+            if (item.getLibroIsbn().equals(isbn)) {
+                item.setCantidad(new Cantidad(nuevaCantidad));
+                break;
+            }
+        }
+    }
+
     public void aplicarDescuento(CuponDescuento cupon) {
         this.cuponAplicado = cupon;
     }
@@ -58,5 +75,10 @@ public class CarritoCompras {
             return cuponAplicado.aplicarDescuento(subtotal);
         }
         return subtotal;
+    }
+
+    public void vaciar() {
+        this.items.clear();
+        this.cuponAplicado = null;
     }
 }

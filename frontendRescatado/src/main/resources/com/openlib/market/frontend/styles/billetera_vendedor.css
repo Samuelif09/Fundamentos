@@ -1,0 +1,171 @@
+/* ── Global ──────────────────────────────────────────── */
+.main-container {
+    -fx-background-color: #0f1225;
+    -fx-font-family: "Segoe UI", "Inter", sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+    -fx-background-color: #14172a;
+    -fx-pref-width: 250;
+    -fx-padding: 30 20 30 20;
+    -fx-border-color: transparent #2a2f4c transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
+}
+.sidebar:focused { -fx-background-color: #14172a; }
+.sidebar-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+}
+.sidebar-separator {
+    -fx-background-color: #2a2f4c;
+    -fx-border-width: 0;
+    -fx-padding: 5 0;
+}
+.sidebar-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #94a3b8;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 15;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+.sidebar-btn:hover {
+    -fx-background-color: #1e2440;
+    -fx-text-fill: #ffffff;
+}
+.active-btn {
+    -fx-background-color: linear-gradient(to right, #63ffb5, #35d898);
+    -fx-text-fill: #000000;
+}
+.active-btn:hover {
+    -fx-background-color: linear-gradient(to right, #63ffb5, #35d898);
+}
+.sidebar-btn-back {
+    -fx-background-color: transparent;
+    -fx-text-fill: #f87171;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+}
+.sidebar-btn-back:hover {
+    -fx-text-fill: #ef4444;
+}
+
+/* ── Header ──────────────────────────────────────────── */
+.page-title    { -fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #ffffff; }
+.page-subtitle { -fx-font-size: 14px; -fx-text-fill: #94a3b8; }
+.section-title { -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #ffffff; }
+.refresh-btn {
+}
+
+/* ── Header ──────────────────────────────────────────── */
+.page-title    { -fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #ffffff; }
+.page-subtitle { -fx-font-size: 14px; -fx-text-fill: #94a3b8; }
+.section-title { -fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #ffffff; }
+.refresh-btn {
+    -fx-background-color: #14172a; -fx-border-color: #2a2f4c; -fx-border-radius: 6;
+    -fx-background-radius: 6; -fx-text-fill: #94a3b8; -fx-font-weight: bold;
+    -fx-padding: 8 15; -fx-cursor: hand;
+}
+.refresh-btn:hover { -fx-background-color: #1e2440; }
+
+/* ── KPI Cards ───────────────────────────────────────── */
+.kpi-card {
+    -fx-background-color: #14172a;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #2a2f4c;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 2);
+}
+.withdrawal-card {
+    -fx-border-color: #6c63ff;
+    -fx-background-color: #1a1840;
+}
+.kpi-label { -fx-font-size: 14px; -fx-text-fill: #94a3b8; }
+.kpi-value { -fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #ffffff; }
+.text-green { -fx-text-fill: #10B981; }
+.text-red   { -fx-text-fill: #EF4444; }
+
+/* ── Withdrawal button ───────────────────────────────── */
+.withdraw-btn {
+    -fx-background-color: #6c63ff;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 18;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+.withdraw-btn:hover    { -fx-background-color: #5a52d5; }
+.withdraw-btn:disabled { -fx-background-color: #2a2f4c; -fx-text-fill: #94a3b8; }
+
+/* ── Transactions Table ──────────────────────────────── */
+.transactions-table {
+    -fx-background-color: #14172a;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #2a2f4c;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 2);
+}
+.transactions-table .column-header-background {
+    -fx-background-color: #1e2440;
+    -fx-background-radius: 12 12 0 0;
+}
+.transactions-table .column-header,
+.transactions-table .filler {
+    -fx-background-color: transparent;
+    -fx-size: 42;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #2a2f4c;
+}
+.transactions-table .column-header .label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #94a3b8;
+}
+.transactions-table .table-cell {
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: transparent transparent #1e2440 transparent;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 12 10;
+}
+.transactions-table .table-row-cell:odd  { -fx-background-color: #161929; }
+.transactions-table .table-row-cell:even { -fx-background-color: #14172a; }
+.transactions-table .table-row-cell:selected { -fx-background-color: #1e2440; }
+.table-placeholder { -fx-text-fill: #94A3B8; -fx-font-size: 15px; }
+
+/* ── Transaction type chips ──────────────────────────── */
+.chip-sale {
+    -fx-background-color: rgba(16, 185, 129, 0.15);
+    -fx-text-fill: #10B981;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 3 10;
+}
+.chip-commission {
+    -fx-background-color: rgba(239, 68, 68, 0.15);
+    -fx-text-fill: #EF4444;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 3 10;
+}
+.chip-withdrawal {
+    -fx-background-color: rgba(108, 99, 255, 0.15);
+    -fx-text-fill: #6c63ff;
+    -fx-font-weight: bold;
+    -fx-background-radius: 12;
+    -fx-padding: 3 10;
+}
+
+/* ── Amount cell colours ─────────────────────────────── */
+.amount-positive { -fx-text-fill: #10B981; -fx-font-weight: bold; }
+.amount-negative { -fx-text-fill: #EF4444; -fx-font-weight: bold; }
+
+/* ── Loading Overlay ─────────────────────────────────── */
+.loading-overlay { -fx-background-color: rgba(15, 18, 37, 0.92); }

@@ -1,0 +1,47 @@
+# =========================================================================
+# COMPILACIÓN Y BINARIOS (Maven / Java)
+# =========================================================================
+target/
+**/target/
+*.class
+*.jar
+*.war
+*.ear
+
+# =========================================================================
+# PERSISTENCIA LOCAL Y BASES DE DATOS (H2 / OpenLib Data)
+# =========================================================================
+# Ignorar la carpeta de datos locales para proteger la persistencia individual
+data/
+**/data/
+*.db
+*.trace.db
+
+# =========================================================================
+# CONFIGURACIÓN DE IDEs Y HERRAMIENTAS
+# =========================================================================
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+**/out/
+
+# Eclipse
+.settings/
+.classpath
+.project
+.factorypath
+
+# Visual Studio Code
+.vscode/
+
+# =========================================================================
+# ARCHIVOS DEL SISTEMA OPERATIVO Y LOGS
+# =========================================================================
+.DS_Store
+.DS_Store?
+ehthumbs.db
+Thumbs.db
+*.log

@@ -5,6 +5,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.openlib.market.domain.registro.Email;
 import com.openlib.market.domain.registro.IRegistroGateway;
 import com.openlib.market.domain.registro.Usuario;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -12,7 +15,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Profile("mock")
 public class RegistroJsonGateway implements IRegistroGateway {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(RegistroJsonGateway.class);
 
     private final ObjectMapper objectMapper;
     private final File jsonFile;
@@ -21,6 +27,7 @@ public class RegistroJsonGateway implements IRegistroGateway {
     public RegistroJsonGateway() {
         this.objectMapper = new ObjectMapper();
         this.jsonFile = new File("usuarios.json");
+        LOGGER.info("[PERSISTENCIA_JSON] RegistroJsonGateway inicializado. Archivo={}", jsonFile.getAbsolutePath());
         cargarDatos();
     }
 
@@ -47,6 +54,8 @@ public class RegistroJsonGateway implements IRegistroGateway {
 
     @Override
     public void guardar(Usuario usuario) {
+        LOGGER.info("[PERSISTENCIA_JSON] Guardando usuario en archivo {}. id={}, email={}",
+                jsonFile.getAbsolutePath(), usuario.getId(), usuario.getEmail().getValor());
         UsuarioDto dto = new UsuarioDto(
             usuario.getId(),
             usuario.getNombre(),
@@ -56,6 +65,7 @@ public class RegistroJsonGateway implements IRegistroGateway {
         );
         baseDatosEnMemoria.add(dto);
         guardarDatos();
+        LOGGER.info("[PERSISTENCIA_JSON] Usuario persistido en archivo {}. id={}", jsonFile.getAbsolutePath(), usuario.getId());
     }
 
     @Override

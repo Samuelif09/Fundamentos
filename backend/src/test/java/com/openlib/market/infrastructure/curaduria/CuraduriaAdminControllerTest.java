@@ -37,7 +37,7 @@ class CuraduriaAdminControllerTest {
         LibroParaRevisionDto dto = new LibroParaRevisionDto("isbn1", "Tit", "Sin", 10.0, "url", "vend", "VendName", "123");
         when(revisarUseCase.listarLibrosPendientes(0, 20)).thenReturn(List.of(dto));
 
-        mockMvc.perform(get("/api/v1/admin/curaduria/libros-pendientes")
+        mockMvc.perform(get("/api/v2/admin/curaduria/libros-pendientes")
                         .param("page", "0")
                         .param("size", "20"))
                 .andExpect(status().isOk())
@@ -49,7 +49,7 @@ class CuraduriaAdminControllerTest {
     void debeRechazarLibroCorrectamente() throws Exception {
         CuraduriaAdminController.RechazoRequest request = new CuraduriaAdminController.RechazoRequest("Contenido plagiado");
 
-        mockMvc.perform(post("/api/v1/admin/curaduria/libros/isbn1/rechazar")
+        mockMvc.perform(post("/api/v2/admin/curaduria/libros/isbn1/rechazar")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isOk())
@@ -65,7 +65,7 @@ class CuraduriaAdminControllerTest {
 
         CuraduriaAdminController.RechazoRequest request = new CuraduriaAdminController.RechazoRequest("corto");
 
-        mockMvc.perform(post("/api/v1/admin/curaduria/libros/isbn1/rechazar")
+        mockMvc.perform(post("/api/v2/admin/curaduria/libros/isbn1/rechazar")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(request)))
                 .andExpect(status().isBadRequest())
