@@ -1,0 +1,6 @@
+#FileLock
+#Thu Jun 04 13:14:12 COT 2026
+hostName=maquinon
+id=19e93d7c4bbcdd055c96a77483c609778bd92710b90
+method=file
+server=192.168.1.113\:39909

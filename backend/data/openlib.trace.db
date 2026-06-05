@@ -1,0 +1,3 @@
+2026-06-04 19:22:59.302213-05:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CONTENIDO_DIGITAL" not found (this database is empty); SQL statement:
+SELECT ISBN, TITULO, URL_PORTADA FROM CONTENIDO_DIGITAL [42104-240]
